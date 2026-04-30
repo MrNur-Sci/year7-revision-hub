@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 Ecosystems — Interactive Revision Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#10133f; --navy2:#21145c; --blue:#38a7ff; --purple:#8b5cf6;
+  --pink:#ff5fa2; --orange:#ffb347; --yellow:#ffe66d; --green:#33df8a;
+  --ink:#102033; --muted:#5b6f86; --softblue:#e8f6ff; --softpurple:#f2ecff;
+  --softorange:#fff3df; --softgreen:#eafff3; --softpink:#ffe6f1;
+  --shadow:0 18px 45px rgba(20,30,70,.16); --shadow2:0 10px 25px rgba(20,30,70,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',system-ui,sans-serif;background:linear-gradient(180deg,#eef8ff,#fbfdff 55%,#f3efff);color:var(--ink);line-height:1.6}
+.page{max-width:1200px;margin:0 auto;background:rgba(255,255,255,.82);box-shadow:0 0 70px rgba(0,0,0,.07);overflow:hidden}
+.hero{min-height:520px;position:relative;display:grid;place-items:center;padding:70px 42px;color:white;text-align:center;overflow:hidden;background:radial-gradient(circle at 80% 20%,rgba(103,232,249,.32),transparent 28%),radial-gradient(circle at 12% 22%,rgba(255,95,162,.22),transparent 25%),linear-gradient(135deg,var(--navy),var(--navy2) 45%,#1057a5)}
+.hero:before{content:"";position:absolute;inset:-100px;background-image:radial-gradient(rgba(255,255,255,.85) 1px,transparent 1px);background-size:34px 34px;opacity:.24;animation:stars 16s linear infinite}@keyframes stars{to{transform:translateY(34px)}}
+.hero-inner{position:relative;z-index:2}.hero-emoji{font-size:92px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.35));animation:float 3s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+h1{font-family:'Fredoka',sans-serif;font-size:clamp(44px,8vw,82px);line-height:.98;margin:20px 0 12px;text-shadow:0 10px 24px rgba(0,0,0,.28)}
+.subtitle{font-size:26px;font-weight:900;color:#dff7ff;margin-bottom:24px}.badges{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}.badge{padding:12px 22px;border-radius:999px;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.35);font-weight:900}
+.navbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid #d7e4f0;padding:12px 18px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.navbar a{color:var(--ink);text-decoration:none;font-weight:900;padding:10px 13px;border-radius:999px;background:#eef6ff;border:1px solid #d9eaff}
+.section{padding:62px 54px;border-bottom:4px dashed #dce9f5}.section:nth-child(even){background:#fff}
+.section-title{display:flex;align-items:center;gap:18px;margin-bottom:24px}.icon-bubble{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;font-size:42px;box-shadow:var(--shadow2)}
+h2{font-family:'Fredoka';font-size:clamp(34px,5vw,54px);line-height:1;color:#162653}.lead{font-size:20px;color:var(--muted);font-weight:800;margin-top:6px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}.card,.sim,.question,.challenge{background:white;border-radius:28px;padding:26px;box-shadow:var(--shadow2);border:2px solid #e2edf7}
+.card h3,.sim h3,.question h3,.challenge h3{font-size:24px;font-weight:900;color:#172554;margin-bottom:10px}.card p,.card li,.sim p,.question p,.challenge p{font-size:17px;font-weight:750;color:#384b5f}.card ul{padding-left:20px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}.info{border-radius:22px;padding:22px;border-left:8px solid}.blue{background:var(--softblue);border-color:var(--blue)}.purple{background:var(--softpurple);border-color:var(--purple)}.orange{background:var(--softorange);border-color:var(--orange)}.green{background:var(--softgreen);border-color:var(--green)}.pink{background:var(--softpink);border-color:var(--pink)}
+button{border:0;border-radius:999px;padding:12px 18px;font-family:'Nunito';font-size:16px;font-weight:1000;cursor:pointer;transition:.2s;margin:3px}button:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:white}.greenbtn{background:linear-gradient(135deg,var(--green),#15b86b);color:white}.orangebtn{background:linear-gradient(135deg,var(--orange),#f97316);color:white}.pinkbtn{background:linear-gradient(135deg,var(--pink),#e11d48);color:white}.ghost{background:#eef6ff;color:#172554;border:2px solid #d9eaff}
+.answer{display:none;margin-top:14px;background:#ecfdf5;border-left:6px solid var(--green);border-radius:14px;padding:14px;font-weight:900}.answer.show{display:block}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}.choice{background:#f8fbff;border:2px solid #d7ecff;border-radius:18px;padding:14px;text-align:left;color:#172554}.choice.correct{background:#ecfdf5;border-color:#86efac}.choice.wrong{background:#fff1f2;border-color:#fda4af}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.control{background:#f8fbff;border:2px solid #e2edf7;border-radius:18px;padding:14px}.control label{display:flex;justify-content:space-between;font-weight:1000;color:#172554}.control input[type="range"]{width:100%;accent-color:var(--purple);margin-top:10px}
+.output{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.output div{background:linear-gradient(135deg,#f8fbff,#eef8ff);border:2px solid #d7ecff;border-radius:18px;padding:14px;text-align:center;font-weight:1000}.output strong{display:block;font-family:'Fredoka';font-size:28px;color:#172554}
+.feedback{font-weight:1000;margin-top:12px}.ok{color:#008a4e}.no{color:#dc1f48}.hint{background:#fff7ed;border:2px solid #fed7aa;border-radius:18px;padding:14px;font-weight:900;color:#7c2d12;margin-top:12px}
+.progress-wrap{position:fixed;right:18px;bottom:18px;z-index:40;background:white;border:2px solid #dce9f5;border-radius:20px;padding:12px 14px;box-shadow:var(--shadow2);font-weight:1000}.progress-bar{width:170px;height:10px;background:#e9f2fb;border-radius:999px;margin-top:6px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));border-radius:999px;transition:.3s}
+.exam-table{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0;overflow:hidden;border-radius:18px;box-shadow:var(--shadow2)}.exam-table th{background:#172554;color:white;padding:14px;text-align:left}.exam-table td{background:white;border-bottom:1px solid #e6eef7;padding:12px;font-weight:800}.exam-table tr:nth-child(even) td{background:#f3f9ff}
+@media(max-width:850px){.section{padding:42px 22px}.card-grid,.two-col,.controls,.output,.choice-grid{grid-template-columns:1fr}.hero{min-height:520px;padding:50px 20px}.progress-wrap{position:static;margin:18px}.navbar{position:static}}
+
+.foodweb{position:relative;min-height:310px;background:#f8fbff;border:2px solid #d7ecff;border-radius:24px;padding:20px;overflow:hidden}
+.node{position:absolute;border-radius:999px;padding:12px 16px;font-weight:1000;background:white;border:3px solid #d7ecff;box-shadow:var(--shadow2)}
+.arrow{position:absolute;font-size:32px;color:#172554}
+.flower{display:grid;place-items:center;background:#fff7ed;border:2px solid #fed7aa;border-radius:24px;min-height:260px;font-size:70px}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero"><div class="hero-inner"><div class="hero-emoji">🌱</div><h1>Ecosystems Lab</h1><p class="subtitle">Year 7 Interactive Revision: Ecosystems, Photosynthesis & Plant Reproduction</p><div class="badges"><div class="badge">🕸 Food Webs</div><div class="badge">☀ Photosynthesis</div><div class="badge">🌸 Reproduction</div><div class="badge">🧪 Fieldwork</div></div></div></header>
+<nav class="navbar"><a href="index.html">🏠 Hub</a><a href="#foodwebs">Food webs</a><a href="#photosynthesis">Photosynthesis</a><a href="#reproduction">Reproduction</a><a href="#fieldwork">Fieldwork</a><a href="#challenge">Challenge</a></nav>
+<div class="progress-wrap">Progress: <span id="score">0</span>/8<div class="progress-bar"><div class="progress-fill" id="progress"></div></div></div>
+
+<section class="section" id="foodwebs"><div class="section-title"><div class="icon-bubble green">🕸</div><div><h2>1. Ecosystems & Food Webs</h2><p class="lead">Energy moves through food chains and food webs.</p></div></div>
+<div class="card-grid"><div class="card"><h3>🌿 Producer</h3><p>A plant or algae that makes its own food using photosynthesis.</p></div><div class="card"><h3>🐛 Consumer</h3><p>An animal that eats plants or other animals.</p></div><div class="card"><h3>🍄 Decomposer</h3><p>Breaks down dead organisms and recycles nutrients.</p></div></div>
+<div class="sim"><h3>Food Web Simulator</h3><p>Remove one organism and predict what happens.</p><div class="foodweb"><div class="node" style="left:40px;top:130px">grass 🌿</div><div class="node" style="left:250px;top:70px">rabbit 🐇</div><div class="node" style="left:250px;top:190px">grasshopper 🦗</div><div class="node" style="left:500px;top:130px">fox 🦊</div><div class="arrow" style="left:175px;top:122px">→</div><div class="arrow" style="left:175px;top:190px">→</div><div class="arrow" style="left:405px;top:110px">→</div><div class="arrow" style="left:405px;top:185px">→</div></div>
+<button class="greenbtn" onclick="show('web1',1)">What if grass decreases?</button><button class="ghost" onclick="hide('web1')">Reset</button><div class="answer" id="web1">There is less food for rabbits and grasshoppers, so their populations may decrease. This can then reduce food for foxes.</div></div>
+<div class="question"><h3>Diagnostic Question</h3><p>In a food chain, what do arrows show?</p><div class="choice-grid"><button class="choice" onclick="choice(this,false,'Not quite. The arrow does not show movement of the animal.')">Where animals move</button><button class="choice" onclick="choice(this,true,'Correct: arrows show the direction of energy transfer.',2)">Energy transfer</button><button class="choice" onclick="choice(this,false,'Predators are shown by positions, not arrows alone.')">Which animal is strongest</button><button class="choice" onclick="choice(this,false,'Habitats are places where organisms live.')">The habitat</button></div><div class="feedback" id="choiceFeedback"></div></div></section>
+
+<section class="section" id="photosynthesis"><div class="section-title"><div class="icon-bubble orange">☀</div><div><h2>2. Photosynthesis</h2><p class="lead">Plants use light energy to make glucose.</p></div></div>
+<div class="card-grid"><div class="card"><h3>Inputs</h3><p>Carbon dioxide + water, using light energy.</p></div><div class="card"><h3>Outputs</h3><p>Glucose + oxygen.</p></div><div class="card"><h3>Leaf adaptations</h3><p>Large surface area, chloroplasts, stomata and veins.</p></div></div>
+<div class="sim"><h3>Photosynthesis Rate Simulator</h3><p>Change light, carbon dioxide and temperature.</p><div class="controls"><div class="control"><label>Light <span id="lightVal">50%</span></label><input id="light" type="range" min="0" max="100" value="50" oninput="updatePhoto()"></div><div class="control"><label>CO₂ <span id="co2Val">50%</span></label><input id="co2" type="range" min="0" max="100" value="50" oninput="updatePhoto()"></div><div class="control"><label>Temp <span id="tempVal">25°C</span></label><input id="temp" type="range" min="0" max="45" value="25" oninput="updatePhoto()"></div></div><div class="output"><div>Rate<strong id="rateOut">50%</strong></div><div>Limiting factor<strong id="limitOut">light/CO₂</strong></div><div>Oxygen bubbles<strong id="bubbleOut">💧💧💧</strong></div></div><div class="hint" id="photoHint">The lowest key factor usually limits the rate.</div></div>
+<div class="question"><h3>Reveal Check</h3><p>Why does increasing light not always keep increasing photosynthesis?</p><button class="greenbtn" onclick="show('photoAns',3)">Reveal answer</button><div class="answer" id="photoAns">Another factor, such as carbon dioxide or temperature, can become the limiting factor.</div></div></section>
+
+<section class="section" id="reproduction"><div class="section-title"><div class="icon-bubble pink">🌸</div><div><h2>3. Plant Reproduction & Seed Dispersal</h2><p class="lead">Flowering plants use pollination, fertilisation and seed dispersal.</p></div></div>
+<div class="two-col"><div class="info pink"><h3>Pollination</h3><p>Pollen is transferred from anther to stigma.</p></div><div class="info green"><h3>Fertilisation</h3><p>The male sex cell joins with the female sex cell in the ovule.</p></div></div>
+<div class="sim"><h3>Flower Parts Match</h3><p>Click to reveal the job of each part.</p><button class="pinkbtn" onclick="show('anther',4)">Anther</button><button class="pinkbtn" onclick="show('stigma',4)">Stigma</button><button class="pinkbtn" onclick="show('ovary',4)">Ovary</button><div class="flower">🌸</div><div class="answer" id="anther">Anther: produces pollen.</div><div class="answer" id="stigma">Stigma: sticky part that catches pollen.</div><div class="answer" id="ovary">Ovary: contains ovules, which can become seeds after fertilisation.</div></div>
+<div class="question"><h3>Diagnostic Question</h3><p>Why do plants disperse seeds?</p><div class="choice-grid"><button class="choice" onclick="choice2(this,true,'Correct: dispersal reduces competition with the parent plant.',5)">To reduce competition</button><button class="choice" onclick="choice2(this,false,'Seeds still need water; dispersal is about spreading out.')">To avoid needing water</button><button class="choice" onclick="choice2(this,false,'Photosynthesis happens in leaves, not seeds.')">To photosynthesise faster</button><button class="choice" onclick="choice2(this,false,'Pollination happens before seeds form.')">To make pollen</button></div><div class="feedback" id="choiceFeedback2"></div></div></section>
+
+<section class="section" id="fieldwork"><div class="section-title"><div class="icon-bubble blue">🧪</div><div><h2>4. Fieldwork & Practical Skills</h2><p class="lead">Use quadrats, sampling and graphs to study ecosystems.</p></div></div>
+<div class="question"><h3>Quadrat Sampling</h3><p>A student counts daisies in five quadrats: 3, 4, 5, 4, 4. Calculate the mean.</p><button class="greenbtn" onclick="show('meanAns',6)">Reveal answer</button><div class="answer" id="meanAns">Mean = (3 + 4 + 5 + 4 + 4) ÷ 5 = 20 ÷ 5 = <strong>4 daisies per quadrat</strong>.</div></div>
+<div class="question"><h3>Fair sampling</h3><p>Why should quadrats be placed randomly?</p><button class="greenbtn" onclick="show('quadAns',7)">Reveal answer</button><div class="answer" id="quadAns">Random placement reduces bias and makes the sample more representative of the habitat.</div></div></section>
+
+<section class="section" id="challenge"><div class="section-title"><div class="icon-bubble orange">⭐</div><div><h2>5. Challenge</h2><p class="lead">Harder CFU-style thinking.</p></div></div>
+<div class="challenge"><h3>Final Boss</h3><p>A farmer removes hedgerows to create larger fields. Explain two possible effects on the ecosystem.</p><button class="greenbtn" onclick="show('boss',8)">Reveal model answer</button><div class="answer" id="boss">Removing hedgerows can reduce habitats and nesting sites, lowering biodiversity. It can also reduce food sources and disrupt food webs, causing some populations to decrease.</div></div></section>
+</div>
+<script>
+let progress=new Set();function byId(id){return document.getElementById(id)}function add(n){if(!n)return;progress.add(n);byId('score').textContent=progress.size;byId('progress').style.width=(progress.size/8*100)+'%'}function show(id,n){byId(id).classList.add('show');add(n)}function hide(id){byId(id).classList.remove('show')}
+function choice(btn,ok,msg,n){document.querySelectorAll('#foodwebs .choice').forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(ok?'correct':'wrong');byId('choiceFeedback').textContent=msg;byId('choiceFeedback').className='feedback '+(ok?'ok':'no');add(n)}
+function choice2(btn,ok,msg,n){document.querySelectorAll('#reproduction .choice').forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(ok?'correct':'wrong');byId('choiceFeedback2').textContent=msg;byId('choiceFeedback2').className='feedback '+(ok?'ok':'no');add(n)}
+function updatePhoto(){let l=+byId('light').value,c=+byId('co2').value,t=+byId('temp').value;byId('lightVal').textContent=l+'%';byId('co2Val').textContent=c+'%';byId('tempVal').textContent=t+'°C';let tempScore=Math.max(0,100-Math.abs(t-25)*4);let rate=Math.round(Math.min(l,c,tempScore));byId('rateOut').textContent=rate+'%';let lim=rate===l?'light':rate===c?'CO₂':'temperature';byId('limitOut').textContent=lim;byId('bubbleOut').textContent=rate>70?'💧💧💧💧💧':rate>40?'💧💧💧':rate>10?'💧':'none';}window.addEventListener('DOMContentLoaded',updatePhoto);
+</script>
+</body>
+</html>
