@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 Ecology Revision Lab</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f0fdf4;color:#102033}
+.hero{background:linear-gradient(135deg,#064e3b,#15803d);color:white;text-align:center;padding:54px 20px}
+.hero h1{font-size:48px;margin:10px 0}
+.menu{background:white;border-bottom:2px solid #bbf7d0;padding:10px;text-align:center}
+.menu a{display:inline-block;color:#102033;text-decoration:none;font-weight:bold;padding:8px 12px;background:#ecfdf5;border-radius:999px;margin:3px}
+.nav{position:sticky;top:0;background:white;padding:12px;text-align:center;border-bottom:2px solid #bbf7d0;z-index:10}
+.nav a{display:inline-block;margin:4px;padding:10px 14px;background:#ecfdf5;border-radius:999px;text-decoration:none;color:#102033;font-weight:bold}
+section{max-width:1120px;margin:20px auto;background:white;padding:32px;border-radius:26px;box-shadow:0 10px 25px rgba(20,70,40,.12)}
+h2{font-size:32px;color:#14532d}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.task,.quiz-card{border:2px solid #bbf7d0;border-radius:22px;padding:20px;background:#f8fffb;margin:16px 0}
+button{border:0;border-radius:999px;padding:12px 16px;font-weight:bold;cursor:pointer;margin:4px}
+.primary{background:#22c55e;color:white}.green{background:#16a34a;color:white}.orange{background:#f59e0b;color:white}.pink{background:#ec4899;color:white}.ghost{background:#ecfdf5;color:#102033;border:2px solid #bbf7d0}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.choice{text-align:left;background:white;border:2px solid #bbf7d0;color:#102033}
+.choice.correct{background:#dcfce7;border-color:#22c55e}
+.choice.wrong{background:#fff1f2;border-color:#ef4444}
+.feedback{font-weight:bold;margin-top:10px}.ok{color:#15803d}.no{color:#dc2626}
+.controls,.output{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.control,.output div{background:white;border:2px solid #bbf7d0;border-radius:18px;padding:14px;text-align:center;font-weight:bold}
+input[type=range]{width:100%}
+.output strong,.control strong{display:block;font-size:24px;color:#14532d;margin:6px 0}
+.answer{display:none;margin-top:14px;background:#dcfce7;border-left:6px solid #22c55e;border-radius:14px;padding:14px;font-weight:bold}.answer.show{display:block}
+textarea{width:100%;min-height:90px;border:2px solid #bbf7d0;border-radius:16px;padding:12px;font-size:16px}
+.diagram-row{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.svg-card{background:white;border:2px solid #bbf7d0;border-radius:22px;padding:16px;margin:14px 0}
+svg.model{width:100%;max-width:680px;display:block;margin:auto;background:#fbfffd;border:2px solid #bbf7d0;border-radius:22px}
+.text{font-size:18px;font-weight:800;fill:#14532d}
+.smallText{font-size:14px;font-weight:800;fill:#14532d}
+.arrow{stroke:#14532d;stroke-width:5;fill:none;marker-end:url(#arrowHead)}
+.energyArrow{stroke:#f59e0b;stroke-width:7;fill:none;marker-end:url(#energyHead)}
+.node{cursor:pointer;transition:.2s}
+.node circle{stroke:#14532d;stroke-width:4}
+.node:hover{filter:drop-shadow(0 0 10px #22c55e)}
+.node.selected circle{stroke:#f59e0b;stroke-width:6}
+.bar-bg{fill:#dcfce7}
+.bar{transition:height .5s,y .5s}
+.info-box{background:#fff7ed;border:2px solid #fed7aa;border-radius:18px;padding:14px;font-weight:bold;color:#7c2d12;margin-top:12px}
+.compare-table{width:100%;border-collapse:collapse;background:white;border-radius:16px;overflow:hidden}
+.compare-table th{background:#14532d;color:white;padding:10px;text-align:left}
+.compare-table td{border-bottom:1px solid #bbf7d0;padding:10px;font-weight:bold}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.match-item{background:white;border:3px solid #bbf7d0;border-radius:16px;padding:14px;margin:8px 0;font-weight:bold;cursor:pointer}
+.match-item.selected{background:#22c55e;color:white}.match-item.correct{background:#dcfce7;border-color:#22c55e}.match-item.wrong{background:#fff1f2;border-color:#ef4444}
+.quadrat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.quadrat{min-height:72px;border:3px solid #bbf7d0;border-radius:14px;background:white;display:grid;place-items:center;font-size:24px;cursor:pointer}
+.quadrat.selected{background:#dcfce7;border-color:#22c55e}
+.graph-wrap{background:white;border:2px solid #bbf7d0;border-radius:18px;padding:12px;margin-top:12px}
+.quiz-band{padding:18px;border-radius:20px;margin:18px 0}.secure{background:#dcfce7;border:2px solid #86efac}.build{background:#eff6ff;border:2px solid #93c5fd}.stretch{background:#fff7ed;border:2px solid #fed7aa}
+.quiz-score{font-size:22px;font-weight:bold;padding:16px;background:#ecfdf5;border-radius:18px}
+.calc-input{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.calc-input input{padding:12px;border:2px solid #bbf7d0;border-radius:14px;font-size:16px;max-width:150px}
+@media(max-width:850px){.card-grid,.controls,.output,.choice-grid,.diagram-row,.match-grid{grid-template-columns:1fr}.nav{position:static}.text{font-size:15px}.smallText{font-size:12px}.quadrat-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="menu">
+<a href="index.html">🏠 Home</a>
+<a href="forces.html">🚗 Forces</a>
+<a href="electricity.html">⚡ Circuits</a>
+</div>
+
+<div class="hero">
+<div style="font-size:70px">🌱</div>
+<h1>Ecology Revision Lab</h1>
+<p>Food webs, photosynthesis, plant reproduction, fieldwork and challenge questions</p>
+</div>
+
+<div class="nav">
+<a href="#basics">Basics</a>
+<a href="#foodweb">Food Web</a>
+<a href="#energy">Energy</a>
+<a href="#plants">Plants</a>
+<a href="#fieldwork">Fieldwork</a>
+<a href="#quiz">CFU</a>
+</div>
+
+<section id="basics">
+<h2>1. Ecology Basics</h2>
+<div class="card-grid">
+<div class="card"><h3>Producer</h3><p>A plant or algae that makes its own food by photosynthesis.</p></div>
+<div class="card"><h3>Consumer</h3><p>An animal that gets energy by eating plants or other animals.</p></div>
+<div class="card"><h3>Population</h3><p>The number of one type of organism living in a habitat.</p></div>
+</div>
+<div class="task">
+<h3>Quick Check</h3>
+<p>Which organism is a producer?</p>
+<div class="choice-grid">
+<button class="choice" onclick="checkChoice(this,true,'basicF','Correct: grass is a plant and can photosynthesise.')">Grass</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','A rabbit is a consumer.')">Rabbit</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','A fox is a consumer.')">Fox</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','A caterpillar is a consumer.')">Caterpillar</button>
+</div>
+<div id="basicF" class="feedback"></div>
+</div>
+</section>
+
+<section id="foodweb">
+<h2>2. Food Web Cause and Effect</h2>
+<p><strong>Big idea:</strong> changing one population can affect other populations in the food web.</p>
+
+<div class="task">
+<h3>Predict first</h3>
+<p>If foxes decrease, what is likely to happen to rabbits first?</p>
+<div class="choice-grid">
+<button class="choice" onclick="checkChoice(this,true,'foodPred','Correct: fewer foxes means fewer rabbits are eaten, so rabbits may increase.')">Rabbits increase</button>
+<button class="choice" onclick="checkChoice(this,false,'foodPred','Think: foxes eat rabbits.')">Rabbits decrease</button>
+<button class="choice" onclick="checkChoice(this,false,'foodPred','Food webs usually change when predators change.')">Nothing changes</button>
+<button class="choice" onclick="checkChoice(this,false,'foodPred','Grass does not eat rabbits.')">Grass eats rabbits</button>
+</div>
+<div id="foodPred" class="feedback"></div>
+</div>
+
+<div class="task">
+<div class="diagram-row">
+<div class="svg-card">
+<h3>Interactive food web</h3>
+<p>Click an organism to reduce it. Watch the knock-on effects.</p>
+<svg class="model" viewBox="0 0 680 430" aria-label="Interactive food web model">
+<defs>
+<marker id="arrowHead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+<path d="M0,0 L0,6 L9,3 z" fill="#14532d"/>
+</marker>
+</defs>
+<path class="arrow" d="M165 300 C240 235 300 205 375 165"/>
+<path class="arrow" d="M165 300 C255 310 340 300 425 270"/>
+<path class="arrow" d="M375 165 C455 160 505 180 565 215"/>
+<path class="arrow" d="M425 270 C500 270 530 250 565 215"/>
+<g class="node" id="nodeGrass" onclick="changeFoodWeb('grass')">
+<circle cx="130" cy="315" r="58" fill="#bbf7d0"/>
+<text x="130" y="308" text-anchor="middle" class="text">Grass</text>
+<text x="130" y="335" text-anchor="middle" class="smallText">producer</text>
+</g>
+<g class="node" id="nodeRabbit" onclick="changeFoodWeb('rabbit')">
+<circle cx="380" cy="150" r="55" fill="#fef3c7"/>
+<text x="380" y="145" text-anchor="middle" class="text">Rabbit</text>
+<text x="380" y="170" text-anchor="middle" class="smallText">consumer</text>
+</g>
+<g class="node" id="nodeCaterpillar" onclick="changeFoodWeb('caterpillar')">
+<circle cx="430" cy="280" r="55" fill="#dbeafe"/>
+<text x="430" y="275" text-anchor="middle" class="text">Caterpillar</text>
+<text x="430" y="300" text-anchor="middle" class="smallText">consumer</text>
+</g>
+<g class="node" id="nodeFox" onclick="changeFoodWeb('fox')">
+<circle cx="570" cy="220" r="58" fill="#fed7aa"/>
+<text x="570" y="215" text-anchor="middle" class="text">Fox</text>
+<text x="570" y="240" text-anchor="middle" class="smallText">predator</text>
+</g>
+<text x="30" y="35" class="smallText">Arrows show energy transfer from food to feeder.</text>
+</svg>
+<button class="ghost" onclick="resetFoodWeb()">Reset food web</button>
+</div>
+
+<div class="svg-card">
+<h3>Population model</h3>
+<svg class="model" viewBox="0 0 420 330" aria-label="Population bar chart">
+<text x="40" y="25" class="smallText">Population after change</text>
+<rect x="60" y="60" width="45" height="220" class="bar-bg"/>
+<rect id="barGrass" x="60" y="104" width="45" height="176" fill="#22c55e" class="bar"/>
+<rect x="145" y="60" width="45" height="220" class="bar-bg"/>
+<rect id="barRabbit" x="145" y="104" width="45" height="176" fill="#f59e0b" class="bar"/>
+<rect x="230" y="60" width="45" height="220" class="bar-bg"/>
+<rect id="barCaterpillar" x="230" y="104" width="45" height="176" fill="#38bdf8" class="bar"/>
+<rect x="315" y="60" width="45" height="220" class="bar-bg"/>
+<rect id="barFox" x="315" y="104" width="45" height="176" fill="#fb923c" class="bar"/>
+<text x="82" y="305" text-anchor="middle" class="smallText">grass</text>
+<text x="167" y="305" text-anchor="middle" class="smallText">rabbit</text>
+<text x="252" y="305" text-anchor="middle" class="smallText">cater.</text>
+<text x="337" y="305" text-anchor="middle" class="smallText">fox</text>
+</svg>
+<div class="output">
+<div>Grass<strong id="popGrass">80%</strong></div>
+<div>Rabbits<strong id="popRabbit">80%</strong></div>
+<div>Foxes<strong id="popFox">80%</strong></div>
+</div>
+<div class="info-box" id="foodWebMsg">Click an organism in the food web to model a population decrease.</div>
+</div>
+</div>
+</div>
+
+<div class="task">
+<h3>Explain</h3>
+<p>Explain what might happen if foxes decrease. Use <strong>predator</strong>, <strong>prey</strong> and <strong>grass</strong>.</p>
+<textarea id="foxExplain"></textarea>
+<button class="green" onclick="checkText('foxExplain','foxExplainF',['predator','prey','grass'],'Good: you linked predator decrease to prey increase and an effect on grass.')">Check</button>
+<div id="foxExplainF" class="feedback"></div>
+</div>
+</section>
+
+<section id="energy">
+<h2>3. Energy Transfer</h2>
+<p><strong>Big idea:</strong> energy is transferred through food chains, but not all energy is passed on.</p>
+
+<div class="task">
+<div class="diagram-row">
+<div class="svg-card">
+<h3>Energy pyramid</h3>
+<svg class="model" viewBox="0 0 620 350" aria-label="Energy transfer pyramid">
+<defs>
+<marker id="energyHead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+<path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+</marker>
+</defs>
+<polygon points="100,300 520,300 465,225 155,225" fill="#bbf7d0" stroke="#14532d" stroke-width="4"/>
+<polygon points="155,225 465,225 405,145 215,145" fill="#fef3c7" stroke="#14532d" stroke-width="4"/>
+<polygon points="215,145 405,145 350,75 270,75" fill="#fed7aa" stroke="#14532d" stroke-width="4"/>
+<text x="310" y="270" text-anchor="middle" class="text">Producers</text>
+<text x="310" y="190" text-anchor="middle" class="text">Primary consumers</text>
+<text x="310" y="115" text-anchor="middle" class="text">Predators</text>
+<path class="energyArrow" d="M540 285 C585 245 585 180 530 115"/>
+<text x="470" y="40" class="smallText">Energy decreases up the pyramid</text>
+</svg>
+</div>
+<div class="svg-card">
+<h3>Calculation model</h3>
+<div class="controls">
+<div class="control">Energy in grass <strong id="energyStartText">1000 kJ</strong><input id="energyStart" type="range" min="100" max="2000" step="100" value="1000" oninput="updateEnergy()"></div>
+<div class="control">Transfer to next level <strong id="energyPercentText">10%</strong><input id="energyPercent" type="range" min="5" max="30" value="10" oninput="updateEnergy()"></div>
+<div class="control">Rule<br><button class="green" onclick="show('energyAns')">Explain</button></div>
+</div>
+<div class="output">
+<div>Grass<strong id="energyProducer">1000 kJ</strong></div>
+<div>Rabbit<strong id="energyPrimary">100 kJ</strong></div>
+<div>Fox<strong id="energyPredator">10 kJ</strong></div>
+</div>
+<div class="answer" id="energyAns">Energy is lost to movement, heat, waste and life processes. This is why fewer organisms can be supported at higher levels.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="plants">
+<h2>4. Plants, Pollination and Seed Dispersal</h2>
+<div class="task">
+<h3>Match flower parts to their functions</h3>
+<p>Click a structure, then click its function.</p>
+<div class="match-grid">
+<div>
+<h3>Structures</h3>
+<div id="part-stigma" class="match-item" onclick="selectPart('stigma')">Stigma</div>
+<div id="part-anther" class="match-item" onclick="selectPart('anther')">Anther</div>
+<div id="part-ovary" class="match-item" onclick="selectPart('ovary')">Ovary</div>
+<div id="part-ovule" class="match-item" onclick="selectPart('ovule')">Ovule</div>
+<div id="part-petal" class="match-item" onclick="selectPart('petal')">Petal</div>
+</div>
+<div>
+<h3>Functions</h3>
+<div id="func-petal" class="match-item" onclick="checkPart('petal')">Attracts insects</div>
+<div id="func-ovule" class="match-item" onclick="checkPart('ovule')">Can become a seed</div>
+<div id="func-anther" class="match-item" onclick="checkPart('anther')">Produces pollen</div>
+<div id="func-stigma" class="match-item" onclick="checkPart('stigma')">Catches pollen</div>
+<div id="func-ovary" class="match-item" onclick="checkPart('ovary')">Contains ovules</div>
+</div>
+</div>
+<div class="output">
+<div>Matches<strong id="plantMatchScore">0/5</strong></div>
+<div>Attempts<strong id="plantAttempts">0</strong></div>
+<div>Status<strong id="plantStatus">Ready</strong></div>
+</div>
+<div id="plantFeedback" class="feedback">Choose a structure to begin.</div>
+</div>
+
+<div class="task">
+<h3>Seed dispersal reasoning</h3>
+<p>Choose the best dispersal method for each seed type.</p>
+<div class="choice-grid">
+<button class="choice" onclick="seedChoice(this,true,'seedF','Correct: light seeds with wings are often wind dispersed.')">Winged seed → wind</button>
+<button class="choice" onclick="seedChoice(this,false,'seedF','Hooks are usually for animal dispersal.')">Hooked seed → wind</button>
+<button class="choice" onclick="seedChoice(this,true,'seedF','Correct: hooked seeds can attach to animal fur.')">Hooked seed → animals</button>
+<button class="choice" onclick="seedChoice(this,false,'seedF','Fleshy fruits are often eaten by animals.')">Fleshy fruit → explosion only</button>
+</div>
+<div id="seedF" class="feedback"></div>
+</div>
+</section>
+
+<section id="fieldwork">
+<h2>5. Fieldwork and Data</h2>
+<p><strong>Big idea:</strong> scientists use sampling to estimate populations in a habitat.</p>
+
+<div class="task">
+<h3>Quadrat sampling</h3>
+<p>Click five quadrats. Then calculate the mean number of daisies.</p>
+<div class="quadrat-grid">
+<div class="quadrat" onclick="selectQuadrat(this,3)">🌼🌼🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,4)">🌼🌼🌼🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,1)">🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,5)">🌼🌼🌼🌼🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,2)">🌼🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,4)">🌼🌼🌼🌼</div>
+<div class="quadrat" onclick="selectQuadrat(this,0)">empty</div>
+<div class="quadrat" onclick="selectQuadrat(this,3)">🌼🌼🌼</div>
+</div>
+<div class="output">
+<div>Samples<strong id="sampleCount">0</strong></div>
+<div>Total daisies<strong id="sampleTotal">0</strong></div>
+<div>Mean<strong id="sampleMean">-</strong></div>
+</div>
+<button class="ghost" onclick="resetQuadrats()">Reset quadrats</button>
+<div class="info-box">Mean = total number of daisies ÷ number of quadrats sampled.</div>
+</div>
+
+<div class="task">
+<h3>Graph interpretation</h3>
+<p>The graph shows rabbit population after fox numbers decrease.</p>
+<div class="graph-wrap">
+<svg class="model" viewBox="0 0 620 330" aria-label="Rabbit population graph">
+<line x1="80" y1="260" x2="560" y2="260" stroke="#14532d" stroke-width="5"/>
+<line x1="80" y1="260" x2="80" y2="50" stroke="#14532d" stroke-width="5"/>
+<polyline points="90,230 180,205 270,160 360,120 450,95 540,90" fill="none" stroke="#f59e0b" stroke-width="6"/>
+<circle cx="90" cy="230" r="7" fill="#f59e0b"/><circle cx="180" cy="205" r="7" fill="#f59e0b"/><circle cx="270" cy="160" r="7" fill="#f59e0b"/><circle cx="360" cy="120" r="7" fill="#f59e0b"/><circle cx="450" cy="95" r="7" fill="#f59e0b"/><circle cx="540" cy="90" r="7" fill="#f59e0b"/>
+<text x="250" y="310" class="smallText">Time</text>
+<text x="15" y="170" class="smallText" transform="rotate(-90 15 170)">Rabbit population</text>
+<text x="300" y="40" class="text" text-anchor="middle">Rabbit population increases then levels off</text>
+</svg>
+</div>
+<p>What trend does the graph show?</p>
+<div class="choice-grid">
+<button class="choice" onclick="checkChoice(this,true,'graphF','Correct: the population rises, then levels off.')">It increases then levels off</button>
+<button class="choice" onclick="checkChoice(this,false,'graphF','The line does not keep going down.')">It decreases continuously</button>
+<button class="choice" onclick="checkChoice(this,false,'graphF','The population changes over time.')">It stays exactly the same</button>
+<button class="choice" onclick="checkChoice(this,false,'graphF','There is no evidence of photosynthesis rate here.')">Photosynthesis stops</button>
+</div>
+<div id="graphF" class="feedback"></div>
+</div>
+</section>
+
+<section id="quiz">
+<h2>Final Check</h2>
+<p>Choose your level. Includes recall, application, data and calculation.</p>
+
+<div class="quiz-band secure">
+<h3>Secure It</h3>
+<div class="quiz-card"><p>1. Which organism is a producer?</p><button class="choice" onclick="quiz(this,true,'q1')">Grass</button><button class="choice" onclick="quiz(this,false,'q1')">Fox</button><div id="q1" class="feedback"></div></div>
+<div class="quiz-card"><p>2. What do arrows in a food chain show?</p><button class="choice" onclick="quiz(this,true,'q2')">Energy transfer</button><button class="choice" onclick="quiz(this,false,'q2')">Animal size</button><div id="q2" class="feedback"></div></div>
+<div class="quiz-card"><p>3. Which flower part produces pollen?</p><button class="choice" onclick="quiz(this,true,'q3')">Anther</button><button class="choice" onclick="quiz(this,false,'q3')">Petal</button><div id="q3" class="feedback"></div></div>
+<div class="quiz-card"><p>4. Why should quadrats be placed randomly?</p><button class="choice" onclick="quiz(this,true,'q4')">To reduce bias</button><button class="choice" onclick="quiz(this,false,'q4')">To pick the best plants</button><div id="q4" class="feedback"></div></div>
+</div>
+
+<div class="quiz-band build">
+<h3>Build It</h3>
+<div class="quiz-card"><p>5. A student counts 3, 4, 1, 5 and 2 daisies in five quadrats. Calculate the mean.</p><div class="calc-input"><input id="calc5" placeholder="mean"><button class="green" onclick="checkCalc('calc5',3,'q5','Correct: total = 15, mean = 15 ÷ 5 = 3.')">Check</button></div><div id="q5" class="feedback"></div></div>
+<div class="quiz-card"><p>6. If grass has 1000 kJ and 10% transfers to rabbits, how much energy reaches rabbits?</p><div class="calc-input"><input id="calc6" placeholder="kJ"><button class="green" onclick="checkCalc('calc6',100,'q6','Correct: 10% of 1000 kJ = 100 kJ.')">Check</button></div><div id="q6" class="feedback"></div></div>
+<div class="quiz-card"><p>7. If foxes decrease, rabbits may...</p><button class="choice" onclick="quiz(this,true,'q7')">increase</button><button class="choice" onclick="quiz(this,false,'q7')">immediately disappear</button><div id="q7" class="feedback"></div></div>
+<div class="quiz-card"><p>8. Seed dispersal helps plants by...</p><button class="choice" onclick="quiz(this,true,'q8')">reducing competition</button><button class="choice" onclick="quiz(this,false,'q8')">stopping photosynthesis</button><div id="q8" class="feedback"></div></div>
+</div>
+
+<div class="quiz-band stretch">
+<h3>Stretch It</h3>
+<div class="quiz-card"><p>9. Explain why rabbit numbers might increase and then level off after foxes decrease.</p><textarea id="stretch9"></textarea><button class="green" onclick="checkText('stretch9','q9',['increase','food'],'Good: you linked population increase to limiting factors such as food or space.')">Check</button><div id="q9" class="feedback"></div></div>
+<div class="quiz-card"><p>10. In a food chain, grass has 2000 kJ. 10% passes to rabbits and 10% of that passes to foxes. How much energy reaches foxes?</p><div class="calc-input"><input id="calc10" placeholder="kJ"><button class="green" onclick="checkCalc('calc10',20,'q10','Correct: 10% of 2000 = 200; 10% of 200 = 20 kJ.')">Check</button></div><div id="q10" class="feedback"></div></div>
+<div class="quiz-card"><p>11. A student only places quadrats where there are lots of plants. Explain why this is a problem.</p><textarea id="stretch11"></textarea><button class="green" onclick="checkText('stretch11','q11',['bias','representative'],'Good: choosing only plant-rich areas creates bias and is not representative.')">Check</button><div id="q11" class="feedback"></div></div>
+<div class="quiz-card"><p>12. Explain how a change in one population can affect at least two other populations in a food web.</p><textarea id="stretch12"></textarea><button class="green" onclick="checkText('stretch12','q12',['population','food'],'Good: you explained linked population changes through feeding relationships.')">Check</button><div id="q12" class="feedback"></div></div>
+</div>
+
+<div class="quiz-score">Score: <span id="quizScore">0</span>/12</div>
+</section>
+
+<script>
+let populations={grass:80,rabbit:80,caterpillar:80,fox:80};
+let selectedPart=null;
+let plantMatches=new Set();
+let plantAttempts=0;
+let quadrats=[];
+let quizScore=0;
+let answered={};
+
+function el(id){return document.getElementById(id)}
+function show(id){el(id).classList.add('show')}
+
+function scoreOnce(fid, correct){
+  if(answered[fid]) return;
+  answered[fid]=true;
+  if(correct){quizScore++; el('quizScore').textContent=quizScore}
+}
+
+function checkChoice(btn,correct,fid,msg){
+  let parent=btn.closest('.task')||btn.closest('.quiz-card');
+  parent.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(correct?'correct':'wrong');
+  el(fid).textContent=msg;
+  el(fid).className='feedback '+(correct?'ok':'no');
+}
+
+function setBar(id,value){
+  let h=220*(value/100);
+  el(id).setAttribute('height',h);
+  el(id).setAttribute('y',280-h);
+}
+
+function updateFoodWeb(){
+  setBar('barGrass',populations.grass);
+  setBar('barRabbit',populations.rabbit);
+  setBar('barCaterpillar',populations.caterpillar);
+  setBar('barFox',populations.fox);
+  el('popGrass').textContent=populations.grass+'%';
+  el('popRabbit').textContent=populations.rabbit+'%';
+  el('popFox').textContent=populations.fox+'%';
+}
+
+function clearFoodNodes(){
+  ['Grass','Rabbit','Caterpillar','Fox'].forEach(n=>el('node'+n).setAttribute('class','node'));
+}
+
+function changeFoodWeb(type){
+  clearFoodNodes();
+  el('node'+type.charAt(0).toUpperCase()+type.slice(1)).setAttribute('class','node selected');
+
+  if(type==='grass'){
+    populations={grass:30,rabbit:45,caterpillar:45,fox:55};
+    el('foodWebMsg').textContent='Grass decreased. Rabbits and caterpillars have less food, so their populations may fall. Foxes may later fall because there is less prey.';
+  }
+  if(type==='rabbit'){
+    populations={grass:90,rabbit:30,caterpillar:80,fox:55};
+    el('foodWebMsg').textContent='Rabbits decreased. Grass may increase because fewer rabbits eat it. Foxes may decrease because there is less prey.';
+  }
+  if(type==='caterpillar'){
+    populations={grass:90,rabbit:80,caterpillar:30,fox:55};
+    el('foodWebMsg').textContent='Caterpillars decreased. Grass may increase. Foxes may decrease because one food source has reduced.';
+  }
+  if(type==='fox'){
+    populations={grass:45,rabbit:95,caterpillar:95,fox:25};
+    el('foodWebMsg').textContent='Foxes decreased. Rabbits and caterpillars may increase because fewer are eaten. Grass may then decrease because more herbivores eat it.';
+  }
+  updateFoodWeb();
+}
+
+function resetFoodWeb(){
+  populations={grass:80,rabbit:80,caterpillar:80,fox:80};
+  clearFoodNodes();
+  updateFoodWeb();
+  el('foodWebMsg').textContent='Click an organism in the food web to model a population decrease.';
+}
+
+function updateEnergy(){
+  let start=Number(el('energyStart').value);
+  let percent=Number(el('energyPercent').value);
+  let primary=start*(percent/100);
+  let predator=primary*(percent/100);
+  el('energyStartText').textContent=start+' kJ';
+  el('energyPercentText').textContent=percent+'%';
+  el('energyProducer').textContent=Math.round(start)+' kJ';
+  el('energyPrimary').textContent=Math.round(primary)+' kJ';
+  el('energyPredator').textContent=Math.round(predator)+' kJ';
+}
+
+function selectPart(part){
+  if(plantMatches.has(part)) return;
+  selectedPart=part;
+  document.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+  el('part-'+part).classList.add('selected');
+  el('plantFeedback').textContent='Now choose the matching function.';
+}
+
+function checkPart(part){
+  if(!selectedPart){el('plantFeedback').textContent='Choose a structure first.';return}
+  plantAttempts++;
+  el('plantAttempts').textContent=plantAttempts;
+  if(selectedPart===part){
+    plantMatches.add(part);
+    el('part-'+part).classList.add('correct');
+    el('func-'+part).classList.add('correct');
+    el('part-'+part).classList.remove('selected');
+    selectedPart=null;
+    el('plantMatchScore').textContent=plantMatches.size+'/5';
+    el('plantStatus').textContent=plantMatches.size===5?'Complete':'Correct';
+    el('plantFeedback').textContent=plantMatches.size===5?'Excellent — all matched.':'Correct. Choose another structure.';
+  }else{
+    el('func-'+part).classList.add('wrong');
+    setTimeout(()=>el('func-'+part).classList.remove('wrong'),600);
+    el('plantFeedback').textContent='Not quite. Try another function.';
+  }
+}
+
+function seedChoice(btn,correct,fid,msg){
+  btn.classList.add(correct?'correct':'wrong');
+  el(fid).textContent=msg;
+  el(fid).className='feedback '+(correct?'ok':'no');
+}
+
+function selectQuadrat(box,value){
+  if(box.classList.contains('selected')) return;
+  if(quadrats.length>=5){el('sampleMean').textContent='Reset';return}
+  box.classList.add('selected');
+  quadrats.push(value);
+  updateQuadrats();
+}
+
+function updateQuadrats(){
+  let total=quadrats.reduce((a,b)=>a+b,0);
+  el('sampleCount').textContent=quadrats.length;
+  el('sampleTotal').textContent=total;
+  el('sampleMean').textContent=quadrats.length?(total/quadrats.length).toFixed(1):'-';
+}
+
+function resetQuadrats(){
+  quadrats=[];
+  document.querySelectorAll('.quadrat').forEach(q=>q.classList.remove('selected'));
+  updateQuadrats();
+}
+
+function quiz(btn,correct,fid){
+  if(answered[fid]) return;
+  answered[fid]=true;
+  btn.classList.add(correct?'correct':'wrong');
+  el(fid).textContent=correct?'Correct.':'Not quite.';
+  el(fid).className='feedback '+(correct?'ok':'no');
+  if(correct) quizScore++;
+  el('quizScore').textContent=quizScore;
+}
+
+function checkCalc(inputId, answer, feedbackId, msg){
+  if(answered[feedbackId]) return;
+  let val=Number(el(inputId).value);
+  let correct=Math.abs(val-answer)<0.05;
+  el(feedbackId).textContent=correct?msg:'Not quite. Check your calculation.';
+  el(feedbackId).className='feedback '+(correct?'ok':'no');
+  scoreOnce(feedbackId,correct);
+}
+
+function checkText(inputId, feedbackId, words, msg){
+  if(answered[feedbackId]) return;
+  let t=el(inputId).value.toLowerCase();
+  let correct=words.every(w=>t.includes(w));
+  el(feedbackId).textContent=correct?msg:'Add more key science words to improve your answer.';
+  el(feedbackId).className='feedback '+(correct?'ok':'no');
+  scoreOnce(feedbackId,correct);
+}
+
+window.onload=function(){
+  resetFoodWeb();
+  updateEnergy();
+  updateQuadrats();
+};
+</script>
+</body>
+</html>

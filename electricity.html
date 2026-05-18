@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 Electricity & Circuits Lab</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#eef6ff;color:#102033}
+.hero{background:linear-gradient(135deg,#10133f,#7c2d12);color:white;text-align:center;padding:54px 20px}
+.hero h1{font-size:48px;margin:10px 0}
+.menu{background:white;border-bottom:2px solid #d9eaff;padding:10px;text-align:center}
+.menu a{display:inline-block;color:#102033;text-decoration:none;font-weight:bold;padding:8px 12px;background:#eef6ff;border-radius:999px;margin:3px}
+.nav{position:sticky;top:0;background:white;padding:12px;text-align:center;border-bottom:2px solid #d9eaff;z-index:10}
+.nav a{display:inline-block;margin:4px;padding:10px 14px;background:#eef6ff;border-radius:999px;text-decoration:none;color:#102033;font-weight:bold}
+section{max-width:1120px;margin:20px auto;background:white;padding:32px;border-radius:26px;box-shadow:0 10px 25px rgba(20,30,70,.12)}
+h2{font-size:32px;color:#172554}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.task,.quiz-card{border:2px solid #d7ecff;border-radius:22px;padding:20px;background:#f8fbff;margin:16px 0}
+button{border:0;border-radius:999px;padding:12px 16px;font-weight:bold;cursor:pointer;margin:4px}
+.primary{background:#38a7ff;color:white}.green{background:#33df8a;color:white}.orange{background:#ffb347;color:white}.pink{background:#ff5fa2;color:white}.ghost{background:#eef6ff;color:#102033;border:2px solid #d9eaff}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.choice{text-align:left;background:white;border:2px solid #d7ecff;color:#102033}
+.choice.correct{background:#ecfdf5;border-color:#33df8a}
+.choice.wrong{background:#fff1f2;border-color:#ef4444}
+.feedback{font-weight:bold;margin-top:10px}.ok{color:#008a4e}.no{color:#dc1f48}
+.controls,.output{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.control,.output div{background:white;border:2px solid #d7ecff;border-radius:18px;padding:14px;text-align:center;font-weight:bold}
+input[type=range]{width:100%}
+.output strong,.control strong{display:block;font-size:24px;color:#172554;margin:6px 0}
+.answer{display:none;margin-top:14px;background:#ecfdf5;border-left:6px solid #33df8a;border-radius:14px;padding:14px;font-weight:bold}.answer.show{display:block}
+textarea{width:100%;min-height:90px;border:2px solid #d7ecff;border-radius:16px;padding:12px;font-size:16px}
+.diagram-row{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.svg-card{background:white;border:2px solid #d7ecff;border-radius:22px;padding:16px;margin:14px 0}
+svg.circuit{width:100%;max-width:650px;display:block;margin:auto;background:#fbfdff;border:2px solid #d7ecff;border-radius:22px}
+.wire{stroke:#14204d;stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.openWire{stroke:#14204d;stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:12 10;opacity:.35}
+.symbol{stroke:#14204d;stroke-width:4.5;fill:white}
+.switchLine{stroke:#14204d;stroke-width:6;stroke-linecap:round}
+.meterBox{fill:white;stroke:#8b5cf6;stroke-width:4}
+.text{font-size:19px;font-weight:800;fill:#172554}
+.smallText{font-size:14px;font-weight:800;fill:#172554}
+.bulbGlass{stroke:#14204d;stroke-width:4}
+.bright{fill:#fde047;filter:drop-shadow(0 0 12px #facc15)}
+.dim{fill:#fde68a;filter:drop-shadow(0 0 4px #facc15);opacity:.68}
+.off{fill:#e5e7eb;opacity:.35}
+.flowDot{fill:#38a7ff;opacity:0}
+.flowOn{animation:flowPulse 1.15s infinite}
+.flowSlow{animation:flowPulse 2.2s infinite}
+@keyframes flowPulse{0%{opacity:.05}50%{opacity:1}100%{opacity:.05}}
+.info-box{background:#fff7ed;border:2px solid #fed7aa;border-radius:18px;padding:14px;font-weight:bold;color:#7c2d12;margin-top:12px}
+.compare-table{width:100%;border-collapse:collapse;background:white;border-radius:16px;overflow:hidden}
+.compare-table th{background:#172554;color:white;padding:10px;text-align:left}
+.compare-table td{border-bottom:1px solid #d7ecff;padding:10px;font-weight:bold}
+.static-svg{width:100%;max-width:760px;display:block;margin:auto;background:#f8fbff;border:2px solid #d7ecff;border-radius:22px}
+.waterPath{stroke:#38a7ff;stroke-width:16;fill:none;stroke-linecap:round;transition:.45s}
+.paperPiece{fill:white;stroke:#64748b;stroke-width:2;transition:.45s}
+.paperAttract{transform:translate(-70px,-12px) rotate(-10deg);transform-origin:center}.hideMode{display:none}
+.balloonGlow{filter:drop-shadow(0 0 16px #ff5fa2)}
+.magnet-board{height:240px;background:#f8fbff;border:2px solid #d7ecff;border-radius:22px;display:grid;place-items:center;font-size:70px;position:relative;overflow:hidden}
+.field{position:absolute;border:3px dashed #38a7ff;border-radius:50%;opacity:.25;transition:.3s}.strong{opacity:.9;border-width:5px}
+.quiz-band{padding:18px;border-radius:20px;margin:18px 0}.secure{background:#ecfdf5;border:2px solid #86efac}.build{background:#eef6ff;border:2px solid #93c5fd}.stretch{background:#fff7ed;border:2px solid #fed7aa}
+.quiz-score{font-size:22px;font-weight:bold;padding:16px;background:#eef6ff;border-radius:18px}
+.calc-input{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.calc-input input{padding:12px;border:2px solid #d7ecff;border-radius:14px;font-size:16px;max-width:150px}
+@media(max-width:850px){.card-grid,.controls,.output,.choice-grid,.diagram-row{grid-template-columns:1fr}.nav{position:static}.text{font-size:15px}.smallText{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="menu">
+<a href="index.html">🏠 Home</a>
+<a href="forces.html">🚗 Forces</a>
+<a href="ecosystems.html">🌱 Ecosystems</a>
+</div>
+
+<div class="hero">
+<div style="font-size:70px">⚡</div>
+<h1>Electricity & Circuits Lab</h1>
+<p>Accurate circuit symbols, reliable simulations, and tiered CFU questions</p>
+</div>
+
+<div class="nav">
+<a href="#basics">Basics</a>
+<a href="#series">Series</a>
+<a href="#parallel">Parallel</a>
+<a href="#compare">Compare</a>
+<a href="#static">Static</a>
+<a href="#magnets">Magnets</a>
+<a href="#quiz">CFU</a>
+</div>
+
+<section id="basics">
+<h2>1. Circuit Basics</h2>
+<div class="card-grid">
+<div class="card"><h3>Cell</h3><p>Provides energy. It is drawn as one long line and one short line.</p></div>
+<div class="card"><h3>Current</h3><p>Flow of charge. Measured in amps (A).</p></div>
+<div class="card"><h3>Resistance</h3><p>How hard it is for current to flow. Measured in ohms (Ω).</p></div>
+</div>
+<div class="task">
+<h3>Quick Check</h3>
+<p>What does a switch do?</p>
+<div class="choice-grid">
+<button class="choice" onclick="checkChoice(this,true,'basicF','Correct: a switch opens or closes a circuit.')">Opens or closes a circuit</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','A cell provides energy.')">Provides energy</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','A lamp transfers energy to light.')">Makes light only</button>
+<button class="choice" onclick="checkChoice(this,false,'basicF','An ammeter measures current.')">Measures current</button>
+</div>
+<div id="basicF" class="feedback"></div>
+</div>
+</section>
+
+<section id="series">
+<h2>2. Series Circuit Simulation</h2>
+<p><strong>Big idea:</strong> Series circuits have one loop. Adding lamps increases total resistance and lowers current.</p>
+
+<div class="task">
+<h3>Predict first</h3>
+<p>If you add another lamp in series, what happens to the current?</p>
+<div class="choice-grid">
+<button class="choice" onclick="checkChoice(this,true,'seriesPred','Correct: adding lamps in series increases total resistance, so current decreases.')">Current decreases</button>
+<button class="choice" onclick="checkChoice(this,false,'seriesPred','Think about resistance. More components in one loop make it harder for current to flow.')">Current increases</button>
+<button class="choice" onclick="checkChoice(this,false,'seriesPred','It changes because total resistance changes.')">Current stays exactly the same</button>
+<button class="choice" onclick="checkChoice(this,false,'seriesPred','Voltage does not become mass.')">It becomes mass</button>
+</div>
+<div id="seriesPred" class="feedback"></div>
+</div>
+
+<div class="task">
+<div class="controls">
+<div class="control">Cell voltage <strong id="seriesVoltageText">6 V</strong><input id="seriesVoltage" type="range" min="1" max="12" value="6" oninput="updateSeries()"></div>
+<div class="control">Lamps <strong id="seriesLampText">1</strong><button class="primary" onclick="seriesLamps=1;updateSeries()">1 lamp</button><button class="orange" onclick="seriesLamps=2;updateSeries()">2 lamps</button></div>
+<div class="control">Lamp resistance <strong id="seriesRText">3 Ω</strong><input id="seriesR" type="range" min="1" max="10" value="3" oninput="updateSeries()"></div>
+</div>
+
+<div class="diagram-row">
+<div class="svg-card">
+<h3>Series circuit diagram</h3>
+<svg class="circuit" viewBox="0 0 650 360" aria-label="Accurate series circuit diagram">
+<!-- closed series loop -->
+<path id="seriesTopLeft" class="wire" d="M95 95 H210"/>
+<path id="seriesTopRight" class="wire" d="M270 95 H525 V260 H430"/>
+<path id="seriesBottomMiddle" class="wire" d="M285 260 H370"/>
+<path id="seriesBottomLeft" class="wire" d="M95 95 V260 H225"/>
+<path id="seriesOneLampClose" class="wire" d="M285 260 H525"/>
+<!-- correct cell symbol: long line and short line in the circuit path -->
+<line class="symbol" x1="220" y1="65" x2="220" y2="125"/>
+<line class="symbol" x1="260" y1="78" x2="260" y2="112"/>
+<text x="205" y="50" class="smallText">cell</text>
+<!-- closed switch on right side -->
+<circle cx="525" cy="150" r="6" fill="#14204d"/>
+<circle cx="525" cy="205" r="6" fill="#14204d"/>
+<line id="seriesSwitchLine" class="switchLine" x1="525" y1="150" x2="525" y2="205"/>
+<text x="538" y="183" class="smallText">closed switch</text>
+<!-- lamp 1 -->
+<g id="seriesLamp1">
+<circle cx="255" cy="260" r="34" class="symbol"/>
+<circle id="seriesBulb1" cx="255" cy="260" r="20" class="bright"/>
+<line class="symbol" x1="235" y1="240" x2="275" y2="280"/>
+<line class="symbol" x1="275" y1="240" x2="235" y2="280"/>
+<text x="238" y="320" class="smallText">L1</text>
+</g>
+<!-- lamp 2 appears only when selected -->
+<g id="seriesLamp2Group">
+<circle cx="400" cy="260" r="34" class="symbol"/>
+<circle id="seriesBulb2" cx="400" cy="260" r="20" class="dim"/>
+<line class="symbol" x1="380" y1="240" x2="420" y2="280"/>
+<line class="symbol" x1="420" y1="240" x2="380" y2="280"/>
+<text x="383" y="320" class="smallText" id="seriesL2Label">L2</text>
+</g>
+<!-- meters -->
+<rect x="300" y="52" width="120" height="48" rx="16" class="meterBox"/>
+<text x="315" y="83" class="text">A = <tspan id="seriesI">2.0 A</tspan></text>
+<rect x="435" y="52" width="125" height="48" rx="16" class="meterBox"/>
+<text x="450" y="83" class="text">R = <tspan id="seriesTotalR">3 Ω</tspan></text>
+<!-- current dots -->
+<circle class="flowDot" id="seriesDot1" cx="150" cy="95" r="8"/>
+<circle class="flowDot" id="seriesDot2" cx="330" cy="260" r="8"/>
+</svg>
+<button class="green" onclick="runSeries()">Run current flow</button>
+<button class="ghost" onclick="resetSeries()">Reset</button>
+</div>
+
+<div class="svg-card">
+<h3>Readings</h3>
+<div class="output">
+<div>Total R<strong id="seriesTotalRBox">3 Ω</strong></div>
+<div>Current<strong id="seriesCurrentBox">2.0 A</strong></div>
+<div>Brightness<strong id="seriesBright">bright</strong></div>
+</div>
+<div class="info-box" id="seriesMsg">One lamp: lower total resistance, higher current, brighter lamp.</div>
+</div>
+</div>
+</div>
+
+<div class="task">
+<h3>Explain</h3>
+<p>Why does adding another lamp in series make the lamps dimmer?</p>
+<textarea id="seriesExplain"></textarea>
+<button class="green" onclick="checkSeriesExplain()">Check</button>
+<div id="seriesExplainF" class="feedback"></div>
+</div>
+</section>
+
+<section id="parallel">
+<h2>3. Parallel Circuit Simulation</h2>
+<p><strong>Big idea:</strong> Parallel circuits have separate branches. Each branch gets the full cell voltage and can work independently.</p>
+
+<div class="task">
+<div class="controls">
+<div class="control">Cell voltage <strong id="parallelVoltageText">6 V</strong><input id="parallelVoltage" type="range" min="1" max="12" value="6" oninput="updateParallel()"></div>
+<div class="control">Branch A <strong id="branchAText">Closed</strong><button class="primary" onclick="branchA=!branchA;updateParallel()">Toggle A</button></div>
+<div class="control">Branch B <strong id="branchBText">Closed</strong><button class="orange" onclick="branchB=!branchB;updateParallel()">Toggle B</button></div>
+</div>
+
+<div class="diagram-row">
+<div class="svg-card">
+<h3>Parallel circuit diagram</h3>
+<svg class="circuit" viewBox="0 0 650 395" aria-label="Accurate parallel circuit diagram">
+<!-- main circuit loop -->
+<path class="wire" d="M95 95 H210"/>
+<path class="wire" d="M270 95 H535 V315 H95 V95"/>
+<!-- correct cell symbol -->
+<line class="symbol" x1="220" y1="65" x2="220" y2="125"/>
+<line class="symbol" x1="260" y1="78" x2="260" y2="112"/>
+<text x="205" y="50" class="smallText">cell</text>
+<!-- branch rails -->
+<path class="wire" d="M190 155 V260"/>
+<path class="wire" d="M470 155 V260"/>
+<path class="wire" d="M190 95 V155"/>
+<path class="wire" d="M470 95 V155"/>
+<path class="wire" d="M190 260 V315"/>
+<path class="wire" d="M470 260 V315"/>
+<!-- branch A wires with gap for lamp -->
+<path id="branchAPath" class="wire" d="M190 155 H275"/>
+<path id="branchAPath2" class="wire" d="M345 155 H470"/>
+<!-- branch B wires with gap for lamp -->
+<path id="branchBPath" class="wire" d="M190 260 H275"/>
+<path id="branchBPath2" class="wire" d="M345 260 H470"/>
+<!-- branch A lamp -->
+<circle cx="310" cy="155" r="34" class="symbol"/>
+<circle id="parallelBulb1" cx="310" cy="155" r="20" class="bright"/>
+<line class="symbol" x1="290" y1="135" x2="330" y2="175"/>
+<line class="symbol" x1="330" y1="135" x2="290" y2="175"/>
+<!-- branch B lamp -->
+<circle cx="310" cy="260" r="34" class="symbol"/>
+<circle id="parallelBulb2" cx="310" cy="260" r="20" class="bright"/>
+<line class="symbol" x1="290" y1="240" x2="330" y2="280"/>
+<line class="symbol" x1="330" y1="240" x2="290" y2="280"/>
+<text x="245" y="125" class="smallText">Branch A</text>
+<text x="245" y="230" class="smallText">Branch B</text>
+<!-- readings -->
+<rect x="300" y="52" width="160" height="48" rx="16" class="meterBox"/>
+<text x="315" y="83" class="text">V branch = <tspan id="parallelVEach">6 V</tspan></text>
+<rect x="475" y="52" width="125" height="48" rx="16" class="meterBox"/>
+<text x="490" y="83" class="text">I = <tspan id="parallelCurrent">4.0 A</tspan></text>
+<!-- current dots -->
+<circle class="flowDot" id="parallelDot1" cx="230" cy="155" r="8"/>
+<circle class="flowDot" id="parallelDot2" cx="230" cy="260" r="8"/>
+</svg>
+<button class="green" onclick="runParallel()">Run current flow</button>
+<button class="ghost" onclick="resetParallel()">Reset</button>
+</div>
+
+<div class="svg-card">
+<h3>Readings</h3>
+<div class="output">
+<div>V each branch<strong id="parallelVBox">6 V</strong></div>
+<div>A lamp<strong id="lampAStatus">on</strong></div>
+<div>B lamp<strong id="lampBStatus">on</strong></div>
+</div>
+<div class="info-box" id="parallelMsg">Both branches are closed. Both lamps are on and each gets full voltage.</div>
+</div>
+</div>
+</div>
+
+<div class="task">
+<h3>Explain</h3>
+<p>Why are house lights connected in parallel?</p>
+<textarea id="parallelExplain"></textarea>
+<button class="green" onclick="checkParallelExplain()">Check</button>
+<div id="parallelExplainF" class="feedback"></div>
+</div>
+</section>
+
+<section id="compare">
+<h2>4. Series vs Parallel Summary</h2>
+<table class="compare-table">
+<tr><th>Feature</th><th>Series</th><th>Parallel</th></tr>
+<tr><td>Pathways</td><td>One loop</td><td>More than one branch</td></tr>
+<tr><td>Current</td><td>Same through components</td><td>Splits between branches</td></tr>
+<tr><td>Voltage</td><td>Shared between components</td><td>Same across each branch</td></tr>
+<tr><td>Resistance</td><td>Adding components increases total resistance</td><td>Adding branches can reduce total resistance</td></tr>
+<tr><td>If one part breaks</td><td>Whole circuit stops</td><td>Other branches can still work</td></tr>
+</table>
+</section>
+
+<section id="static">
+<h2>5. Static Electricity</h2>
+<div class="task">
+<h3>Balloon test: attract paper or bend water</h3>
+<div class="controls">
+<div class="control">Charge level <strong id="chargeText">0</strong><button class="pink" onclick="rubBalloon()">Rub balloon</button><button class="ghost" onclick="resetStatic()">Reset</button></div>
+<div class="control">Test object <strong id="staticModeText">Paper</strong><button class="primary" onclick="staticMode='paper';updateStatic()">Paper</button><button class="orange" onclick="staticMode='water';updateStatic()">Water from tap</button></div>
+<div class="control">Rule<br><button class="green" onclick="show('staticAns')">Explain</button></div>
+</div>
+<svg class="static-svg" viewBox="0 0 760 330" aria-label="Static electricity balloon, paper and water stream model">
+<defs>
+<marker id="arrowHead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+<path d="M0,0 L0,6 L9,3 z" fill="#ef4444"/>
+</marker>
+</defs>
+<!-- tap and water stream -->
+<g id="tapGroup">
+<rect x="585" y="35" width="105" height="32" rx="10" fill="#94a3b8" stroke="#334155" stroke-width="4"/>
+<rect x="660" y="62" width="26" height="45" rx="8" fill="#94a3b8" stroke="#334155" stroke-width="4"/>
+<text x="595" y="30" class="smallText">tap</text>
+</g>
+<path id="waterStream" class="waterPath" d="M673 108 C673 155 673 215 673 285"/>
+<!-- balloon moved closer to interaction area -->
+<ellipse id="balloonSvg" cx="310" cy="175" rx="55" ry="70" fill="#ef4444" stroke="#991b1b" stroke-width="4"/>
+<path d="M305 243 Q315 257 325 243" fill="#991b1b"/>
+<path d="M318 249 Q330 280 360 282" stroke="#64748b" stroke-width="3" fill="none"/>
+<text x="245" y="95" class="smallText">charged balloon</text>
+<!-- movement arrow -->
+<path id="staticArrow" d="M390 170 C440 155 485 150 525 150" stroke="#ef4444" stroke-width="5" fill="none" marker-end="url(#arrowHead)" opacity=".9"/>
+<text id="arrowText" x="430" y="135" class="smallText">attraction</text>
+<!-- paper pieces shown only in paper mode -->
+<g id="paperGroup">
+<rect class="paperPiece" x="535" y="145" width="34" height="24" rx="4" transform="rotate(-12 552 157)"/>
+<rect class="paperPiece" x="575" y="190" width="34" height="24" rx="4" transform="rotate(16 592 202)"/>
+<rect class="paperPiece" x="525" y="220" width="34" height="24" rx="4" transform="rotate(8 542 232)"/>
+</g>
+<text id="staticMsg" x="380" y="315" text-anchor="middle" class="text">Rub the balloon to build up charge.</text>
+</svg>
+<div class="answer" id="staticAns">Rubbing can transfer charge. A charged object can attract neutral objects because charges inside them shift slightly. This can attract paper or bend a thin stream of water.</div>
+</div>
+</section>
+
+<section id="magnets">
+<h2>6. Electromagnets</h2>
+<div class="task">
+<div class="controls">
+<div class="control">Current <strong id="currentText">3 A</strong><input id="magCurrent" type="range" min="0" max="10" value="3" oninput="updateMagnet()"></div>
+<div class="control">Coils <strong id="coilsText">20</strong><input id="coils" type="range" min="1" max="50" value="20" oninput="updateMagnet()"></div>
+<div class="control">Rule<br><button class="green" onclick="show('magAns')">Explain</button></div>
+</div>
+<div class="magnet-board">
+<div class="field" id="field1" style="width:120px;height:70px"></div>
+<div class="field" id="field2" style="width:190px;height:110px"></div>
+<div>🧲</div>
+</div>
+<div class="output">
+<div>Current<strong id="currentOut">3 A</strong></div>
+<div>Coils<strong id="coilsOut">20</strong></div>
+<div>Strength<strong id="strengthOut">medium</strong></div>
+</div>
+<div class="answer" id="magAns">An electromagnet gets stronger when current increases, when there are more coils, or when an iron core is used.</div>
+</div>
+</section>
+
+<section id="quiz">
+<h2>Final Check</h2>
+<p>Choose your level. Includes recall, application and calculation.</p>
+
+<div class="quiz-band secure">
+<h3>Secure It</h3>
+<div class="quiz-card"><p>1. What does a cell do?</p><button class="choice" onclick="quiz(this,true,'q1')">Provides energy</button><button class="choice" onclick="quiz(this,false,'q1')">Measures current</button><div id="q1" class="feedback"></div></div>
+<div class="quiz-card"><p>2. Current is measured in...</p><button class="choice" onclick="quiz(this,true,'q2')">amps</button><button class="choice" onclick="quiz(this,false,'q2')">volts</button><div id="q2" class="feedback"></div></div>
+<div class="quiz-card"><p>3. Resistance is measured in...</p><button class="choice" onclick="quiz(this,true,'q3')">ohms</button><button class="choice" onclick="quiz(this,false,'q3')">newtons</button><div id="q3" class="feedback"></div></div>
+<div class="quiz-card"><p>4. A switch can...</p><button class="choice" onclick="quiz(this,true,'q4')">open or close a circuit</button><button class="choice" onclick="quiz(this,false,'q4')">make gravity</button><div id="q4" class="feedback"></div></div>
+</div>
+
+<div class="quiz-band build">
+<h3>Build It</h3>
+<div class="quiz-card"><p>5. A 6 V cell is connected to a 3 Ω lamp. Calculate the current.</p><div class="calc-input"><input id="calc5" placeholder="A"><button class="green" onclick="checkCalc('calc5',2,'q5','Correct: I = V ÷ R = 6 ÷ 3 = 2 A.')">Check</button></div><div id="q5" class="feedback"></div></div>
+<div class="quiz-card"><p>6. Two 3 Ω lamps are connected in series. What is the total resistance?</p><div class="calc-input"><input id="calc6" placeholder="Ω"><button class="green" onclick="checkCalc('calc6',6,'q6','Correct: 3 Ω + 3 Ω = 6 Ω.')">Check</button></div><div id="q6" class="feedback"></div></div>
+<div class="quiz-card"><p>7. If one branch opens in parallel...</p><button class="choice" onclick="quiz(this,true,'q7')">other branches can still work</button><button class="choice" onclick="quiz(this,false,'q7')">all branches stop</button><div id="q7" class="feedback"></div></div>
+<div class="quiz-card"><p>8. Increasing resistance at the same voltage...</p><button class="choice" onclick="quiz(this,true,'q8')">reduces current</button><button class="choice" onclick="quiz(this,false,'q8')">increases current</button><div id="q8" class="feedback"></div></div>
+</div>
+
+<div class="quiz-band stretch">
+<h3>Stretch It</h3>
+<div class="quiz-card"><p>9. A student says: “Adding lamps in series makes them brighter because there are more bulbs.” What is wrong with this idea?</p><textarea id="stretch9"></textarea><button class="green" onclick="checkText('stretch9','q9',['resistance','current'],'Good: more lamps in series increase resistance, so current decreases and bulbs are dimmer.')">Check</button><div id="q9" class="feedback"></div></div>
+<div class="quiz-card"><p>10. A circuit has a 12 V cell and total resistance of 4 Ω. Calculate the current.</p><div class="calc-input"><input id="calc10" placeholder="A"><button class="green" onclick="checkCalc('calc10',3,'q10','Correct: I = V ÷ R = 12 ÷ 4 = 3 A.')">Check</button></div><div id="q10" class="feedback"></div></div>
+<div class="quiz-card"><p>11. Explain why a charged balloon can bend a thin stream of water.</p><textarea id="stretch11"></textarea><button class="green" onclick="checkText('stretch11','q11',['charge','attract'],'Good: a charged object can attract neutral water because charges shift slightly.')">Check</button><div id="q11" class="feedback"></div></div>
+<div class="quiz-card"><p>12. How can an electromagnet be made stronger? Give two ways.</p><textarea id="stretch12"></textarea><button class="green" onclick="checkText('stretch12','q12',['current','coils'],'Good: increasing current and adding more coils both strengthen an electromagnet.')">Check</button><div id="q12" class="feedback"></div></div>
+</div>
+
+<div class="quiz-score">Score: <span id="quizScore">0</span>/12</div>
+</section>
+
+<script>
+let seriesLamps=1;
+let branchA=true;
+let branchB=true;
+let staticMode='paper';
+let charge=0;
+let quizScore=0;
+let answered={};
+
+function el(id){return document.getElementById(id)}
+function show(id){el(id).classList.add('show')}
+
+function scoreOnce(fid, correct){
+  if(answered[fid]) return;
+  answered[fid]=true;
+  if(correct){quizScore++; el('quizScore').textContent=quizScore}
+}
+
+function checkChoice(btn,correct,fid,msg){
+  let parent=btn.closest('.task')||btn.closest('.quiz-card');
+  parent.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(correct?'correct':'wrong');
+  el(fid).textContent=msg;
+  el(fid).className='feedback '+(correct?'ok':'no');
+}
+
+function updateSeries(){
+  let v=Number(el('seriesVoltage').value);
+  let r=Number(el('seriesR').value);
+  let totalR=seriesLamps*r;
+  let current=v/totalR;
+  el('seriesVoltageText').textContent=v+' V';
+  el('seriesLampText').textContent=seriesLamps;
+  el('seriesRText').textContent=r+' Ω';
+  el('seriesTotalR').textContent=totalR+' Ω';
+  el('seriesTotalRBox').textContent=totalR+' Ω';
+  el('seriesI').textContent=current.toFixed(1)+' A';
+  el('seriesCurrentBox').textContent=current.toFixed(1)+' A';
+  let bright=current>2?'bright':current>0.8?'dim':'very dim';
+  el('seriesBright').textContent=bright;
+
+  // One-lamp mode: lamp 2 disappears and a closing wire replaces it.
+  // Two-lamp mode: closing wire disappears and lamp 2 becomes part of the loop.
+  el('seriesLamp2Group').style.display=seriesLamps===2?'block':'none';
+  el('seriesBottomMiddle').style.display=seriesLamps===2?'block':'none';
+  el('seriesOneLampClose').style.display=seriesLamps===1?'block':'none';
+
+  el('seriesBulb1').setAttribute('class',current>2?'bright':current>0.8?'dim':'off');
+  el('seriesBulb2').setAttribute('class',current>2?'bright':current>0.8?'dim':'off');
+  el('seriesMsg').textContent=seriesLamps===1?'One lamp: the circuit is closed, resistance is lower and current is higher.':'Two lamps: the circuit is still closed, but total resistance is higher and current is lower.';
+}
+
+function runSeries(){
+  updateSeries();
+  let current=Number(el('seriesCurrentBox').textContent.replace(' A',''));
+  el('seriesDot1').setAttribute('class','flowDot '+(current>1.5?'flowOn':'flowSlow'));
+  el('seriesDot2').setAttribute('class','flowDot '+(current>1.5?'flowOn':'flowSlow'));
+  setTimeout(()=>{el('seriesDot1').setAttribute('class','flowDot');el('seriesDot2').setAttribute('class','flowDot')},2600);
+}
+
+function resetSeries(){
+  seriesLamps=1;
+  el('seriesVoltage').value=6;
+  el('seriesR').value=3;
+  el('seriesDot1').setAttribute('class','flowDot');
+  el('seriesDot2').setAttribute('class','flowDot');
+  updateSeries();
+}
+
+function updateParallel(){
+  let v=Number(el('parallelVoltage').value);
+  let lampR=3;
+  let activeBranches=(branchA?1:0)+(branchB?1:0);
+  let totalCurrent=activeBranches*(v/lampR);
+  el('parallelVoltageText').textContent=v+' V';
+  el('branchAText').textContent=branchA?'Closed':'Open';
+  el('branchBText').textContent=branchB?'Closed':'Open';
+  el('parallelVEach').textContent=v+' V';
+  el('parallelVBox').textContent=v+' V';
+  el('parallelCurrent').textContent=totalCurrent.toFixed(1)+' A';
+  el('lampAStatus').textContent=branchA?'on':'off';
+  el('lampBStatus').textContent=branchB?'on':'off';
+  el('parallelBulb1').setAttribute('class',branchA?'bright':'off');
+  el('parallelBulb2').setAttribute('class',branchB?'bright':'off');
+  el('branchAPath').setAttribute('class',branchA?'wire':'openWire');
+  el('branchAPath2').setAttribute('class',branchA?'wire':'openWire');
+  el('branchBPath').setAttribute('class',branchB?'wire':'openWire');
+  el('branchBPath2').setAttribute('class',branchB?'wire':'openWire');
+  if(branchA&&branchB) el('parallelMsg').textContent='Both branches are closed. Both lamps are on and each gets full voltage.';
+  if(branchA&&!branchB) el('parallelMsg').textContent='Branch B is open, but branch A still works because it has its own path.';
+  if(!branchA&&branchB) el('parallelMsg').textContent='Branch A is open, but branch B still works because it has its own path.';
+  if(!branchA&&!branchB) el('parallelMsg').textContent='Both branches are open, so both lamps are off.';
+}
+
+function runParallel(){
+  updateParallel();
+  el('parallelDot1').setAttribute('class','flowDot '+(branchA?'flowOn':''));
+  el('parallelDot2').setAttribute('class','flowDot '+(branchB?'flowOn':''));
+  setTimeout(()=>{el('parallelDot1').setAttribute('class','flowDot');el('parallelDot2').setAttribute('class','flowDot')},2600);
+}
+
+function resetParallel(){
+  branchA=true;
+  branchB=true;
+  el('parallelVoltage').value=6;
+  el('parallelDot1').setAttribute('class','flowDot');
+  el('parallelDot2').setAttribute('class','flowDot');
+  updateParallel();
+}
+
+function checkSeriesExplain(){
+  let t=el('seriesExplain').value.toLowerCase();
+  let good=t.includes('resistance')&&t.includes('current');
+  el('seriesExplainF').textContent=good?'Good: adding lamps increases resistance, so current decreases and lamps are dimmer.':'Use resistance and current in your answer.';
+  el('seriesExplainF').className='feedback '+(good?'ok':'no');
+}
+
+function checkParallelExplain(){
+  let t=el('parallelExplain').value.toLowerCase();
+  let good=t.includes('branch')||t.includes('independent')||t.includes('separate');
+  el('parallelExplainF').textContent=good?'Good: each light has its own branch, so they can work independently.':'Use branch, separate, or independent in your answer.';
+  el('parallelExplainF').className='feedback '+(good?'ok':'no');
+}
+
+function updateStatic(){
+  el('staticModeText').textContent=staticMode==='paper'?'Paper':'Water';
+  let strength=Math.min(charge,5);
+  el('balloonSvg').setAttribute('class',strength>2?'balloonGlow':'');
+
+  if(staticMode==='paper'){
+    el('paperGroup').setAttribute('class',strength>0?'paperAttract':'');
+    el('paperGroup').classList.remove('hideMode');
+    el('tapGroup').classList.add('hideMode');
+    el('waterStream').classList.add('hideMode');
+    el('staticArrow').setAttribute('d','M390 170 C440 155 485 150 525 150');
+    el('arrowText').textContent='paper attracted';
+  }else{
+    el('paperGroup').setAttribute('class','hideMode');
+    el('tapGroup').classList.remove('hideMode');
+    el('waterStream').classList.remove('hideMode');
+    let bend=charge*18;
+    el('waterStream').setAttribute('d','M673 108 C'+(673-bend)+' 155 '+(673-bend)+' 215 '+(673-bend)+' 285');
+    el('staticArrow').setAttribute('d','M390 170 C455 165 520 160 '+(625-bend)+' 160');
+    el('arrowText').textContent='water bends';
+  }
+
+  el('staticMsg').textContent=charge===0?'Rub the balloon to build up charge.':staticMode==='paper'?'Charged balloon attracts paper.':'Charged balloon bends a thin water stream from the tap.';
+}
+
+function rubBalloon(){
+  charge=Math.min(5,charge+1);
+  el('chargeText').textContent=charge;
+  updateStatic();
+}
+
+function resetStatic(){
+  charge=0;
+  el('chargeText').textContent=0;
+  updateStatic();
+}
+
+function updateMagnet(){
+  let i=Number(el('magCurrent').value);
+  let c=Number(el('coils').value);
+  let strength=i*c;
+  el('currentText').textContent=i+' A';
+  el('coilsText').textContent=c;
+  el('currentOut').textContent=i+' A';
+  el('coilsOut').textContent=c;
+  el('strengthOut').textContent=strength>300?'strong':strength>80?'medium':'weak';
+  el('field1').classList.toggle('strong',strength>80);
+  el('field2').classList.toggle('strong',strength>300);
+}
+
+function quiz(btn,correct,fid){
+  if(answered[fid]) return;
+  answered[fid]=true;
+  btn.classList.add(correct?'correct':'wrong');
+  el(fid).textContent=correct?'Correct.':'Not quite.';
+  el(fid).className='feedback '+(correct?'ok':'no');
+  if(correct) quizScore++;
+  el('quizScore').textContent=quizScore;
+}
+
+function checkCalc(inputId, answer, feedbackId, msg){
+  if(answered[feedbackId]) return;
+  let val=Number(el(inputId).value);
+  let correct=Math.abs(val-answer)<0.05;
+  el(feedbackId).textContent=correct?msg:'Not quite. Check your calculation.';
+  el(feedbackId).className='feedback '+(correct?'ok':'no');
+  scoreOnce(feedbackId,correct);
+}
+
+function checkText(inputId, feedbackId, words, msg){
+  if(answered[feedbackId]) return;
+  let t=el(inputId).value.toLowerCase();
+  let correct=words.every(w=>t.includes(w));
+  el(feedbackId).textContent=correct?msg:'Add more key science words to improve your answer.';
+  el(feedbackId).className='feedback '+(correct?'ok':'no');
+  scoreOnce(feedbackId,correct);
+}
+
+window.onload=function(){
+  updateSeries();
+  updateParallel();
+  updateStatic();
+  updateMagnet();
+};
+</script>
+</body>
+</html>
