@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Year 7 Ecosystems Lab</title><style>
+:root{
+  --navy:#172554; --blue:#2563eb; --cyan:#0ea5e9; --green:#16a34a; --orange:#d97706;
+  --purple:#7c3aed; --pink:#db2777; --red:#dc2626; --ink:#102033; --muted:#5b6f86;
+  --paper:#f5f9ff; --card:#ffffff; --line:#d8e8f5; --softblue:#eaf2ff; --softgreen:#eaf8ef;
+  --softorange:#fff4e5; --softpurple:#f3edff; --shadow:0 16px 38px rgba(16,32,51,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eef6ff,#fbfdff 55%,#f5f0ff);color:var(--ink);line-height:1.5}
+.page{max-width:1240px;margin:0 auto;background:rgba(255,255,255,.82);box-shadow:0 0 70px rgba(16,32,51,.08)}
+.hero{min-height:430px;display:grid;place-items:center;text-align:center;color:white;padding:55px 22px;background:
+radial-gradient(circle at 82% 18%,rgba(125,211,252,.35),transparent 28%),
+radial-gradient(circle at 14% 20%,rgba(253,186,116,.23),transparent 25%),
+linear-gradient(135deg,#172554,#2563eb 48%,#0f766e)}
+.hero h1{font-size:clamp(40px,7vw,78px);line-height:1;margin:0 0 12px;font-weight:900}
+.hero p{font-size:22px;font-weight:900;color:#e0f2fe;max-width:920px;margin:0 auto}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.badge{border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.18);padding:10px 14px;border-radius:999px;font-weight:900}
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px;text-align:center}
+.nav a{display:inline-block;text-decoration:none;color:var(--ink);background:#eef6ff;border:1px solid var(--line);border-radius:999px;padding:9px 12px;margin:3px;font-weight:900}
+main{padding:26px 18px 60px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:26px;margin:24px 0}
+h2{font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 10px;color:#172554}
+h3{font-size:23px;margin:8px 0;color:#172554}
+.lead{font-size:18px;color:var(--muted);font-weight:800;margin:0 0 18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card,.task,.sim{background:#fbfdff;border:1px solid var(--line);border-radius:22px;padding:18px;margin:14px 0}
+.card{box-shadow:0 8px 18px rgba(16,32,51,.06)}
+.card p,.task p,.sim p{font-size:16px;font-weight:750;color:#34465a}
+.formula{background:linear-gradient(135deg,var(--blue),var(--purple));color:white;border-radius:24px;text-align:center;padding:22px;font-size:clamp(26px,4vw,42px);font-weight:900;margin:16px 0}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:16px 0}
+.control{background:white;border:1px solid var(--line);border-radius:18px;padding:13px;text-align:center;font-weight:900}
+.control strong{display:block;font-size:23px;color:#172554;margin:5px 0}
+input[type=range]{width:100%;accent-color:var(--purple)}
+input[type=number],textarea,select{width:100%;padding:11px;border:2px solid var(--line);border-radius:14px;font-size:16px;background:white;font-family:Arial}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:999px;padding:10px 15px;margin:4px;font-weight:900;cursor:pointer;font-family:Arial}
+button:hover{transform:translateY(-1px)}
+.blue{background:#2563eb;color:white}.green{background:#16a34a;color:white}.orange{background:#d97706;color:white}.purple{background:#7c3aed;color:white}.red{background:#dc2626;color:white}.ghost{background:#eef6ff;color:#172554;border:1px solid var(--line)}
+.choice{background:white;color:#172554;border:2px solid var(--line);text-align:left;border-radius:16px;white-space:normal}
+.choice.correct{background:#ecfdf5;border-color:#86efac}.choice.wrong{background:#fff1f2;border-color:#fecaca}
+.feedback{font-weight:900;margin-top:10px;min-height:24px}.ok{color:#15803d}.no{color:#dc2626}
+.answer{display:none;background:#ecfdf5;border-left:6px solid #16a34a;border-radius:14px;padding:13px;margin-top:10px;font-weight:900}.answer.show{display:block}
+.info{background:#fff7ed;border:1px solid #fed7aa;border-radius:16px;padding:13px;font-weight:900;color:#7c2d12}
+.success{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46;border-radius:16px;padding:13px;font-weight:900}
+.output{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.output div{background:#eef6ff;border:1px solid var(--line);border-radius:16px;text-align:center;padding:13px;font-weight:900}
+.output strong{display:block;font-size:25px;color:#172554}
+svg{width:100%;height:auto;background:white;border:2px solid var(--line);border-radius:20px}
+.label{font:bold 14px Arial;fill:#172554}.big{font:bold 18px Arial;fill:#172554}.small{font:bold 12px Arial;fill:#172554}
+table{width:100%;border-collapse:collapse;margin:12px 0}td,th{border:1px solid var(--line);padding:10px;text-align:left}th{background:#eef6ff}
+.track{height:125px;background:#f8fbff;border:2px solid var(--line);border-radius:22px;position:relative;overflow:hidden}.road{position:absolute;left:30px;right:30px;bottom:28px;height:10px;background:#94a3b8;border-radius:999px}.car{position:absolute;left:34px;bottom:35px;font-size:44px;transition:left .6s ease}.finish{position:absolute;right:32px;bottom:43px;font-size:30px}
+@media(max-width:900px){.grid2,.grid3,.grid4,.controls,.output{grid-template-columns:1fr}.nav{position:static}.hero{min-height:360px}}
+</style></head><body><div class="page">
+<header class="hero"><div><h1>Ecosystems Lab</h1><p>Food chains, food webs, photosynthesis, plant reproduction and fieldwork.</p><div class="badges"><span class="badge">Food web model</span><span class="badge">Photosynthesis limiter</span><span class="badge">Quadrat skills</span></div></div></header><nav class="nav">
+<a href="index.html">🏠 Hub</a>
+<a href="working-scientifically.html">🔬 Working Scientifically</a>
+<a href="forces.html">🚗 Forces</a>
+<a href="electricity.html">⚡ Electricity</a>
+<a href="ecosystems.html">🌱 Ecosystems</a>
+</nav><main>
+<section class="section" id="foodwebs"><h2>1. Food Chains and Food Webs</h2><p class="lead">Arrows show the direction of energy transfer.</p><div class="grid3"><div class="card"><h3>Producer</h3><p>Makes its own food, usually by photosynthesis.</p></div><div class="card"><h3>Consumer</h3><p>Eats plants or animals.</p></div><div class="card"><h3>Decomposer</h3><p>Breaks down dead material and recycles nutrients.</p></div></div><div class="sim"><h3>Food web impact simulator</h3><button class="green" onclick="setGrass('normal')">Normal grass</button><button class="orange" onclick="setGrass('low')">Reduce grass</button><button class="ghost" onclick="resetFoodWeb()">Reset</button><div class="output"><div>Grass<strong id="grassPop">100</strong></div><div>Rabbits/grasshoppers<strong id="herbPop">80</strong></div><div>Foxes<strong id="foxPop">50</strong></div></div><svg viewBox="0 0 700 330"><text x="350" y="45" text-anchor="middle" class="big">Food web model</text><rect x="60" y="135" width="120" height="55" rx="16" fill="#dcfce7" stroke="#172554" stroke-width="3"/><text x="120" y="170" text-anchor="middle" class="big">grass</text><rect x="290" y="80" width="130" height="55" rx="16" fill="#fef3c7" stroke="#172554" stroke-width="3"/><text x="355" y="115" text-anchor="middle" class="big">rabbit</text><rect x="290" y="200" width="150" height="55" rx="16" fill="#fef3c7" stroke="#172554" stroke-width="3"/><text x="365" y="235" text-anchor="middle" class="big">grasshopper</text><rect x="540" y="135" width="120" height="55" rx="16" fill="#fee2e2" stroke="#172554" stroke-width="3"/><text x="600" y="170" text-anchor="middle" class="big">fox</text><line x1="180" y1="150" x2="290" y2="110" stroke="#172554" stroke-width="5"/><polygon points="290,110 270,105 278,126" fill="#172554"/><line x1="180" y1="175" x2="290" y2="220" stroke="#172554" stroke-width="5"/><polygon points="290,220 270,220 278,198" fill="#172554"/><line x1="420" y1="110" x2="540" y2="150" stroke="#172554" stroke-width="5"/><polygon points="540,150 520,130 516,154" fill="#172554"/><line x1="440" y1="225" x2="540" y2="175" stroke="#172554" stroke-width="5"/><polygon points="540,175 518,176 529,196" fill="#172554"/></svg><div class="info" id="webInfo">If grass decreases, herbivores have less food. Predators may also decrease later.</div></div></section>
+<section class="section" id="photosynthesis"><h2>2. Photosynthesis</h2><p class="lead">Plants use light energy to make glucose.</p><div class="formula">carbon dioxide + water → glucose + oxygen</div><div class="sim"><h3>Photosynthesis rate simulator</h3><div class="controls"><div class="control">Light <strong><span id="lightLabel">50</span>%</strong><input id="light" type="range" min="0" max="100" value="50" oninput="updatePhoto()"></div><div class="control">CO₂ <strong><span id="co2Label">50</span>%</strong><input id="co2" type="range" min="0" max="100" value="50" oninput="updatePhoto()"></div><div class="control">Temperature <strong><span id="tempLabel">25</span>°C</strong><input id="temp" type="range" min="0" max="45" value="25" oninput="updatePhoto()"></div></div><div class="output"><div>Rate<strong id="rateOut">50%</strong></div><div>Limiting factor<strong id="limitOut">light/CO₂</strong></div><div>Oxygen bubbles<strong id="bubbleOut">💧💧💧</strong></div></div><div class="info">The lowest important factor usually limits the rate.</div></div></section>
+<section class="section" id="reproduction"><h2>3. Plant Reproduction</h2><p class="lead">Flowering plants use pollination, fertilisation and seed dispersal.</p><div class="grid3"><div class="card"><h3>Anther</h3><p>Produces pollen.</p></div><div class="card"><h3>Stigma</h3><p>Sticky part that catches pollen.</p></div><div class="card"><h3>Ovary</h3><p>Contains ovules, which can become seeds.</p></div></div><div class="task"><p>Why do plants disperse seeds?</p><button class="choice" onclick="choice(this,true,'seedF','Correct.','Model answer: Seed dispersal reduces competition with the parent plant and helps the species spread to new areas.')">to reduce competition</button><button class="choice" onclick="choice(this,false,'seedF','Correct.','Model answer: Seeds still need water. Seed dispersal reduces competition and spreads the species.')">to avoid needing water</button><div id="seedF" class="feedback"></div></div></section>
+<section class="section" id="fieldwork"><h2>4. Fieldwork and Quadrats</h2><p class="lead">Quadrats are used to sample organisms in a habitat.</p><div class="task"><p>Daisy counts in five quadrats: 3, 4, 5, 4, 4. Calculate the mean.</p><input id="meanIn" type="number"><button class="green" onclick="checkCalc('meanIn',4,'meanF','Correct: 20 ÷ 5 = 4 daisies per quadrat.','Model answer: Add the results: 3 + 4 + 5 + 4 + 4 = 20. Divide by 5 quadrats, so the mean is 4.')">Check</button><div id="meanF" class="feedback"></div></div><div class="task"><p>Why should quadrats be placed randomly?</p><textarea id="quadIn"></textarea><button class="green" onclick="checkSome('quadIn','quadF',['bias','representative','fair'],'Good answer.','Model answer: Random placement reduces bias and makes the sample more representative of the habitat.')">Check</button><div id="quadF" class="feedback"></div></div></section>
+<section class="section" id="cfu"><h2>5. Final Mini CFU</h2><p class="lead">12 questions with model-answer feedback.</p><div class="task">
+<p>1. Arrows in food chains show...</p><button class="choice" onclick="choice(this,true,'q1','Correct.','Model answer: Arrows show the direction of energy transfer.')">energy transfer</button><button class="choice" onclick="choice(this,false,'q1','Correct.','Model answer: Arrows do not show where animals move; they show energy transfer.')">where animals move</button><div id="q1" class="feedback"></div>
+<p>2. A producer...</p><button class="choice" onclick="choice(this,true,'q2','Correct.','Model answer: A producer makes its own food, usually by photosynthesis.')">makes its own food</button><button class="choice" onclick="choice(this,false,'q2','Correct.','Model answer: A consumer eats other organisms. A producer makes its own food.')">eats animals</button><div id="q2" class="feedback"></div>
+<p>3. Product of photosynthesis?</p><button class="choice" onclick="choice(this,true,'q3','Correct.','Model answer: Oxygen and glucose are products of photosynthesis.')">oxygen</button><button class="choice" onclick="choice(this,false,'q3','Correct.','Model answer: Carbon dioxide is a reactant, not a product.')">carbon dioxide</button><div id="q3" class="feedback"></div>
+<p>4. Reactant of photosynthesis?</p><button class="choice" onclick="choice(this,true,'q4','Correct.','Model answer: Carbon dioxide and water are reactants of photosynthesis.')">carbon dioxide</button><button class="choice" onclick="choice(this,false,'q4','Correct.','Model answer: Oxygen is a product, not a reactant.')">oxygen</button><div id="q4" class="feedback"></div>
+<p>5. What is pollination?</p><textarea id="q5in"></textarea><button class="green" onclick="checkSome('q5in','q5',['pollen','anther','stigma'],'Good answer.','Model answer: Pollination is the transfer of pollen from the anther to the stigma.')">Check</button><div id="q5" class="feedback"></div>
+<p>6. The stigma...</p><button class="choice" onclick="choice(this,true,'q6','Correct.','Model answer: The stigma catches pollen.')">catches pollen</button><button class="choice" onclick="choice(this,false,'q6','Correct.','Model answer: The anther produces pollen. The stigma catches pollen.')">produces pollen</button><div id="q6" class="feedback"></div>
+<p>7. Why disperse seeds?</p><textarea id="q7in"></textarea><button class="green" onclick="checkSome('q7in','q7',['competition','spread'],'Good answer.','Model answer: Seed dispersal reduces competition with the parent plant and helps the species spread.')">Check</button><div id="q7" class="feedback"></div>
+<p>8. A quadrat is used for...</p><button class="choice" onclick="choice(this,true,'q8','Correct.','Model answer: A quadrat is used for sampling organisms in a habitat.')">sampling organisms</button><button class="choice" onclick="choice(this,false,'q8','Correct.','Model answer: A quadrat is not used to measure temperature; it is used for sampling organisms.')">measuring temperature</button><div id="q8" class="feedback"></div>
+<p>9. Why calculate a mean?</p><textarea id="q9in"></textarea><button class="green" onclick="checkSome('q9in','q9',['average','reliable','representative'],'Good answer.','Model answer: A mean gives an average result, making estimates more reliable and representative.')">Check</button><div id="q9" class="feedback"></div>
+<p>10. What happens if a consumer has less food?</p><button class="choice" onclick="choice(this,true,'q10','Correct.','Model answer: If food decreases, consumer populations may decrease.')">it may decrease</button><button class="choice" onclick="choice(this,false,'q10','Correct.','Model answer: Consumers usually decrease if their food source decreases.')">it always increases</button><div id="q10" class="feedback"></div>
+<p>11. Biodiversity means...</p><button class="choice" onclick="choice(this,true,'q11','Correct.','Model answer: Biodiversity is the variety of different living organisms in an area.')">variety of organisms</button><button class="choice" onclick="choice(this,false,'q11','Correct.','Model answer: Biodiversity means variety of organisms, not just one population.')">number of foxes only</button><div id="q11" class="feedback"></div>
+<p>12. Why does random sampling reduce bias?</p><textarea id="q12in"></textarea><button class="green" onclick="checkSome('q12in','q12',['bias','representative','fair'],'Good answer.','Model answer: Random sampling reduces bias because the person does not choose only preferred areas, so the sample is more representative.')">Check</button><div id="q12" class="feedback"></div>
+</div></section>
+</main><script>
+function el(id){return document.getElementById(id);}
+function showFeedback(fid,ok,correctMsg,modelMsg){
+  const f=el(fid); if(!f)return;
+  f.textContent=ok?correctMsg:modelMsg;
+  f.className='feedback '+(ok?'ok':'no');
+}
+function choice(btn,ok,fid,correctMsg,modelMsg){
+  const parent=btn.closest('.task')||btn.parentElement;
+  parent.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(ok?'correct':'wrong');
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkCalc(inputId,correct,fid,correctMsg,modelMsg){
+  const input=el(inputId);
+  if(input.value===''){showFeedback(fid,false,'','Enter an answer first, then check it.');return;}
+  const ok=Math.abs(Number(input.value)-correct)<0.01;
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkSome(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.some(w=>text.includes(String(w).toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkAll(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.every(w=>text.includes(String(w).toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkDropdown(id,correct,fid,correctMsg,modelMsg){
+  const ans=el(id).value;
+  if(!ans){showFeedback(fid,false,'','Select an answer first, then check it.');return;}
+  showFeedback(fid,ans===correct,correctMsg,modelMsg);
+}
+function toggleAnswer(id){el(id).classList.toggle('show');}
+
+function setGrass(state){if(state==='low'){el('grassPop').textContent='35';el('herbPop').textContent='40';el('foxPop').textContent='25';el('webInfo').textContent='Less grass means herbivores have less food. Predator numbers may also decrease later.';}else{el('grassPop').textContent='100';el('herbPop').textContent='80';el('foxPop').textContent='50';el('webInfo').textContent='With enough grass, herbivores and predators have more available food.';}}
+function resetFoodWeb(){setGrass('normal');}
+function updatePhoto(){const l=Number(el('light').value),c=Number(el('co2').value),t=Number(el('temp').value);el('lightLabel').textContent=l;el('co2Label').textContent=c;el('tempLabel').textContent=t;const tempScore=Math.max(0,100-Math.abs(t-25)*4);const rate=Math.round(Math.min(l,c,tempScore));el('rateOut').textContent=rate+'%';el('limitOut').textContent=rate===l?'light':rate===c?'CO₂':'temperature';el('bubbleOut').textContent=rate>70?'💧💧💧💧💧':rate>40?'💧💧💧':rate>10?'💧':'none';}
+window.addEventListener('DOMContentLoaded',()=>{resetFoodWeb();updatePhoto();});
+</script></div></body></html>
