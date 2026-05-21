@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Year 7 Working Scientifically Lab</title>
+<style>
+:root{
+  --bg:#f4f8fc;--card:#ffffff;--ink:#14213d;--muted:#526176;--line:#d8e8f5;
+  --blue:#2563eb;--green:#16a34a;--orange:#d97706;--purple:#6d5dfc;--red:#dc2626;
+  --soft-blue:#eaf2ff;--soft-green:#eaf8ef;--soft-orange:#fff4e5;--shadow:0 10px 26px rgba(20,33,61,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb,#0f766e);color:white;text-align:center;padding:44px 18px}
+.hero h1{font-size:clamp(34px,6vw,58px);margin:0 0 10px}
+.hero p{font-size:18px;font-weight:800;margin:0 auto;max-width:880px}
+.nav{position:sticky;top:0;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line);padding:10px;text-align:center;z-index:20}
+.nav a{display:inline-block;text-decoration:none;color:var(--ink);font-weight:900;background:#eef6ff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;margin:3px}
+main{max-width:1180px;margin:0 auto;padding:24px 14px 50px}
+section{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:22px 0}
+h2{font-size:clamp(28px,4vw,40px);margin:0 0 8px;color:#172554}
+h3{color:#172554;margin:8px 0}
+.lead{color:var(--muted);font-weight:800;margin:0 0 16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.task,.sim{background:#fbfdff;border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}
+.formula{background:linear-gradient(135deg,#2563eb,#6d5dfc);color:white;border-radius:20px;text-align:center;padding:18px;font-size:28px;font-weight:900;margin:14px 0}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.control{background:white;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;font-weight:900}
+.control strong{display:block;font-size:22px;color:#172554;margin:4px 0}
+input[type=range]{width:100%}
+input[type=number],textarea,select{width:100%;padding:10px;border:2px solid var(--line);border-radius:14px;font-size:16px;background:white}
+textarea{min-height:88px}
+button{border:0;border-radius:999px;padding:10px 14px;margin:4px;font-weight:900;cursor:pointer}
+.blue{background:#2563eb;color:white}.green{background:#16a34a;color:white}.orange{background:#d97706;color:white}.red{background:#dc2626;color:white}.ghost{background:#eef6ff;color:#172554;border:1px solid var(--line)}
+.choice{background:white;color:#172554;border:2px solid var(--line);text-align:left;border-radius:16px}
+.choice.correct{background:#ecfdf5;border-color:#86efac}.choice.wrong{background:#fff1f2;border-color:#fecaca}
+.feedback{font-weight:900;margin-top:10px;min-height:24px}.ok{color:#15803d}.no{color:#dc2626}
+.answer{display:none;background:#ecfdf5;border-left:6px solid #16a34a;border-radius:14px;padding:12px;margin-top:10px;font-weight:900}
+.answer.show{display:block}
+.info{background:#fff7ed;border:1px solid #fed7aa;border-radius:16px;padding:12px;font-weight:900;color:#7c2d12}
+.output{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.output div{background:#eef6ff;border:1px solid var(--line);border-radius:16px;text-align:center;padding:12px;font-weight:900}
+.output strong{display:block;font-size:24px;color:#172554}
+svg{width:100%;height:auto;background:white;border:2px solid var(--line);border-radius:20px}
+.label{font:bold 14px Arial;fill:#172554}.big{font:bold 18px Arial;fill:#172554}.small{font:bold 12px Arial;fill:#172554}
+table{width:100%;border-collapse:collapse;margin:10px 0}td,th{border:1px solid var(--line);padding:10px;text-align:left}th{background:#eef6ff}
+@media(max-width:850px){.grid2,.grid3,.controls,.output{grid-template-columns:1fr}.nav{position:static}}
+</style>
+</head>
+<body>
+<header class="hero"><h1>Year 7 Working Scientifically Lab</h1><p>Variables, fair testing, graph skills, lab safety, correlation and conclusions.</p></header>
+<nav class="nav">
+<a href="index.html">🏠 Home</a><a href="forces.html">Forces</a><a href="electricity.html">Electricity</a><a href="ecosystems.html">Ecosystems</a>
+<a href="#variables">Variables</a><a href="#graphs">Graphs</a><a href="#safety">Safety</a><a href="#cfu">Mini CFU</a>
+</nav>
+<main>
+<section id="variables">
+<h2>1. Variables and Fair Testing</h2>
+<p class="lead">In an investigation, one thing is changed, one thing is measured, and everything else important is kept the same.</p>
+<div class="grid3">
+<div class="card"><h3>Independent variable</h3><p>The variable you change.</p></div>
+<div class="card"><h3>Dependent variable</h3><p>The variable you measure.</p></div>
+<div class="card"><h3>Control variables</h3><p>The variables kept the same to make the test fair.</p></div>
+</div>
+<div class="task">
+<h3>Scenario: ramp investigation</h3>
+<p>A student investigates how the height of a ramp affects the speed of a toy car. They use the same car, same ramp and same distance each time.</p>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Independent variable</td><td><select id="var1"><option value="">Choose</option><option value="height">height of ramp</option><option value="speed">speed of car</option><option value="same car">same car</option></select></td></tr>
+<tr><td>Dependent variable</td><td><select id="var2"><option value="">Choose</option><option value="speed">speed of car</option><option value="height">height of ramp</option><option value="same car">same car</option></select></td></tr>
+<tr><td>Control variable</td><td><select id="var3"><option value="">Choose</option><option value="same car">same car</option><option value="speed">speed of car</option><option value="height">height of ramp</option></select></td></tr>
+</table>
+<button class="green" onclick="checkVariables()">Check</button><div id="varF" class="feedback"></div>
+</div>
+</section>
+
+<section id="graphs">
+<h2>2. Reading Graphs</h2>
+<p class="lead">Graphs help scientists spot patterns and relationships.</p>
+<div class="grid2">
+<div>
+<svg viewBox="0 0 520 360" aria-label="line graph">
+<line x1="70" y1="300" x2="470" y2="300" stroke="#172554" stroke-width="5"/>
+<line x1="70" y1="300" x2="70" y2="60" stroke="#172554" stroke-width="5"/>
+<text x="270" y="345" text-anchor="middle" class="big">Ramp height / cm</text>
+<text x="28" y="190" transform="rotate(-90 28 190)" text-anchor="middle" class="big">Speed / m/s</text>
+<path d="M80 280 L165 245 L250 205 L335 160 L450 105" stroke="#2563eb" stroke-width="7" fill="none" stroke-linecap="round"/>
+<circle cx="80" cy="280" r="7" fill="#2563eb"/><circle cx="165" cy="245" r="7" fill="#2563eb"/><circle cx="250" cy="205" r="7" fill="#2563eb"/><circle cx="335" cy="160" r="7" fill="#2563eb"/><circle cx="450" cy="105" r="7" fill="#2563eb"/>
+</svg>
+</div>
+<div class="task">
+<h3>Graph questions</h3>
+<p>1. What happens to speed as ramp height increases?</p>
+<select id="graph1"><option value="">Choose</option><option value="increases">speed increases</option><option value="decreases">speed decreases</option><option value="same">speed stays the same</option></select>
+<button class="green" onclick="checkDropdown('graph1','increases','graphF1','Correct: speed increases.','Model answer: As ramp height increases, speed increases. This is a positive correlation.')">Check</button><div id="graphF1" class="feedback"></div>
+<p>2. What type of correlation is shown?</p>
+<select id="graph2"><option value="">Choose</option><option value="positive">positive correlation</option><option value="negative">negative correlation</option><option value="none">no correlation</option></select>
+<button class="green" onclick="checkDropdown('graph2','positive','graphF2','Correct: it is a positive correlation.','Model answer: It is a positive correlation because both variables increase together.')">Check</button><div id="graphF2" class="feedback"></div>
+</div>
+</div>
+</section>
+
+<section id="safety">
+<h2>3. Lab Safety: Hazard and Risk</h2>
+<p class="lead">A hazard is something that could cause harm. A risk is the chance of harm happening and how serious it could be.</p>
+<div class="task">
+<h3>Safety scenario</h3>
+<p>A student heats water in a beaker using a Bunsen burner. They are not wearing goggles and their bag is on the floor near the bench.</p>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Which is a hazard?</td><td><select id="safe1"><option value="">Choose</option><option value="bunsen">hot Bunsen burner/flame</option><option value="speed">speed of toy car</option><option value="graph">the graph</option></select></td></tr>
+<tr><td>Which action reduces risk?</td><td><select id="safe2"><option value="">Choose</option><option value="goggles">wear goggles and move the bag away</option><option value="run">run across the lab</option><option value="touch">touch the hot beaker</option></select></td></tr>
+</table>
+<button class="green" onclick="checkSafety()">Check</button><div id="safeF" class="feedback"></div>
+</div>
+</section>
+
+<section id="cfu">
+<h2>Final Mini CFU</h2>
+<p class="lead">12 questions with model-answer feedback.</p>
+<div class="task">
+<p>1. The variable you change is the...</p><button class="choice" onclick="choice(this,true,'q1','Correct.','Model answer: The independent variable is the variable you change.')">independent variable</button><button class="choice" onclick="choice(this,false,'q1','Correct.','Model answer: The dependent variable is measured, not changed. The variable changed is the independent variable.')">dependent variable</button><div id="q1" class="feedback"></div>
+<p>2. The variable you measure is the...</p><button class="choice" onclick="choice(this,true,'q2','Correct.','Model answer: The dependent variable is the variable you measure.')">dependent variable</button><button class="choice" onclick="choice(this,false,'q2','Correct.','Model answer: The independent variable is changed. The dependent variable is measured.')">control variable</button><div id="q2" class="feedback"></div>
+<p>3. Why keep control variables the same?</p><textarea id="q3in"></textarea><button class="green" onclick="checkSome('q3in','q3',['fair','valid','only one variable'],'Good answer.','Model answer: Control variables are kept the same to make the test fair, so only the independent variable affects the dependent variable.')">Check</button><div id="q3" class="feedback"></div>
+<p>4. What is a hazard?</p><button class="choice" onclick="choice(this,true,'q4','Correct.','Model answer: A hazard is something that could cause harm.')">something that could cause harm</button><button class="choice" onclick="choice(this,false,'q4','Correct.','Model answer: A conclusion is not a hazard. A hazard is something that could cause harm.')">the final conclusion</button><div id="q4" class="feedback"></div>
+<p>5. What does positive correlation mean?</p><button class="choice" onclick="choice(this,true,'q5','Correct.','Model answer: Positive correlation means both variables increase together.')">both variables increase together</button><button class="choice" onclick="choice(this,false,'q5','Correct.','Model answer: If one increases and the other decreases, that is negative correlation.')">one increases while the other decreases</button><div id="q5" class="feedback"></div>
+<p>6. Why repeat measurements?</p><textarea id="q6in"></textarea><button class="green" onclick="checkSome('q6in','q6',['reliable','mean','average','anomaly'],'Good answer.','Model answer: Repeating measurements improves reliability, helps identify anomalies and allows a mean to be calculated.')">Check</button><div id="q6" class="feedback"></div>
+<p>7. What should go on the x-axis?</p><button class="choice" onclick="choice(this,true,'q7','Correct.','Model answer: The independent variable normally goes on the x-axis.')">independent variable</button><button class="choice" onclick="choice(this,false,'q7','Correct.','Model answer: The dependent variable normally goes on the y-axis.')">dependent variable</button><div id="q7" class="feedback"></div>
+<p>8. What should go on the y-axis?</p><button class="choice" onclick="choice(this,true,'q8','Correct.','Model answer: The dependent variable normally goes on the y-axis.')">dependent variable</button><button class="choice" onclick="choice(this,false,'q8','Correct.','Model answer: The independent variable normally goes on the x-axis.')">control variable</button><div id="q8" class="feedback"></div>
+<p>9. What is an anomaly?</p><button class="choice" onclick="choice(this,true,'q9','Correct.','Model answer: An anomaly is a result that does not fit the pattern.')">a result that does not fit the pattern</button><button class="choice" onclick="choice(this,false,'q9','Correct.','Model answer: A result that matches the pattern is not an anomaly.')">a normal result</button><div id="q9" class="feedback"></div>
+<p>10. Give one way to reduce risk when heating water.</p><textarea id="q10in"></textarea><button class="green" onclick="checkSome('q10in','q10',['goggles','stand','tongs','hair','bag'],'Good safety answer.','Model answer: Wear goggles, stand up, tie hair back, keep bags away, and do not touch hot equipment directly.')">Check</button><div id="q10" class="feedback"></div>
+<p>11. What is a conclusion?</p><button class="choice" onclick="choice(this,true,'q11','Correct.','Model answer: A conclusion explains what the results show.')">an explanation of what results show</button><button class="choice" onclick="choice(this,false,'q11','Correct.','Model answer: A conclusion is not just a list of equipment; it explains what the results show.')">a list of equipment</button><div id="q11" class="feedback"></div>
+<p>12. Why use a line graph?</p><textarea id="q12in"></textarea><button class="green" onclick="checkSome('q12in','q12',['continuous','pattern','relationship','correlation'],'Good answer.','Model answer: A line graph is useful for continuous data because it shows patterns, relationships and correlations.')">Check</button><div id="q12" class="feedback"></div>
+</div>
+</section>
+</main>
+<script>
+
+function el(id){return document.getElementById(id);}
+function showFeedback(fid,ok,correctMsg,modelMsg){
+  const f=el(fid);
+  if(!f) return;
+  f.textContent=ok?correctMsg:modelMsg;
+  f.className='feedback '+(ok?'ok':'no');
+}
+function choice(btn,ok,fid,correctMsg,modelMsg){
+  const parent=btn.parentElement;
+  parent.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(ok?'correct':'wrong');
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkCalc(inputId,correct,fid,correctMsg,modelMsg){
+  const input=el(inputId);
+  if(input.value===''){showFeedback(fid,false,'','Enter an answer first, then check it.');return;}
+  const ok=Math.abs(Number(input.value)-correct)<0.01;
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkAny(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.every(w=>text.includes(w.toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkSome(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.some(w=>text.includes(w.toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkDropdown(id,correct,fid,correctMsg,modelMsg){
+  const ans=el(id).value;
+  if(!ans){showFeedback(fid,false,'','Select an answer first, then check it.');return;}
+  showFeedback(fid,ans===correct,correctMsg,modelMsg);
+}
+function toggleAnswer(id){el(id).classList.toggle('show');}
+
+function checkVariables(){
+  const ok=el('var1').value==='height' && el('var2').value==='speed' && el('var3').value==='same car';
+  showFeedback('varF',ok,'Correct: height is changed, speed is measured, and the same car is controlled.','Model answer: Independent variable = height of ramp; dependent variable = speed of car; control variable = same car.');
+}
+function checkSafety(){
+  const ok=el('safe1').value==='bunsen' && el('safe2').value==='goggles';
+  showFeedback('safeF',ok,'Correct: you identified a hazard and a way to reduce risk.','Model answer: A hazard is the hot Bunsen burner/flame. The risk is reduced by wearing goggles and moving the bag away.');
+}
+</script>
+</body></html>

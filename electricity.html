@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Year 7 Electricity & Magnetism Lab</title><style>
+:root{
+  --bg:#f4f8fc;--card:#ffffff;--ink:#14213d;--muted:#526176;--line:#d8e8f5;
+  --blue:#2563eb;--green:#16a34a;--orange:#d97706;--purple:#6d5dfc;--red:#dc2626;
+  --soft-blue:#eaf2ff;--soft-green:#eaf8ef;--soft-orange:#fff4e5;--shadow:0 10px 26px rgba(20,33,61,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb,#0f766e);color:white;text-align:center;padding:44px 18px}
+.hero h1{font-size:clamp(34px,6vw,58px);margin:0 0 10px}
+.hero p{font-size:18px;font-weight:800;margin:0 auto;max-width:880px}
+.nav{position:sticky;top:0;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line);padding:10px;text-align:center;z-index:20}
+.nav a{display:inline-block;text-decoration:none;color:var(--ink);font-weight:900;background:#eef6ff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;margin:3px}
+main{max-width:1180px;margin:0 auto;padding:24px 14px 50px}
+section{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:22px 0}
+h2{font-size:clamp(28px,4vw,40px);margin:0 0 8px;color:#172554}
+h3{color:#172554;margin:8px 0}
+.lead{color:var(--muted);font-weight:800;margin:0 0 16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.task,.sim{background:#fbfdff;border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}
+.formula{background:linear-gradient(135deg,#2563eb,#6d5dfc);color:white;border-radius:20px;text-align:center;padding:18px;font-size:28px;font-weight:900;margin:14px 0}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.control{background:white;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;font-weight:900}
+.control strong{display:block;font-size:22px;color:#172554;margin:4px 0}
+input[type=range]{width:100%}
+input[type=number],textarea,select{width:100%;padding:10px;border:2px solid var(--line);border-radius:14px;font-size:16px;background:white}
+textarea{min-height:88px}
+button{border:0;border-radius:999px;padding:10px 14px;margin:4px;font-weight:900;cursor:pointer}
+.blue{background:#2563eb;color:white}.green{background:#16a34a;color:white}.orange{background:#d97706;color:white}.red{background:#dc2626;color:white}.ghost{background:#eef6ff;color:#172554;border:1px solid var(--line)}
+.choice{background:white;color:#172554;border:2px solid var(--line);text-align:left;border-radius:16px}
+.choice.correct{background:#ecfdf5;border-color:#86efac}.choice.wrong{background:#fff1f2;border-color:#fecaca}
+.feedback{font-weight:900;margin-top:10px;min-height:24px}.ok{color:#15803d}.no{color:#dc2626}
+.answer{display:none;background:#ecfdf5;border-left:6px solid #16a34a;border-radius:14px;padding:12px;margin-top:10px;font-weight:900}
+.answer.show{display:block}
+.info{background:#fff7ed;border:1px solid #fed7aa;border-radius:16px;padding:12px;font-weight:900;color:#7c2d12}
+.output{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.output div{background:#eef6ff;border:1px solid var(--line);border-radius:16px;text-align:center;padding:12px;font-weight:900}
+.output strong{display:block;font-size:24px;color:#172554}
+svg{width:100%;height:auto;background:white;border:2px solid var(--line);border-radius:20px}
+.label{font:bold 14px Arial;fill:#172554}.big{font:bold 18px Arial;fill:#172554}.small{font:bold 12px Arial;fill:#172554}
+table{width:100%;border-collapse:collapse;margin:10px 0}td,th{border:1px solid var(--line);padding:10px;text-align:left}th{background:#eef6ff}
+@media(max-width:850px){.grid2,.grid3,.controls,.output{grid-template-columns:1fr}.nav{position:static}}
+</style></head>
+<body>
+<header class="hero"><h1>Year 7 Electricity & Magnetism Lab</h1><p>Circuits, symbols, current, voltage, resistance, static electricity and electromagnets.</p></header>
+<nav class="nav"><a href="index.html">🏠 Home</a><a href="working-scientifically.html">Working Scientifically</a><a href="forces.html">Forces</a><a href="ecosystems.html">Ecosystems</a><a href="#symbols">Symbols</a><a href="#circuits">Circuits</a><a href="#ivr">Current/Voltage</a><a href="#static">Static</a><a href="#magnets">Magnets</a><a href="#cfu">Mini CFU</a></nav>
+<main>
+<section id="symbols"><h2>1. Circuit Symbols</h2><p class="lead">Circuit symbols make diagrams quick and clear to draw.</p><div class="grid3"><div class="card"><h3>Cell</h3><p>Provides a push to the charges in a circuit.</p></div><div class="card"><h3>Lamp</h3><p>Transfers electrical energy to light and heat.</p></div><div class="card"><h3>Switch</h3><p>Opens or closes a circuit.</p></div></div><div class="task"><p>Why do scientists use circuit symbols?</p><button class="choice" onclick="choice(this,true,'symF','Correct.','Model answer: Circuit symbols make diagrams quick, clear and consistent for scientists to understand.')">to make diagrams clear</button><button class="choice" onclick="choice(this,false,'symF','Correct.','Model answer: Circuit symbols do not make current bigger; they make diagrams clearer.')">to make current bigger</button><div id="symF" class="feedback"></div></div></section>
+<section id="circuits"><h2>2. Series and Parallel Circuits</h2><p class="lead">Series circuits have one loop. Parallel circuits have more than one branch.</p><div class="grid2"><div class="card"><h3>Series</h3><p>One loop. If one component breaks, the whole circuit stops.</p></div><div class="card"><h3>Parallel</h3><p>Multiple branches. Components can work independently.</p></div></div><div class="sim"><h3>Switch simulator</h3><div class="controls"><div class="control">Switch <strong id="switchLabel">open</strong><button class="green" onclick="toggleSwitch()">Toggle</button><button class="ghost" onclick="resetSwitch()">Reset</button></div><div class="control">Lamp <strong id="lampLabel">off</strong></div><div class="control">Circuit <strong id="circuitLabel">incomplete</strong></div></div><svg viewBox="0 0 650 260"><rect x="80" y="65" width="490" height="130" rx="25" fill="none" stroke="#172554" stroke-width="8"/><rect x="140" y="45" width="90" height="45" rx="12" fill="#eaf2ff" stroke="#172554" stroke-width="3"/><text x="185" y="75" text-anchor="middle" class="big">cell</text><rect id="lampBox" x="430" y="150" width="100" height="45" rx="12" fill="#e5e7eb" stroke="#172554" stroke-width="3"/><text id="lampText" x="480" y="180" text-anchor="middle" class="big">lamp off</text><rect x="270" y="150" width="120" height="45" rx="12" fill="#fff7ed" stroke="#172554" stroke-width="3"/><text id="switchText" x="330" y="180" text-anchor="middle" class="big">open</text></svg><div class="info" id="switchInfo">Open switch = incomplete circuit = lamp off.</div></div></section>
+<section id="ivr"><h2>3. Current, Voltage and Resistance</h2><p class="lead">Current is flow of charge. Voltage is energy transferred per charge. Resistance makes current harder to flow.</p><div class="sim"><h3>Resistance model</h3><div class="controls"><div class="control">Voltage <strong><span id="voltLabel">6</span> V</strong><input id="voltage" type="range" min="1" max="12" value="6" oninput="updateIVR()"></div><div class="control">Resistance <strong><span id="resLabel">3</span> Ω</strong><input id="resistance" type="range" min="1" max="12" value="3" oninput="updateIVR()"></div><div class="control">Current <strong><span id="curLabel">2.0</span> A</strong></div></div><div class="info">For the same voltage, increasing resistance reduces current.</div></div><div class="task"><p>Which instrument measures current?</p><button class="choice" onclick="choice(this,true,'ammF','Correct.','Model answer: An ammeter measures current and is connected in series.')">ammeter</button><button class="choice" onclick="choice(this,false,'ammF','Correct.','Model answer: A voltmeter measures voltage. An ammeter measures current.')">voltmeter</button><div id="ammF" class="feedback"></div></div></section>
+<section id="static"><h2>4. Static Electricity</h2><p class="lead">Static electricity is caused by a build-up of charge.</p><div class="sim"><h3>Static balloon model</h3><div style="font-size:80px;text-align:center" id="balloon">🎈</div><button class="orange" onclick="rubBalloon()">Rub balloon</button><button class="ghost" onclick="resetBalloon()">Reset</button><div class="output"><div>Charge<strong id="chargeOut">0</strong></div><div>Effect<strong id="staticOut">none</strong></div><div>Force<strong id="staticForceOut">none</strong></div></div></div><div class="task"><p>Why can a charged balloon stick to a wall?</p><textarea id="staticExplain"></textarea><button class="green" onclick="checkSome('staticExplain','staticF',['charge','attract','opposite'],'Good explanation.','Model answer: A charged balloon can attract opposite charges in the wall. This electrostatic attraction can make the balloon stick.')">Check</button><div id="staticF" class="feedback"></div></div></section>
+<section id="magnets"><h2>5. Magnetism and Electromagnets</h2><p class="lead">An electromagnet is made using electricity, usually a coil of wire around an iron core.</p><div class="sim"><h3>Electromagnet strength model</h3><div class="controls"><div class="control">Current <strong><span id="magCurrentLabel">3</span> A</strong><input id="magCurrent" type="range" min="0" max="10" value="3" oninput="updateMagnet()"></div><div class="control">Coils <strong><span id="coilLabel">20</span></strong><input id="coils" type="range" min="1" max="50" value="20" oninput="updateMagnet()"></div><div class="control">Strength <strong id="strengthOut">medium</strong></div></div><div class="info">Increasing the current or number of coils usually makes the electromagnet stronger.</div></div></section>
+<section id="cfu"><h2>Final Mini CFU</h2><p class="lead">12 questions with model-answer feedback.</p><div class="task">
+<p>1. What does a cell do?</p><button class="choice" onclick="choice(this,true,'q1','Correct.','Model answer: A cell provides a push to charges in a circuit.')">provides energy/push</button><button class="choice" onclick="choice(this,false,'q1','Correct.','Model answer: A lamp transfers energy to light and heat. A cell provides the push to charges.')">makes light</button><div id="q1" class="feedback"></div>
+<p>2. What does a switch do?</p><button class="choice" onclick="choice(this,true,'q2','Correct.','Model answer: A switch opens or closes a circuit.')">opens or closes a circuit</button><button class="choice" onclick="choice(this,false,'q2','Correct.','Model answer: A switch does not measure current; it opens or closes a circuit.')">measures current</button><div id="q2" class="feedback"></div>
+<p>3. Current is measured in...</p><button class="choice" onclick="choice(this,true,'q3','Correct.','Model answer: Current is measured in amps, A.')">amps</button><button class="choice" onclick="choice(this,false,'q3','Correct.','Model answer: Volts measure voltage. Current is measured in amps.')">volts</button><div id="q3" class="feedback"></div>
+<p>4. Voltage is measured in...</p><button class="choice" onclick="choice(this,true,'q4','Correct.','Model answer: Voltage is measured in volts, V.')">volts</button><button class="choice" onclick="choice(this,false,'q4','Correct.','Model answer: Ohms measure resistance. Voltage is measured in volts.')">ohms</button><div id="q4" class="feedback"></div>
+<p>5. Resistance is measured in...</p><button class="choice" onclick="choice(this,true,'q5','Correct.','Model answer: Resistance is measured in ohms, Ω.')">ohms</button><button class="choice" onclick="choice(this,false,'q5','Correct.','Model answer: Amps measure current. Resistance is measured in ohms.')">amps</button><div id="q5" class="feedback"></div>
+<p>6. What happens to current if resistance increases and voltage stays the same?</p><button class="choice" onclick="choice(this,true,'q6','Correct.','Model answer: Increasing resistance makes it harder for charge to flow, so current decreases.')">current decreases</button><button class="choice" onclick="choice(this,false,'q6','Correct.','Model answer: For the same voltage, higher resistance gives lower current.')">current increases</button><div id="q6" class="feedback"></div>
+<p>7. Why are home lights usually in parallel?</p><textarea id="q7in"></textarea><button class="green" onclick="checkSome('q7in','q7',['branch','independent','one light'],'Good answer.','Model answer: Lights in parallel have separate branches, so one light can be switched off or broken without turning all the others off.')">Check</button><div id="q7" class="feedback"></div>
+<p>8. What causes static electricity?</p><button class="choice" onclick="choice(this,true,'q8','Correct.','Model answer: Static electricity is caused by a build-up of charge.')">build-up of charge</button><button class="choice" onclick="choice(this,false,'q8','Correct.','Model answer: Static electricity is not caused by a complete circuit; it is a build-up of charge.')">complete circuit</button><div id="q8" class="feedback"></div>
+<p>9. Like magnetic poles...</p><button class="choice" onclick="choice(this,true,'q9','Correct.','Model answer: Like magnetic poles repel each other.')">repel</button><button class="choice" onclick="choice(this,false,'q9','Correct.','Model answer: Opposite poles attract. Like poles repel.')">attract</button><div id="q9" class="feedback"></div>
+<p>10. Opposite magnetic poles...</p><button class="choice" onclick="choice(this,true,'q10','Correct.','Model answer: Opposite magnetic poles attract each other.')">attract</button><button class="choice" onclick="choice(this,false,'q10','Correct.','Model answer: Like poles repel. Opposite poles attract.')">repel</button><div id="q10" class="feedback"></div>
+<p>11. Give one way to make an electromagnet stronger.</p><textarea id="q11in"></textarea><button class="green" onclick="checkSome('q11in','q11',['current','coils','iron'],'Good answer.','Model answer: Increase the current, add more coils, or use an iron core to make an electromagnet stronger.')">Check</button><div id="q11" class="feedback"></div>
+<p>12. What is a circuit symbol?</p><textarea id="q12in"></textarea><button class="green" onclick="checkSome('q12in','q12',['diagram','component','symbol'],'Good answer.','Model answer: A circuit symbol is a simple diagram used to represent an electrical component clearly.')">Check</button><div id="q12" class="feedback"></div>
+</div></section>
+</main>
+<script>
+
+function el(id){return document.getElementById(id);}
+function showFeedback(fid,ok,correctMsg,modelMsg){
+  const f=el(fid);
+  if(!f) return;
+  f.textContent=ok?correctMsg:modelMsg;
+  f.className='feedback '+(ok?'ok':'no');
+}
+function choice(btn,ok,fid,correctMsg,modelMsg){
+  const parent=btn.parentElement;
+  parent.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add(ok?'correct':'wrong');
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkCalc(inputId,correct,fid,correctMsg,modelMsg){
+  const input=el(inputId);
+  if(input.value===''){showFeedback(fid,false,'','Enter an answer first, then check it.');return;}
+  const ok=Math.abs(Number(input.value)-correct)<0.01;
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkAny(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.every(w=>text.includes(w.toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkSome(inputId,fid,words,correctMsg,modelMsg){
+  const text=el(inputId).value.toLowerCase();
+  if(!text.trim()){showFeedback(fid,false,'','Write an answer first, then check it.');return;}
+  const ok=words.some(w=>text.includes(w.toLowerCase()));
+  showFeedback(fid,ok,correctMsg,modelMsg);
+}
+function checkDropdown(id,correct,fid,correctMsg,modelMsg){
+  const ans=el(id).value;
+  if(!ans){showFeedback(fid,false,'','Select an answer first, then check it.');return;}
+  showFeedback(fid,ans===correct,correctMsg,modelMsg);
+}
+function toggleAnswer(id){el(id).classList.toggle('show');}
+
+let switchClosed=false;let charge=0;
+function toggleSwitch(){
+  switchClosed=!switchClosed;
+  el('switchLabel').textContent=switchClosed?'closed':'open';
+  el('lampLabel').textContent=switchClosed?'on':'off';
+  el('circuitLabel').textContent=switchClosed?'complete':'incomplete';
+  el('switchText').textContent=switchClosed?'closed':'open';
+  el('lampText').textContent=switchClosed?'lamp on':'lamp off';
+  el('lampBox').setAttribute('fill',switchClosed?'#fef08a':'#e5e7eb');
+  el('switchInfo').textContent=switchClosed?'Closed switch = complete circuit = lamp on.':'Open switch = incomplete circuit = lamp off.';
+}
+function resetSwitch(){
+  switchClosed=false;
+  el('switchLabel').textContent='open';
+  el('lampLabel').textContent='off';
+  el('circuitLabel').textContent='incomplete';
+  el('switchText').textContent='open';
+  el('lampText').textContent='lamp off';
+  el('lampBox').setAttribute('fill','#e5e7eb');
+  el('switchInfo').textContent='Open switch = incomplete circuit = lamp off.';
+}
+function updateIVR(){
+  const v=Number(el('voltage').value), r=Number(el('resistance').value);
+  el('voltLabel').textContent=v;el('resLabel').textContent=r;el('curLabel').textContent=(v/r).toFixed(1);
+}
+function rubBalloon(){
+  charge=Math.min(5,charge+1);
+  el('chargeOut').textContent=charge;
+  el('staticOut').textContent=charge>2?'attraction':'weak';
+  el('staticForceOut').textContent=charge>2?'electrostatic':'small';
+  el('balloon').style.transform='scale('+(1+charge/12)+') rotate('+(charge*5)+'deg)';
+}
+function resetBalloon(){charge=0;el('chargeOut').textContent='0';el('staticOut').textContent='none';el('staticForceOut').textContent='none';el('balloon').style.transform='scale(1)';}
+function updateMagnet(){
+  const i=Number(el('magCurrent').value), c=Number(el('coils').value), strength=i*c;
+  el('magCurrentLabel').textContent=i;el('coilLabel').textContent=c;
+  el('strengthOut').textContent=strength>300?'strong':strength>80?'medium':'weak';
+}
+window.addEventListener('DOMContentLoaded',()=>{updateIVR();updateMagnet();resetSwitch();});
+</script></body></html>
