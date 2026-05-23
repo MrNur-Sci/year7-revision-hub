@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Year 7 Working Scientifically Skills Lab</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef6ff;color:#102033;line-height:1.5}
+.hero{background:linear-gradient(135deg,#10133f,#2563eb,#7c3aed);color:white;text-align:center;padding:48px 18px 42px}
+.hero h1{font-size:44px;margin:0 0 10px}
+.hero p{font-size:18px;font-weight:800;max-width:1000px;margin:auto}
+.nav{position:sticky;top:0;background:white;border-bottom:2px solid #d7ecff;text-align:center;padding:9px;z-index:30}
+.nav a{display:inline-block;margin:3px;padding:9px 12px;background:#eef6ff;border:1px solid #d7ecff;border-radius:999px;text-decoration:none;color:#102033;font-weight:900}
+section{max-width:1180px;margin:18px auto;background:white;border-radius:24px;padding:26px;box-shadow:0 12px 28px rgba(20,30,70,.13)}
+h2{font-size:30px;color:#172554;margin:0 0 10px}
+h3{color:#172554;margin:8px 0}
+.card,.task,.quiz-card{border:2px solid #d7ecff;border-radius:20px;background:#f8fbff;padding:17px;margin:14px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.control{background:white;border:2px solid #d7ecff;border-radius:16px;padding:12px;text-align:center;font-weight:900}
+.control strong{display:block;font-size:20px;color:#172554;margin:4px 0}
+button{border:0;border-radius:999px;padding:10px 14px;margin:4px;font-weight:900;cursor:pointer}
+.green{background:#22c55e;color:white}.blue{background:#38a7ff;color:white}.orange{background:#f59e0b;color:white}.red{background:#ef4444;color:white}.purple{background:#7c3aed;color:white}.ghost{background:#eef6ff;border:2px solid #d7ecff;color:#102033}
+.choice{display:block;width:100%;background:white;border:2px solid #d7ecff;color:#102033;border-radius:14px;text-align:left;padding:12px;margin:8px 0;font-weight:800}
+.correct{background:#dcfce7!important;border-color:#22c55e!important}
+.wrong{background:#fff1f2!important;border-color:#ef4444!important}
+.feedback{font-weight:900;margin-top:10px;min-height:22px}.ok{color:#15803d}.no{color:#dc2626}
+.info{background:#fff7ed;border:2px solid #fed7aa;border-radius:16px;padding:12px;font-weight:900;color:#7c2d12}
+.success{background:#ecfdf5;border:2px solid #86efac;border-radius:16px;padding:12px;font-weight:900;color:#166534}
+.warn{background:#fff1f2;border:2px solid #fecaca;border-radius:16px;padding:12px;font-weight:900;color:#991b1b}
+textarea{width:100%;min-height:80px;border:2px solid #d7ecff;border-radius:14px;padding:11px;font-size:16px}
+input[type=number],input[type=text]{padding:11px;border:2px solid #d7ecff;border-radius:14px;font-size:16px;max-width:190px}
+input[type=range]{width:100%}
+select{padding:10px;border:2px solid #d7ecff;border-radius:14px;font-weight:900;background:white;max-width:100%;min-width:210px}
+table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden;margin:12px 0}
+td,th{border:2px solid #d7ecff;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef6ff;color:#172554}
+.step{display:inline-block;background:#eef6ff;border:2px solid #d7ecff;border-radius:999px;padding:7px 11px;margin:3px;font-weight:900;color:#172554}
+.big-icon{font-size:52px;text-align:center}
+.progress{height:20px;background:#e8f2ff;border:2px solid #d7ecff;border-radius:999px;overflow:hidden;margin:12px 0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#60a5fa,#2563eb);transition:.6s}
+.graph-wrap{background:white;border:2px solid #d7ecff;border-radius:20px;padding:12px;overflow:hidden}
+svg{max-width:100%;height:auto;display:block}
+.point{fill:#2563eb;stroke:white;stroke-width:3;cursor:pointer}
+.point:hover{fill:#f59e0b}
+.line{stroke:#172554;stroke-width:4;fill:none}
+.trend{stroke:#22c55e;stroke-width:5;stroke-dasharray:10 10;fill:none;opacity:0;transition:.3s;stroke-linecap:round}
+.trend.show{opacity:1}
+.drag-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pill{display:block;background:white;border:2px solid #d7ecff;border-radius:14px;padding:10px;margin:7px 0;font-weight:900}
+.quiz-band{padding:16px;border-radius:18px;margin:16px 0}
+.secure{background:#ecfdf5;border:2px solid #86efac}
+.build{background:#eef6ff;border:2px solid #93c5fd}
+.stretch{background:#fff7ed;border:2px solid #fed7aa}
+.quiz-score{font-size:21px;font-weight:900;padding:14px;background:#eef6ff;border-radius:16px}
+.quiz-card .model-answer{display:none;margin-top:10px}
+.quiz-card.answered .model-answer{display:block}
+.model-answer{background:white;border:2px solid #d7ecff;border-radius:14px;padding:12px;font-weight:800;color:#172554}
+@media(max-width:850px){.two,.three,.four,.controls,.drag-list{grid-template-columns:1fr}.nav{position:static}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>Working Scientifically Skills Lab</h1>
+<p>Redesigned in the same style as the Intro to Science hub: Learn → Try it → Check, clear visuals, interactive practice, and hidden model answers.</p>
+</header>
+
+<nav class="nav">
+<a href="index.html">🏠 Home</a>
+<a href="#variables">Variables</a>
+<a href="#graphs">Graphs</a>
+<a href="#safety">Safety</a>
+<a href="#planning">Fair test</a>
+<a href="#data">Data</a>
+<a href="#conclusions">Conclusions</a>
+<a href="#quiz">CFU</a>
+</nav>
+
+<section id="variables">
+<h2>1. Variables: What are we changing, measuring and keeping the same?</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> A fair test has one thing you change, one thing you measure, and several things you keep the same.</p>
+<div class="three">
+<div class="card"><div class="big-icon">🎛️</div><h3>Independent variable</h3><p>The thing you change.</p></div>
+<div class="card"><div class="big-icon">📏</div><h3>Dependent variable</h3><p>The thing you measure.</p></div>
+<div class="card"><div class="big-icon">🔒</div><h3>Control variables</h3><p>The things you keep the same to make it fair.</p></div>
+</div>
+<div class="info">Sentence frame: “We changed ___, measured ___, and kept ___ the same.”</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Scenario: A student investigates how the number of batteries affects the brightness of a lamp.</p>
+<table>
+<tr><th>Variable type</th><th>Your answer</th><th>Check</th></tr>
+<tr><td>Independent variable</td><td><select id="varIV"><option value="">Select</option><option value="batteries">number of batteries</option><option value="brightness">brightness of the lamp</option><option value="lamp">type of lamp</option></select></td><td><button class="green" onclick="checkSelect('varIV','batteries','varF1','Correct: the number of batteries is changed.')">Check</button><div id="varF1" class="feedback"></div></td></tr>
+<tr><td>Dependent variable</td><td><select id="varDV"><option value="">Select</option><option value="batteries">number of batteries</option><option value="brightness">brightness of the lamp</option><option value="room">room temperature</option></select></td><td><button class="green" onclick="checkSelect('varDV','brightness','varF2','Correct: lamp brightness is measured.')">Check</button><div id="varF2" class="feedback"></div></td></tr>
+<tr><td>Control variable</td><td><select id="varCV"><option value="">Select</option><option value="lamp">same type of lamp</option><option value="batteries">number of batteries</option><option value="brightness">brightness of the lamp</option></select></td><td><button class="green" onclick="checkSelect('varCV','lamp','varF3','Correct: the type of lamp should be kept the same.')">Check</button><div id="varF3" class="feedback"></div></td></tr>
+</table>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Write the investigation as a fair-test question.</p>
+<textarea id="fairQuestion" placeholder="How does ___ affect ___?"></textarea>
+<button class="green" onclick="checkKeywords('fairQuestion',['how','affect'],'fairQF','Good: you wrote it as a relationship question.','Model answer: How does the number of batteries affect the brightness of a lamp?')">Check</button>
+<div id="fairQF" class="feedback"></div>
+</div>
+</section>
+
+<section id="graphs">
+<h2>2. Graph Reading and Correlation</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> A graph helps us see patterns. Correlation means two variables are linked.</p>
+<div class="three">
+<div class="card"><h3>Positive correlation</h3><p>As one variable increases, the other increases.</p></div>
+<div class="card"><h3>Negative correlation</h3><p>As one variable increases, the other decreases.</p></div>
+<div class="card"><h3>No correlation</h3><p>There is no clear pattern.</p></div>
+</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Read the graph. The points show how far a toy car travelled when released from measured ramp heights.</p>
+<div class="two">
+<div class="graph-wrap">
+<svg viewBox="0 0 650 430" aria-label="Ramp height and distance graph">
+<!-- Clean Year 7 graph: points plus ONE line of best fit. The line stays within the measured data range and is not extended to the y-axis. -->
+<line x1="110" y1="350" x2="585" y2="350" stroke="#172554" stroke-width="4"/>
+<line x1="110" y1="350" x2="110" y2="60" stroke="#172554" stroke-width="4"/>
+<text x="350" y="405" text-anchor="middle" font-size="20" font-weight="800">Ramp height (cm)</text>
+<text x="30" y="220" transform="rotate(-90 30,220)" text-anchor="middle" font-size="18" font-weight="800">Distance travelled (cm)</text>
+
+<!-- light grid lines -->
+<g stroke="#d7ecff" stroke-width="2">
+<line x1="110" y1="300" x2="585" y2="300"/>
+<line x1="110" y1="245" x2="585" y2="245"/>
+<line x1="110" y1="190" x2="585" y2="190"/>
+<line x1="110" y1="135" x2="585" y2="135"/>
+<line x1="110" y1="80" x2="585" y2="80"/>
+<line x1="190" y1="350" x2="190" y2="60"/>
+<line x1="270" y1="350" x2="270" y2="60"/>
+<line x1="350" y1="350" x2="350" y2="60"/>
+<line x1="430" y1="350" x2="430" y2="60"/>
+<line x1="510" y1="350" x2="510" y2="60"/>
+</g>
+
+<!-- redraw axes over grid -->
+<line x1="110" y1="350" x2="585" y2="350" stroke="#172554" stroke-width="4"/>
+<line x1="110" y1="350" x2="110" y2="60" stroke="#172554" stroke-width="4"/>
+
+<g font-size="16" font-weight="800" fill="#172554">
+<text x="110" y="375" text-anchor="middle">0</text>
+<text x="190" y="375" text-anchor="middle">10</text>
+<text x="270" y="375" text-anchor="middle">20</text>
+<text x="350" y="375" text-anchor="middle">30</text>
+<text x="430" y="375" text-anchor="middle">40</text>
+<text x="510" y="375" text-anchor="middle">50</text>
+<text x="88" y="354" text-anchor="end">0</text>
+<text x="88" y="300" text-anchor="end">20</text>
+<text x="88" y="245" text-anchor="end">40</text>
+<text x="88" y="190" text-anchor="end">60</text>
+<text x="88" y="135" text-anchor="end">80</text>
+<text x="88" y="80" text-anchor="end">100</text>
+</g>
+
+<g id="bestFitGroup" opacity="0">
+<line x1="190" y1="305" x2="510" y2="92" stroke="#22c55e" stroke-width="5" stroke-dasharray="10 8" stroke-linecap="round"/>
+<text x="350" y="55" text-anchor="middle" font-size="16" font-weight="900" fill="#166534">Line of best fit: it helps us see the pattern.</text>
+</g>
+
+<circle class="point" cx="190" cy="300" r="10" onclick="pointInfo('10 cm ramp: 20 cm travelled')"/>
+<circle class="point" cx="270" cy="260" r="10" onclick="pointInfo('20 cm ramp: 35 cm travelled')"/>
+<circle class="point" cx="350" cy="210" r="10" onclick="pointInfo('30 cm ramp: 55 cm travelled')"/>
+<circle class="point" cx="430" cy="150" r="10" onclick="pointInfo('40 cm ramp: 78 cm travelled')"/>
+<circle class="point" cx="510" cy="105" r="10" onclick="pointInfo('50 cm ramp: 95 cm travelled')"/>
+</svg>
+</div>
+<div>
+<div id="graphInfo" class="success">Click a point to read its value.</div>
+<button class="purple" onclick="toggleBestFit()">Show/hide line of best fit</button>
+<div class="info" style="margin-top:10px">
+<b>What do you notice?</b> The points go up as you move from left to right. This means a higher ramp made the toy car travel further.
+<br><br>
+<b>Line of best fit:</b> The green line helps you see the pattern. It does not have to touch every point.
+</div>
+<div class="task">
+<p>What type of correlation is shown?</p>
+<button class="choice" onclick="choiceCheck(this,true,'graphF','Correct: as ramp height increases, distance travelled increases.')">Positive correlation</button>
+<button class="choice" onclick="choiceCheck(this,false,'graphF','Not quite. The values increase together.')">Negative correlation</button>
+<button class="choice" onclick="choiceCheck(this,false,'graphF','Not quite. There is a clear pattern.')">No correlation</button>
+<div id="graphF" class="feedback"></div>
+<div class="success" style="margin-top:10px">Use this sentence starter: <b>As ramp height increases, the distance travelled...</b></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Write a conclusion from the graph.</p>
+<div class="info">
+<b>Context:</b> The graph shows a toy car investigation. The ramp height was changed and the distance travelled was measured.
+<br><br>
+<b>Pattern:</b> The distance travelled increases as the ramp height increases.
+</div>
+<textarea id="graphConclusion" placeholder="As ramp height increases, the distance travelled... This shows..."></textarea>
+<button class="green" onclick="checkKeywords('graphConclusion',['increases','distance'],'graphCF','Good: you described the pattern.','Model answer: As ramp height increases, the distance travelled by the toy car increases. This shows a positive correlation.')">Check</button>
+<div id="graphCF" class="feedback"></div>
+</div>
+</section>
+
+<section id="safety">
+<h2>3. Lab Safety: Hazard, Risk and Precaution</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> In science, a hazard is what could cause harm, a risk is what might happen, and a precaution reduces the chance of harm.</p>
+<div class="three">
+<div class="card"><h3>Hazard</h3><p>Something that could cause harm.</p></div>
+<div class="card"><h3>Risk</h3><p>The harm that could happen.</p></div>
+<div class="card"><h3>Precaution</h3><p>What you do to stay safe.</p></div>
+</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Match the safety idea.</p>
+<table>
+<tr><th>Example</th><th>Type</th><th>Check</th></tr>
+<tr><td>Hot water</td><td><select id="safe1"><option value="">Select</option><option value="hazard">Hazard</option><option value="risk">Risk</option><option value="precaution">Precaution</option></select></td><td><button class="green" onclick="checkSelect('safe1','hazard','safeF1','Correct: hot water is a hazard.')">Check</button><div id="safeF1" class="feedback"></div></td></tr>
+<tr><td>Burning your hand</td><td><select id="safe2"><option value="">Select</option><option value="hazard">Hazard</option><option value="risk">Risk</option><option value="precaution">Precaution</option></select></td><td><button class="green" onclick="checkSelect('safe2','risk','safeF2','Correct: burning your hand is the risk.')">Check</button><div id="safeF2" class="feedback"></div></td></tr>
+<tr><td>Wear goggles and use tongs</td><td><select id="safe3"><option value="">Select</option><option value="hazard">Hazard</option><option value="risk">Risk</option><option value="precaution">Precaution</option></select></td><td><button class="green" onclick="checkSelect('safe3','precaution','safeF3','Correct: this is a precaution.')">Check</button><div id="safeF3" class="feedback"></div></td></tr>
+</table>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Write a full safety sentence for using acid.</p>
+<textarea id="safetySentence" placeholder="The hazard is... The risk is... To reduce the risk..."></textarea>
+<button class="green" onclick="checkKeywords('safetySentence',['hazard','risk','goggles'],'safetyCF','Good: you included hazard, risk and a precaution.','Model answer: The hazard is acid. The risk is acid splashing into eyes or onto skin. To reduce the risk, wear goggles and handle the acid carefully.')">Check</button>
+<div id="safetyCF" class="feedback"></div>
+</div>
+</section>
+
+<section id="planning">
+<h2>4. Planning a Fair Test</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> A good method is clear, repeatable and fair.</p>
+<div class="four">
+<div class="card"><h3>1. Question</h3><p>What are you investigating?</p></div>
+<div class="card"><h3>2. Variables</h3><p>What will you change, measure and control?</p></div>
+<div class="card"><h3>3. Method</h3><p>What steps will you follow?</p></div>
+<div class="card"><h3>4. Repeat</h3><p>How will you make results reliable?</p></div>
+</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Plan: How does the height of a ramp affect the distance a toy car travels?</p>
+<div class="controls">
+<div class="control">Ramp height<strong><select id="planIV"><option value="">Select variable</option><option value="iv">Independent variable</option><option value="dv">Dependent variable</option><option value="cv">Control variable</option></select></strong></div>
+<div class="control">Distance travelled<strong><select id="planDV"><option value="">Select variable</option><option value="iv">Independent variable</option><option value="dv">Dependent variable</option><option value="cv">Control variable</option></select></strong></div>
+<div class="control">Same toy car<strong><select id="planCV"><option value="">Select variable</option><option value="iv">Independent variable</option><option value="dv">Dependent variable</option><option value="cv">Control variable</option></select></strong></div>
+</div>
+<button class="green" onclick="checkPlan()">Check plan variables</button>
+<div id="planF" class="feedback"></div>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Write a short method. Include repeat readings.</p>
+<textarea id="methodText" placeholder="1. Set the ramp to... 2. Release the car... 3. Measure... 4. Repeat..."></textarea>
+<button class="green" onclick="checkKeywords('methodText',['measure','repeat','same'],'methodF','Good: your method includes measuring, repeating and controls.','Model answer: Set the ramp to a chosen height. Release the same toy car without pushing. Measure the distance travelled. Repeat at least three times for each height and calculate a mean.')">Check</button>
+<div id="methodF" class="feedback"></div>
+</div>
+</section>
+
+<section id="data">
+<h2>5. Data Analysis: Means, Anomalies and Evidence</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> Scientists use repeat readings to spot anomalies and calculate a mean.</p>
+<table>
+<tr><th>Ramp height</th><th>Repeat 1</th><th>Repeat 2</th><th>Repeat 3</th><th>Mean</th></tr>
+<tr><td>20 cm</td><td>34 cm</td><td>36 cm</td><td>35 cm</td><td>35 cm</td></tr>
+<tr><td>30 cm</td><td>54 cm</td><td>56 cm</td><td>55 cm</td><td>55 cm</td></tr>
+<tr><td>40 cm</td><td>78 cm</td><td>20 cm</td><td>80 cm</td><td>?</td></tr>
+</table>
+<div class="info">An anomaly is a result that does not fit the pattern. It may be caused by a mistake or unexpected problem.</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Which value is the anomaly?</p>
+<button class="choice" onclick="choiceCheck(this,false,'anomF','Not quite. 78 cm fits the pattern.')">78 cm</button>
+<button class="choice" onclick="choiceCheck(this,true,'anomF','Correct: 20 cm is much lower than the other repeats.')">20 cm</button>
+<button class="choice" onclick="choiceCheck(this,false,'anomF','Not quite. 80 cm fits the pattern.')">80 cm</button>
+<div id="anomF" class="feedback"></div>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Calculate the mean for 78 cm and 80 cm after ignoring the anomaly.</p>
+<input id="meanInput" type="number" placeholder="Mean in cm">
+<button class="green" onclick="checkNumber('meanInput',79,'meanF','Correct: (78 + 80) ÷ 2 = 79 cm.')">Check</button>
+<div id="meanF" class="feedback"></div>
+</div>
+</section>
+
+<section id="conclusions">
+<h2>6. Conclusions and Evaluations</h2>
+
+<div class="task">
+<p><span class="step">Learn</span> A strong conclusion uses data. A strong evaluation explains how to improve the method.</p>
+<div class="two">
+<div class="card"><h3>Conclusion</h3><p>What pattern did you find? Use numbers as evidence.</p></div>
+<div class="card"><h3>Evaluation</h3><p>How reliable was the method? How could it be improved?</p></div>
+</div>
+</div>
+
+<div class="task">
+<p><span class="step">Try it</span> Choose the strongest conclusion.</p>
+<button class="choice" onclick="choiceCheck(this,false,'conF','Too vague. It does not use data.')">The ramp changed the distance.</button>
+<button class="choice" onclick="choiceCheck(this,true,'conF','Correct: it describes the pattern and uses data.')">As ramp height increased from 20 cm to 40 cm, the distance increased from 35 cm to about 79 cm.</button>
+<button class="choice" onclick="choiceCheck(this,false,'conF','Not precise enough. A strong conclusion needs evidence.')">The car went further.</button>
+<div id="conF" class="feedback"></div>
+</div>
+
+<div class="task">
+<p><span class="step">Check</span> Use the investigation context below to write one conclusion and one improvement.</p>
+<div class="info">
+<b>Context:</b> A student investigated how ramp height affects the distance a toy car travels. 
+They used the same toy car and measured the distance travelled after releasing it from different ramp heights.
+<br><br>
+<b>Results:</b> At 20 cm ramp height, the mean distance was 35 cm. At 40 cm ramp height, the mean distance was 79 cm.
+</div>
+<p><b>Your task:</b> Write one conclusion using the data, then suggest one improvement to make the investigation more reliable.</p>
+<textarea id="evalText" placeholder="Conclusion: As the ramp height increased from ___ to ___, the distance travelled changed from ___ to ___. Improvement: To make the results more reliable, I would..."></textarea>
+<button class="green" onclick="checkKeywords('evalText',['35','79','improvement'],'evalF','Good: you used data and included an improvement.','Model answer: Conclusion: As ramp height increased from 20 cm to 40 cm, the mean distance travelled increased from 35 cm to 79 cm. Improvement: Repeat each ramp height more times and calculate a mean to make the results more reliable.')">Check</button>
+<div id="evalF" class="feedback"></div>
+</div>
+</section>
+
+<section id="quiz">
+<h2>7. Final CFU: 20 Questions</h2>
+<p><span class="step">Secure It</span><span class="step">Build It</span><span class="step">Stretch It</span> Answer first. Model answers appear after you check.</p>
+
+<div class="quiz-band secure">
+<h3>Secure It</h3>
+<div class="quiz-card"><p>1. The independent variable is...</p><button class="choice" onclick="quizChoice(this,true,'q1')">the thing you change</button><button class="choice" onclick="quizChoice(this,false,'q1')">the thing you measure</button><div id="q1" class="feedback"></div><div class="model-answer">Model answer: The independent variable is the thing you change.</div></div>
+<div class="quiz-card"><p>2. The dependent variable is...</p><button class="choice" onclick="quizChoice(this,true,'q2')">the thing you measure</button><button class="choice" onclick="quizChoice(this,false,'q2')">the thing you keep the same</button><div id="q2" class="feedback"></div><div class="model-answer">Model answer: The dependent variable is the thing you measure.</div></div>
+<div class="quiz-card"><p>3. Control variables are kept...</p><button class="choice" onclick="quizChoice(this,true,'q3')">the same</button><button class="choice" onclick="quizChoice(this,false,'q3')">changing</button><div id="q3" class="feedback"></div><div class="model-answer">Model answer: Control variables are kept the same to make the test fair.</div></div>
+<div class="quiz-card"><p>4. A hazard is...</p><button class="choice" onclick="quizChoice(this,true,'q4')">something that could cause harm</button><button class="choice" onclick="quizChoice(this,false,'q4')">the final result</button><div id="q4" class="feedback"></div><div class="model-answer">Model answer: A hazard is something that could cause harm.</div></div>
+<div class="quiz-card"><p>5. A precaution is...</p><button class="choice" onclick="quizChoice(this,true,'q5')">something you do to reduce risk</button><button class="choice" onclick="quizChoice(this,false,'q5')">a result that does not fit the pattern</button><div id="q5" class="feedback"></div><div class="model-answer">Model answer: A precaution is an action that reduces risk.</div></div>
+<div class="quiz-card"><p>6. A result that does not fit the pattern is called...</p><button class="choice" onclick="quizChoice(this,true,'q6')">an anomaly</button><button class="choice" onclick="quizChoice(this,false,'q6')">a control variable</button><div id="q6" class="feedback"></div><div class="model-answer">Model answer: An anomaly is a result that does not fit the pattern.</div></div>
+</div>
+
+<div class="quiz-band build">
+<h3>Build It</h3>
+<div class="quiz-card"><p>7. Calculate the mean of 4, 5 and 6.</p><input id="q7i" type="number"><button class="green" onclick="checkQuizNumber('q7i',5,'q7')">Check</button><div id="q7" class="feedback"></div><div class="model-answer">Model answer: (4 + 5 + 6) ÷ 3 = 15 ÷ 3 = 5.</div></div>
+<div class="quiz-card"><p>8. Calculate the mean of 10, 12 and 14.</p><input id="q8i" type="number"><button class="green" onclick="checkQuizNumber('q8i',12,'q8')">Check</button><div id="q8" class="feedback"></div><div class="model-answer">Model answer: (10 + 12 + 14) ÷ 3 = 36 ÷ 3 = 12.</div></div>
+<div class="quiz-card"><p>9. Calculate the mean of 20 and 30.</p><input id="q9i" type="number"><button class="green" onclick="checkQuizNumber('q9i',25,'q9')">Check</button><div id="q9" class="feedback"></div><div class="model-answer">Model answer: (20 + 30) ÷ 2 = 25.</div></div>
+<div class="quiz-card"><p>10. Which is the anomaly: 30, 32, 31, 8?</p><input id="q10i" type="number"><button class="green" onclick="checkQuizNumber('q10i',8,'q10')">Check</button><div id="q10" class="feedback"></div><div class="model-answer">Model answer: 8 is the anomaly because it is far away from 30, 31 and 32.</div></div>
+<div class="quiz-card"><p>11. A student repeats a test 3 times. Why is this better?</p><textarea id="q11i"></textarea><button class="green" onclick="checkQuizKeywords('q11i',['reliable'],'q11')">Check</button><div id="q11" class="feedback"></div><div class="model-answer">Model answer: Repeats make the results more reliable and help identify anomalies.</div></div>
+<div class="quiz-card"><p>12. Write a fair-test question for: temperature and dissolving time.</p><textarea id="q12i"></textarea><button class="green" onclick="checkQuizKeywords('q12i',['temperature','dissolving'],'q12')">Check</button><div id="q12" class="feedback"></div><div class="model-answer">Model answer: How does temperature affect dissolving time?</div></div>
+</div>
+
+<div class="quiz-band stretch">
+<h3>Stretch It</h3>
+<div class="quiz-card"><p>13. Identify the variables: How does ramp height affect distance travelled?</p><textarea id="q13i"></textarea><button class="green" onclick="checkQuizKeywords('q13i',['height','distance'],'q13')">Check</button><div id="q13" class="feedback"></div><div class="model-answer">Model answer: Independent variable = ramp height. Dependent variable = distance travelled. Control variables include same car and same surface.</div></div>
+<div class="quiz-card"><p>14. Explain why only one variable should be changed.</p><textarea id="q14i"></textarea><button class="green" onclick="checkQuizKeywords('q14i',['fair'],'q14')">Check</button><div id="q14" class="feedback"></div><div class="model-answer">Model answer: Only one variable should be changed so the test is fair and we know what caused the result.</div></div>
+<div class="quiz-card"><p>15. Explain the difference between a hazard and a risk.</p><textarea id="q15i"></textarea><button class="green" onclick="checkQuizKeywords('q15i',['hazard','risk'],'q15')">Check</button><div id="q15" class="feedback"></div><div class="model-answer">Model answer: A hazard is something that could cause harm. A risk is the harm that could happen.</div></div>
+<div class="quiz-card"><p>16. Write a conclusion using data: 20 cm ramp = 35 cm distance, 40 cm ramp = 79 cm distance.</p><textarea id="q16i"></textarea><button class="green" onclick="checkQuizKeywords('q16i',['35','79'],'q16')">Check</button><div id="q16" class="feedback"></div><div class="model-answer">Model answer: As ramp height increased from 20 cm to 40 cm, distance increased from 35 cm to 79 cm.</div></div>
+<div class="quiz-card"><p>17. Suggest one improvement to make a ramp investigation more reliable.</p><textarea id="q17i"></textarea><button class="green" onclick="checkQuizKeywords('q17i',['repeat'],'q17')">Check</button><div id="q17" class="feedback"></div><div class="model-answer">Model answer: Repeat each ramp height more times and calculate a mean.</div></div>
+<div class="quiz-card"><p>18. Explain why a graph is useful in science.</p><textarea id="q18i"></textarea><button class="green" onclick="checkQuizKeywords('q18i',['pattern'],'q18')">Check</button><div id="q18" class="feedback"></div><div class="model-answer">Model answer: A graph helps us see patterns and relationships between variables.</div></div>
+<div class="quiz-card"><p>19. Describe positive correlation.</p><textarea id="q19i"></textarea><button class="green" onclick="checkQuizKeywords('q19i',['increases'],'q19')">Check</button><div id="q19" class="feedback"></div><div class="model-answer">Model answer: Positive correlation means as one variable increases, the other variable also increases.</div></div>
+<div class="quiz-card"><p>20. A student tested how ramp height affects distance travelled, but they only tested each ramp height once. Write one full evaluation sentence.</p><textarea id="q20i" placeholder="To improve the investigation, I would... because..."></textarea><button class="green" onclick="checkQuizKeywords('q20i',['repeat','reliable'],'q20')">Check</button><div id="q20" class="feedback"></div><div class="model-answer">Model answer: To improve the investigation, I would repeat each ramp height three times and calculate a mean to make the results more reliable.</div></div>
+</div>
+
+<div class="quiz-score">Score: <span id="quizScore">0</span>/20</div>
+</section>
+
+<script>
+let quizScore=0;
+let quizDone={};
+function el(id){return document.getElementById(id);}
+
+function checkSelect(id,correct,feedbackId,msg){
+ const v=el(id).value;
+ if(!v){el(feedbackId).textContent='Choose an answer first.';el(feedbackId).className='feedback no';return;}
+ const ok=v===correct;
+ el(feedbackId).textContent=ok?msg:'Not quite. Try again.';
+ el(feedbackId).className='feedback '+(ok?'ok':'no');
+}
+function checkSimple(id,correct,feedbackId,msg){checkSelect(id,correct,feedbackId,msg);}
+function choiceCheck(btn,correct,feedbackId,msg){
+ const card=btn.closest('.task')||btn.closest('.quiz-card');
+ card.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
+ btn.classList.add(correct?'correct':'wrong');
+ el(feedbackId).textContent=msg;
+ el(feedbackId).className='feedback '+(correct?'ok':'no');
+}
+function checkKeywords(id,words,feedbackId,good,model){
+ const txt=el(id).value.toLowerCase();
+ const ok=words.every(w=>txt.includes(w));
+ el(feedbackId).textContent=ok?good:model;
+ el(feedbackId).className='feedback '+(ok?'ok':'no');
+}
+function checkNumber(id,answer,feedbackId,msg){
+ const val=Number(el(id).value);
+ const ok=Math.abs(val-answer)<0.05;
+ el(feedbackId).textContent=ok?msg:'Not quite. '+msg;
+ el(feedbackId).className='feedback '+(ok?'ok':'no');
+}
+function pointInfo(text){el('graphInfo').textContent=text;}
+function toggleBestFit(){ const line=el('bestFitGroup'); line.setAttribute('opacity', line.getAttribute('opacity')==='0' ? '1' : '0'); }
+function checkPlan(){
+ const ok=el('planIV').value==='iv' && el('planDV').value==='dv' && el('planCV').value==='cv';
+ el('planF').textContent=ok?'Correct: ramp height is changed, distance is measured, and the car is controlled.':'Not quite. IV = ramp height, DV = distance, CV = same toy car.';
+ el('planF').className='feedback '+(ok?'ok':'no');
+}
+function quizChoice(btn,correct,feedbackId){
+ if(quizDone[feedbackId])return;
+ quizDone[feedbackId]=true;
+ btn.classList.add(correct?'correct':'wrong');
+ const card=btn.closest('.quiz-card');
+ if(card){card.classList.add('answered');}
+ el(feedbackId).textContent=correct?'Correct. Check the model answer below.':'Not quite. Use the model answer below to correct your work.';
+ el(feedbackId).className='feedback '+(correct?'ok':'no');
+ if(correct){quizScore++;el('quizScore').textContent=quizScore;}
+}
+function checkQuizNumber(inputId,answer,feedbackId){
+ if(quizDone[feedbackId])return;
+ const val=Number(el(inputId).value);
+ const ok=Math.abs(val-answer)<0.05;
+ quizDone[feedbackId]=true;
+ const card=el(inputId).closest('.quiz-card');
+ if(card){card.classList.add('answered');}
+ el(feedbackId).textContent=ok?'Correct. Check the model answer below.':'Not quite. Use the model answer below to correct your working.';
+ el(feedbackId).className='feedback '+(ok?'ok':'no');
+ if(ok){quizScore++;el('quizScore').textContent=quizScore;}
+}
+function checkQuizKeywords(inputId,words,feedbackId){
+ if(quizDone[feedbackId])return;
+ const txt=el(inputId).value.toLowerCase();
+ const ok=words.every(w=>txt.includes(w));
+ quizDone[feedbackId]=true;
+ const card=el(inputId).closest('.quiz-card');
+ if(card){card.classList.add('answered');}
+ el(feedbackId).textContent=ok?'Good response. Check the model answer below.':'Not quite. Use the model answer below to improve your response.';
+ el(feedbackId).className='feedback '+(ok?'ok':'no');
+ if(ok){quizScore++;el('quizScore').textContent=quizScore;}
+}
+</script>
+</body>
+</html>
