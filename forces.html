@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Forces & Motion – Year 7 Science</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0f2044;--blue:#2563eb;--teal:#0891b2;--green:#15803d;--orange:#c2410c;
+  --purple:#6d28d9;--red:#b91c1c;--ink:#1a2535;--muted:#64748b;
+  --card:#fff;--bg:#f5f0ff;--line:#cbd5e1;--soft:#e8f0fe;
+  --shadow:0 4px 24px rgba(15,32,68,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.page{max-width:1180px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(15,32,68,.09)}
+.hero{min-height:340px;display:grid;place-items:center;text-align:center;padding:50px 24px 40px;
+  background:linear-gradient(135deg,#1a1033 0%,#1e3a8a 50%,#7c3aed 100%);position:relative;overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(124,58,237,.4),transparent 40%),
+             radial-gradient(circle at 10% 80%,rgba(37,99,235,.3),transparent 35%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(32px,5.5vw,60px);font-weight:800;line-height:1.05;margin-bottom:12px}
+.hero p{font-size:clamp(14px,1.8vw,17px);font-weight:700;color:#e0d9ff;max-width:750px;margin:0 auto 18px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:800}
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:9px 16px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.nav a{text-decoration:none;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;transition:.2s}
+.nav a:hover,.nav a.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.nav a.home{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{padding:28px 18px 70px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin:24px 0}
+.stag{display:inline-block;background:var(--purple);color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px;margin-bottom:8px}
+.stag.blue{background:var(--blue)}.stag.green{background:var(--green)}.stag.teal{background:var(--teal)}.stag.orange{background:var(--orange)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:5px}
+h3{font-size:16px;font-weight:800;color:var(--navy);margin:12px 0 5px}
+.lead{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:18px}
+.big-idea{background:linear-gradient(135deg,#1a1033,var(--purple));color:#fff;border-radius:18px;padding:18px 22px;margin-bottom:20px}
+.big-idea .lbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:5px}
+.big-idea p{font-size:15px;font-weight:700;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.vocab{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.vc{background:#ede9fe;border:1px solid #c4b5fd;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;color:#4c1d95}
+.mc{background:#fff1f2;border:2px solid #fca5a5;border-radius:16px;padding:14px 16px;margin:12px 0}
+.mc strong{color:var(--red);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.worked{background:#f5f3ff;border:1px solid #c4b5fd;border-radius:16px;padding:16px;margin:12px 0}
+.wlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:7px}
+.task{background:#f8faff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}
+.tlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:7px}
+.choices{display:flex;flex-direction:column;gap:7px;margin:9px 0}
+.choice{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;text-align:left;cursor:pointer;transition:.15s;width:100%}
+.choice:hover{border-color:#c4b5fd;background:#f5f3ff}
+.choice.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.choice.wrong{background:#fff1f2;border-color:#fecaca;color:#b91c1c}
+.fb{font-size:13px;font-weight:800;min-height:16px;margin-top:6px;padding:8px 12px;border-radius:10px;display:none}
+.fb.show{display:block}
+.fb.ok{background:#f0fdf4;color:var(--green);border:1px solid #86efac}
+.fb.no{background:#fff1f2;color:var(--red);border:1px solid #fecaca}
+input[type=number]{padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:15px;font-family:'Nunito',sans-serif;width:140px}
+input[type=number]:focus{outline:none;border-color:var(--purple)}
+input[type=range]{width:100%;accent-color:var(--purple);margin:5px 0}
+textarea{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;min-height:75px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--purple)}
+.btn{border:none;border-radius:999px;padding:9px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:.15s;margin:3px 2px}
+.btn:hover{transform:translateY(-1px)}
+.btn-purple{background:var(--purple);color:#fff}.btn-green{background:var(--green);color:#fff}
+.btn-blue{background:var(--blue);color:#fff}.btn-ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn-orange{background:var(--orange);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:#4c1d95;color:#fff;padding:9px 10px;font-weight:800;text-align:left}
+td{padding:8px 10px;border:1px solid var(--line);vertical-align:middle}
+tr:nth-child(even) td{background:#f5f3ff}
+.formula-box{background:linear-gradient(135deg,#1a1033,var(--purple));color:#fff;border-radius:16px;text-align:center;padding:18px;font-size:clamp(18px,3vw,28px);font-weight:900;margin:14px 0}
+.formula-box span{opacity:.7;font-size:.55em;display:block;margin-top:4px}
+.cfu-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.cfu-tab{padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:800;font-size:12px;cursor:pointer;background:#fff}
+.cfu-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cfu-panel{display:none}.cfu-panel.active{display:block}
+.qb{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.qn{font-size:10px;font-weight:900;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.tb{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10px;font-weight:900;margin-left:5px}
+.tg{background:#dcfce7;color:#15803d}.ty{background:#fef9c3;color:#92400e}.tr{background:#fee2e2;color:#b91c1c}
+/* SIM WRAPPER */
+.sim-wrapper{background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:2px solid #c4b5fd;border-radius:20px;padding:22px;margin:16px 0}
+.sim-phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:8px 0}
+.sim-phase-label{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.phase-num{background:var(--purple);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.phase-title{font-size:13px;font-weight:900;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.phase-num.predict{background:#7c3aed}.phase-num.simulate{background:#0891b2}.phase-num.explain{background:#15803d}
+/* ANIMATIONS */
+@keyframes carMove{0%{left:5%}100%{left:88%}}
+@keyframes dropFall{0%{top:30px;opacity:1}100%{top:170px;opacity:1}}
+.car-anim{animation:carMove var(--dur,2s) ease-in-out forwards}
+svg.diagram{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}.nav{position:static}}
+</style>
+</head>
+<body><div class="page">
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>🚗 Forces &amp; Motion</h1>
+    <p>Speed · Distance-time graphs · Speed-time graphs · Acceleration · F=ma · Gravity · Terminal velocity</p>
+    <div class="badges">
+      <span class="badge">📈 Live speed-time graph</span>
+      <span class="badge">⚖️ Force tug-of-war sim</span>
+      <span class="badge">🌍 Weight on other planets</span>
+      <span class="badge">🪂 Falling objects sim</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="index.html" class="home">🏠 Hub</a>
+  <a href="working-scientifically.html">🔬 Working Sci.</a>
+  <a href="forces.html" class="active">🚗 Forces</a>
+  <a href="electricity.html">⚡ Electricity</a>
+  <a href="ecosystems.html">🌱 Ecosystems</a>
+</nav>
+
+<main>
+<div class="big-idea"><div class="lbl">Big Idea</div><p>Forces cause objects to start, stop, speed up, slow down or change direction. When forces are balanced, motion stays constant. When unbalanced, objects accelerate — described by F = ma.</p></div>
+
+<!-- ══ 1. SPEED ══ -->
+<section class="section" id="speed">
+  <div class="stag">Section 1</div>
+  <h2>Speed</h2>
+  <p class="lead">Speed is a scalar quantity — it tells us how much distance is covered per second, with no direction needed.</p>
+  <div class="formula-box">v = d ÷ t<span>v = speed (m/s) &nbsp;|&nbsp; d = distance (m) &nbsp;|&nbsp; t = time (s) &nbsp;&nbsp;→ rearranges to: d = v×t &nbsp; and &nbsp; t = d÷v</span></div>
+  <div class="vocab">
+    <span class="vc">speed (v) = m/s or km/h</span>
+    <span class="vc">scalar = no direction</span>
+    <span class="vc">velocity = speed WITH direction (vector)</span>
+  </div>
+  <div class="worked"><div class="wlbl">Worked Example</div>
+    <p style="font-size:14px;font-weight:700;color:#4c1d95;margin:3px 0"><strong>Q:</strong> A runner travels 200 m in 25 s. Find speed.</p>
+    <p style="font-size:14px;font-weight:700;color:#4c1d95;margin:3px 0"><strong>Formula:</strong> v = d ÷ t &nbsp;→&nbsp; v = 200 ÷ 25 &nbsp;→&nbsp; <strong>v = 8 m/s</strong></p>
+  </div>
+  <h3>Practice calculations</h3>
+  <table>
+    <tr><th>Distance</th><th>Time</th><th>Find</th><th>Answer</th><th></th></tr>
+    <tr><td>80 m</td><td>10 s</td><td>speed</td><td><input type="number" id="s1" style="width:90px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('s1',8,'s1f','✅ 80÷10 = 8 m/s','❌ v=d÷t = 80÷10 = 8 m/s')" style="padding:6px 12px">✓</button><div class="fb" id="s1f"></div></td></tr>
+    <tr><td>?</td><td>15 s</td><td>distance if v=6</td><td><input type="number" id="s2" style="width:90px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('s2',90,'s2f','✅ d=v×t = 6×15 = 90 m','❌ d=v×t = 6×15 = 90 m')" style="padding:6px 12px">✓</button><div class="fb" id="s2f"></div></td></tr>
+    <tr><td>300 m</td><td>?</td><td>time if v=20</td><td><input type="number" id="s3" style="width:90px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('s3',15,'s3f','✅ t=d÷v = 300÷20 = 15 s','❌ t=d÷v = 300÷20 = 15 s')" style="padding:6px 12px">✓</button><div class="fb" id="s3f"></div></td></tr>
+  </table>
+</section>
+
+<!-- ══ 2. D-T GRAPHS ══ -->
+<section class="section" id="dtgraphs">
+  <div class="stag blue">Section 2</div>
+  <h2>Distance-Time Graphs</h2>
+  <p class="lead">A steeper gradient = faster speed. A horizontal line = stopped. The gradient equals the speed.</p>
+  <div class="mc"><strong>⚠️ Gradient = speed on a D-T graph</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Gradient = rise ÷ run = Δdistance ÷ Δtime = speed. A steeper section doesn't mean "accelerating" on a D-T graph — it means a higher <em>constant</em> speed.</p></div>
+  <div class="grid2">
+    <svg class="diagram" viewBox="0 0 400 310">
+      <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0f2044"/></marker></defs>
+      <line x1="55" y1="270" x2="385" y2="270" stroke="#0f2044" stroke-width="2.5" marker-end="url(#ah)"/>
+      <line x1="55" y1="270" x2="55" y2="25" stroke="#0f2044" stroke-width="2.5" marker-end="url(#ah)"/>
+      <g stroke="#e2e8f0" stroke-width="1">
+        <line x1="55" y1="225" x2="380" y2="225"/><line x1="55" y1="180" x2="380" y2="180"/>
+        <line x1="55" y1="135" x2="380" y2="135"/><line x1="55" y1="90" x2="380" y2="90"/>
+        <line x1="120" y1="25" x2="120" y2="270"/><line x1="185" y1="25" x2="185" y2="270"/>
+        <line x1="250" y1="25" x2="250" y2="270"/><line x1="315" y1="25" x2="315" y2="270"/>
+        <line x1="380" y1="25" x2="380" y2="270"/>
+      </g>
+      <!-- 3 sections: moving, stopped, faster -->
+      <polyline points="55,255 120,210 185,210 315,80" stroke="#7c3aed" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- section labels -->
+      <text x="82" y="248" font-family="Nunito" font-size="11" font-weight="800" fill="#7c3aed">A: moving</text>
+      <text x="140" y="200" font-family="Nunito" font-size="11" font-weight="800" fill="#dc2626">B: STOPPED</text>
+      <text x="258" y="120" font-family="Nunito" font-size="11" font-weight="800" fill="#15803d">C: faster!</text>
+      <!-- axis labels -->
+      <text x="220" y="295" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="800" fill="#64748b">Time (s)</text>
+      <text x="18" y="148" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="800" fill="#64748b" transform="rotate(-90,18,148)">Distance (m)</text>
+      <text x="120" y="287" text-anchor="middle" font-family="Nunito" font-size="10" fill="#94a3b8">2</text>
+      <text x="185" y="287" text-anchor="middle" font-family="Nunito" font-size="10" fill="#94a3b8">4</text>
+      <text x="250" y="287" text-anchor="middle" font-family="Nunito" font-size="10" fill="#94a3b8">6</text>
+      <text x="315" y="287" text-anchor="middle" font-family="Nunito" font-size="10" fill="#94a3b8">8</text>
+      <text x="47" y="229" text-anchor="end" font-family="Nunito" font-size="10" fill="#94a3b8">10</text>
+      <text x="47" y="184" text-anchor="end" font-family="Nunito" font-size="10" fill="#94a3b8">20</text>
+      <text x="47" y="139" text-anchor="end" font-family="Nunito" font-size="10" fill="#94a3b8">30</text>
+      <text x="47" y="94" text-anchor="end" font-family="Nunito" font-size="10" fill="#94a3b8">40</text>
+      <text x="200" y="20" text-anchor="middle" font-family="Syne" font-size="12" font-weight="800" fill="#0f2044">Distance-Time Graph</text>
+    </svg>
+    <div>
+      <div class="task"><div class="tlbl">Read the graph</div>
+        <p style="font-weight:700;font-size:14px;margin-bottom:7px">What does section B (flat horizontal line) mean?</p>
+        <div class="choices">
+          <button class="choice" onclick="choice(this,false,'dtF','','❌ Accelerating would be a curve. Horizontal means distance is NOT changing → stopped.')">Accelerating</button>
+          <button class="choice" onclick="choice(this,true,'dtF','✅ Correct — horizontal means distance not changing. Object is stopped.','')">Stopped — distance isn't changing</button>
+          <button class="choice" onclick="choice(this,false,'dtF','','❌ Moving at constant speed would be a diagonal line. Horizontal = stopped.')">Moving at constant speed</button>
+        </div>
+        <div class="fb" id="dtF"></div>
+        <p style="font-weight:700;font-size:14px;margin:12px 0 7px">Section C is steeper than A. What does this mean?</p>
+        <div class="choices">
+          <button class="choice" onclick="choice(this,true,'dtF2','✅ Correct — steeper gradient = faster speed on a D-T graph.','')">Section C has a faster speed than section A</button>
+          <button class="choice" onclick="choice(this,false,'dtF2','','❌ Steeper gradient doesn\'t mean accelerating on a D-T graph — it means a higher constant speed.')">The object is accelerating in section C</button>
+        </div>
+        <div class="fb" id="dtF2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 3. SPEED-TIME GRAPHS + ACCELERATION SIMULATION ══ -->
+<section class="section" id="stgraphs">
+  <div class="stag teal">Section 3 · Simulation</div>
+  <h2>Speed-Time Graphs and Acceleration</h2>
+  <p class="lead">Speed-time graphs are completely different from distance-time graphs. The gradient = acceleration. The area under the graph = distance.</p>
+  <div class="mc"><strong>⚠️ Don't confuse D-T and S-T graphs!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">On a <strong>D-T graph</strong>: horizontal = stopped. On a <strong>S-T graph</strong>: horizontal = constant speed (still moving!). This is one of the most common exam errors.</p></div>
+  <div class="formula-box">a = Δv ÷ t<span>a = acceleration (m/s²) &nbsp;|&nbsp; Δv = change in speed (m/s) &nbsp;|&nbsp; t = time (s)</span></div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">You set u = 0 m/s, v = 30 m/s, t = 10 s. <strong>What shape will the speed-time graph be, and what will the acceleration be?</strong></p>
+      <div class="choices" id="stgPredChoices">
+        <button class="choice" onclick="selectSTGPred(this,'correct')">A straight line sloping upward — acceleration = 3 m/s²</button>
+        <button class="choice" onclick="selectSTGPred(this,'curve')">A curved line getting steeper — acceleration increases over time</button>
+        <button class="choice" onclick="selectSTGPred(this,'flat')">A flat horizontal line — speed doesn't change</button>
+      </div>
+      <div class="fb" id="stgPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — drag the sliders and watch the graph redraw in real time</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Drag any slider — the speed-time graph redraws instantly. Watch what happens to the gradient as you change acceleration.</em></p>
+      <div class="grid2">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">Initial speed (u): <strong id="uLbl">0</strong> m/s</label>
+          <input type="range" id="uSlider" min="0" max="40" value="0" step="2" oninput="updateSTG()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">Final speed (v): <strong id="vLbl">30</strong> m/s</label>
+          <input type="range" id="vSlider" min="0" max="60" value="30" step="2" oninput="updateSTG()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">Time (t): <strong id="tLbl">10</strong> s</label>
+          <input type="range" id="tSlider" min="1" max="30" value="10" step="1" oninput="updateSTG()">
+          <!-- outputs -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+            <div style="background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Acceleration</div>
+              <div id="accOut" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--navy)">3.0</div>
+              <div style="font-size:11px;font-weight:700;color:var(--muted)">m/s²</div>
+            </div>
+            <div id="accDescBox" style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Motion</div>
+              <div id="accDesc" style="font-size:13px;font-weight:900;color:var(--green);margin-top:3px">Accelerating ↑</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;background:#fef9c3;border:1px solid #fde047;border-radius:10px;padding:10px">
+            <p style="font-size:12px;font-weight:800;color:#713f12" id="areaLabel">Area under graph = distance = ½×(0+30)×10 = 150 m</p>
+          </div>
+        </div>
+        <!-- LIVE SPEED-TIME GRAPH -->
+        <div>
+          <svg id="stgSVG" viewBox="0 0 260 220" style="width:100%;border-radius:12px;border:1px solid var(--line);background:#f8faff">
+            <defs><marker id="ah2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0f2044"/></marker></defs>
+            <!-- axes -->
+            <line x1="40" y1="185" x2="245" y2="185" stroke="#0f2044" stroke-width="2" marker-end="url(#ah2)"/>
+            <line x1="40" y1="185" x2="40" y2="15" stroke="#0f2044" stroke-width="2" marker-end="url(#ah2)"/>
+            <!-- grid -->
+            <g stroke="#e2e8f0" stroke-width="1">
+              <line x1="40" y1="145" x2="240" y2="145"/><line x1="40" y1="105" x2="240" y2="105"/>
+              <line x1="40" y1="65" x2="240" y2="65"/><line x1="40" y1="25" x2="240" y2="25"/>
+              <line x1="90" y1="15" x2="90" y2="185"/><line x1="140" y1="15" x2="140" y2="185"/>
+              <line x1="190" y1="15" x2="190" y2="185"/><line x1="240" y1="15" x2="240" y2="185"/>
+            </g>
+            <!-- axis labels -->
+            <text x="142" y="210" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#64748b">Time (s)</text>
+            <text x="15" y="105" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#64748b" transform="rotate(-90,15,105)">Speed (m/s)</text>
+            <!-- shaded area -->
+            <polygon id="stgArea" points="40,185 240,185 240,185 40,185" fill="rgba(124,58,237,.12)"/>
+            <!-- the line -->
+            <line id="stgLine" x1="40" y1="185" x2="240" y2="185" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- gradient label -->
+            <text id="gradLabel" x="140" y="100" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="900" fill="#7c3aed"></text>
+            <!-- u/v/t tick labels -->
+            <text id="tTickLabel" x="240" y="197" text-anchor="middle" font-family="Nunito" font-size="9" fill="#94a3b8">10s</text>
+            <text id="vTickLabel" x="32" y="68" text-anchor="end" font-family="Nunito" font-size="9" fill="#94a3b8">60</text>
+            <text x="32" y="108" text-anchor="end" font-family="Nunito" font-size="9" fill="#94a3b8">40</text>
+            <text x="32" y="148" text-anchor="end" font-family="Nunito" font-size="9" fill="#94a3b8">20</text>
+            <text x="18" y="14" font-family="Syne" font-size="11" font-weight="800" fill="#0f2044">Speed-Time Graph</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">Set u=20, v=20, t=10. What shape is the graph and what does this tell you about the motion?</p>
+      <textarea id="stgExplain" placeholder="The graph is a... line because... This tells us the object is... The acceleration is..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('stgExplain','stgExpF',['flat','horizontal','constant','zero','same speed','0'],'✅ Correct — flat line = zero acceleration = constant speed.','❌ Model: The graph is a flat horizontal line. This means the speed is not changing — constant speed. Acceleration = (20-20)÷10 = 0 m/s². This is different from a D-T graph where horizontal means stopped!')">Check</button>
+      <div class="fb" id="stgExpF"></div>
+    </div>
+  </div>
+
+  <h3>Practice calculations</h3>
+  <table>
+    <tr><th>u (m/s)</th><th>v (m/s)</th><th>t (s)</th><th>a (m/s²)</th><th>Your answer</th><th></th></tr>
+    <tr><td>0</td><td>20</td><td>4</td><td>?</td><td><input type="number" id="a1" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('a1',5,'a1f','✅ (20-0)÷4 = 5 m/s²','❌ a=Δv÷t = (20-0)÷4 = 5 m/s²')" style="padding:6px 12px">✓</button><div class="fb" id="a1f"></div></td></tr>
+    <tr><td>10</td><td>40</td><td>6</td><td>?</td><td><input type="number" id="a2" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('a2',5,'a2f','✅ (40-10)÷6 = 5 m/s²','❌ a=Δv÷t = (40-10)÷6 = 30÷6 = 5 m/s²')" style="padding:6px 12px">✓</button><div class="fb" id="a2f"></div></td></tr>
+    <tr><td>30</td><td>0</td><td>5</td><td>?</td><td><input type="number" id="a3" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('a3',-6,'a3f','✅ (0-30)÷5 = -6 m/s² (deceleration)','❌ a=(0-30)÷5 = -30÷5 = -6 m/s² (negative = decelerating)')" style="padding:6px 12px">✓</button><div class="fb" id="a3f"></div></td></tr>
+  </table>
+</section>
+
+<!-- ══ 4. FORCES SIMULATION ══ -->
+<section class="section" id="forces">
+  <div class="stag blue">Section 4 · Simulation</div>
+  <h2>Forces, Resultants and F = ma</h2>
+  <p class="lead">A resultant force is the single force that has the same effect as all forces combined. If it's zero, motion stays constant. If non-zero, acceleration occurs.</p>
+  <div class="mc"><strong>⚠️ Balanced forces does NOT mean stopped!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Balanced forces (resultant = 0 N) means <em>constant velocity</em> — the object could be stationary OR moving at constant speed. You cannot tell which without more information.</p></div>
+  <div class="formula-box">F = m × a<span>F = force (N) &nbsp;|&nbsp; m = mass (kg) &nbsp;|&nbsp; a = acceleration (m/s²) &nbsp;&nbsp;→ a = F÷m &nbsp;|&nbsp; m = F÷a</span></div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">A 400 N force pushes right. A 150 N friction force pushes left. <strong>Predict: which direction does the object move, and does it accelerate?</strong></p>
+      <div class="choices" id="forcePredChoices">
+        <button class="choice" onclick="selectForcePred(this,'right')">Right — unbalanced force to the right, so object accelerates right</button>
+        <button class="choice" onclick="selectForcePred(this,'left')">Left — friction is always the dominant force</button>
+        <button class="choice" onclick="selectForcePred(this,'none')">Neither — 400 and 150 cancel each other out</button>
+      </div>
+      <div class="fb" id="forcePredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — the tug-of-war</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Adjust the forces. Watch the crate slide — the bigger force wins. Make them equal and see what happens!</em></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">🟢 Right force (thrust): <strong id="rightLbl">400</strong> N</label>
+          <input type="range" id="rightSlider" min="0" max="600" value="400" step="25" oninput="updateForces()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">🔴 Left force (friction): <strong id="leftLbl">150</strong> N</label>
+          <input type="range" id="leftSlider" min="0" max="600" value="150" step="25" oninput="updateForces()">
+          <div style="margin-top:10px;background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center">
+            <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Resultant force</div>
+            <div id="resultantOut" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin:4px 0">250 N →</div>
+            <div id="forceStatus" style="font-size:12px;font-weight:800;color:var(--orange)">Unbalanced — accelerating!</div>
+          </div>
+        </div>
+        <!-- Force arrow diagram -->
+        <div>
+          <svg id="forceSVG" viewBox="0 0 260 140" style="width:100%;border-radius:12px;border:1px solid var(--line);background:#f8faff">
+            <!-- road surface -->
+            <rect x="0" y="95" width="260" height="45" fill="#e2e8f0"/>
+            <line x1="0" y1="95" x2="260" y2="95" stroke="#94a3b8" stroke-width="2"/>
+            <text x="130" y="118" text-anchor="middle" font-family="Nunito" font-size="10" fill="#94a3b8" font-weight="700">road surface</text>
+            <!-- crate -->
+            <rect id="forceCrate" x="105" y="55" width="50" height="40" rx="6" fill="#7c3aed" stroke="#4c1d95" stroke-width="2"/>
+            <text x="130" y="80" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#fff">📦</text>
+            <!-- right arrow -->
+            <defs>
+              <marker id="aR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#15803d"/></marker>
+              <marker id="aL" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/></marker>
+            </defs>
+            <line id="rightArrow" x1="155" y1="75" x2="210" y2="75" stroke="#15803d" stroke-width="5" stroke-linecap="round" marker-end="url(#aR)"/>
+            <text id="rightArrowLbl" x="183" y="66" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="900" fill="#15803d">400N →</text>
+            <line id="leftArrow" x1="105" y1="75" x2="55" y2="75" stroke="#dc2626" stroke-width="5" stroke-linecap="round" marker-end="url(#aL)"/>
+            <text id="leftArrowLbl" x="78" y="66" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="900" fill="#dc2626">← 150N</text>
+          </svg>
+        </div>
+      </div>
+      <!-- F=ma section -->
+      <div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:12px;padding:14px;margin-top:10px">
+        <p style="font-size:13px;font-weight:900;color:var(--navy);margin-bottom:8px">🔢 Add mass to calculate acceleration (F = ma)</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <label style="font-size:13px;font-weight:800">Mass: <strong id="massLbl">20</strong> kg</label>
+          <input type="range" id="massSlider" min="1" max="200" value="20" step="1" style="width:150px;accent-color:var(--purple)" oninput="updateForces()">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;text-align:center">
+            <div style="font-size:10px;font-weight:900;color:var(--muted)">Acceleration (a=F÷m)</div>
+            <div id="fmaOut" style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--purple)">12.5 m/s²</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">Make the two forces exactly equal (e.g. both 300 N). What happens to the crate and why? What does this show about Newton's First Law?</p>
+      <textarea id="forceExplain" placeholder="When the forces are equal, the resultant force is... This means the crate... Newton's First Law states..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('forceExplain','forceExpF',['zero','balanced','constant','not change','Newton','stays','rest','same speed','resultant'],'✅ Excellent — Newton\'s First Law explained correctly.','❌ Model: When forces are equal, resultant = 0 N. The crate does not accelerate — if stationary, it stays still; if moving, it keeps moving at the same speed. This is Newton\'s First Law: no resultant force → no change in motion.')">Check</button>
+      <div class="fb" id="forceExpF"></div>
+    </div>
+  </div>
+
+  <h3>F = ma calculations</h3>
+  <table>
+    <tr><th>Mass (kg)</th><th>Acceleration (m/s²)</th><th>Force (N)</th><th>Your answer</th><th></th></tr>
+    <tr><td>5</td><td>3</td><td>? N</td><td><input type="number" id="f1" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('f1',15,'f1f','✅ F=5×3=15 N','❌ F=m×a=5×3=15 N')" style="padding:6px 12px">✓</button><div class="fb" id="f1f"></div></td></tr>
+    <tr><td>? kg</td><td>4</td><td>200 N</td><td><input type="number" id="f2" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('f2',50,'f2f','✅ m=F÷a=200÷4=50 kg','❌ m=F÷a=200÷4=50 kg')" style="padding:6px 12px">✓</button><div class="fb" id="f2f"></div></td></tr>
+    <tr><td>1200</td><td>? m/s²</td><td>4800 N</td><td><input type="number" id="f3" style="width:80px"></td>
+      <td><button class="btn btn-purple" onclick="checkCalc('f3',4,'f3f','✅ a=F÷m=4800÷1200=4 m/s²','❌ a=F÷m=4800÷1200=4 m/s²')" style="padding:6px 12px">✓</button><div class="fb" id="f3f"></div></td></tr>
+  </table>
+</section>
+
+<!-- ══ 5. GRAVITY & FALLING OBJECTS SIMULATION ══ -->
+<section class="section" id="gravity">
+  <div class="stag green">Section 5 · Simulation</div>
+  <h2>Gravity, Weight and Falling Objects</h2>
+  <p class="lead">Weight is a force caused by gravity. Mass and weight are different! As objects fall, air resistance grows until forces balance — terminal velocity.</p>
+  <div class="formula-box">W = m × g<span>W = weight (N) &nbsp;|&nbsp; m = mass (kg) &nbsp;|&nbsp; g = gravitational field strength (N/kg)</span></div>
+  <div class="mc"><strong>⚠️ Mass ≠ Weight — the most common physics error at GCSE!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Mass (kg) = amount of matter — same everywhere in the universe. Weight (N) = force of gravity on that mass — different on every planet. A 10 kg bag has mass 10 kg everywhere, but weight 100 N on Earth, 16 N on the Moon.</p></div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">A feather and a bowling ball are dropped from the same height in a vacuum (no air). <strong>Which lands first?</strong></p>
+      <div class="choices" id="gravPredChoices">
+        <button class="choice" onclick="selectGravPred(this,'same')">They land at exactly the same time — gravity pulls all objects equally</button>
+        <button class="choice" onclick="selectGravPred(this,'ball')">The bowling ball — heavier objects fall faster</button>
+        <button class="choice" onclick="selectGravPred(this,'feather')">The feather — it catches the air better</button>
+      </div>
+      <div class="fb" id="gravPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — weight and falling</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Change the planet and mass. See how weight changes — but mass never does. Then test the falling objects.</em></p>
+      <div class="grid2">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">Mass: <strong id="massWtLbl">60</strong> kg</label>
+          <input type="range" id="massWtSlider" min="1" max="150" value="60" step="1" oninput="updateWeight()">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0">
+            <button class="btn btn-blue" onclick="setPlanet(10,'Earth 🌍')">🌍 Earth (g=10)</button>
+            <button class="btn btn-ghost" onclick="setPlanet(1.6,'Moon 🌕')">🌕 Moon (g=1.6)</button>
+            <button class="btn btn-ghost" onclick="setPlanet(25,'Jupiter 🪐')">🪐 Jupiter (g=25)</button>
+          </div>
+          <div style="background:#f8faff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center">
+            <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Mass stays:</div>
+            <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy)" id="massDisplay">60 kg</div>
+            <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:8px">Weight changes:</div>
+            <div id="weightOut" style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--purple)">600 N</div>
+            <div id="planetLbl" style="font-size:12px;font-weight:700;color:var(--muted)">on Earth (g = 10 N/kg)</div>
+          </div>
+        </div>
+        <!-- Falling objects drop test -->
+        <div>
+          <p style="font-size:13px;font-weight:900;color:var(--navy);margin-bottom:8px">Drop test: Earth vs Moon</p>
+          <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="dropEarthBtn" onclick="setDropWorld('earth')">🌍 Earth (with air)</button>
+            <button class="btn btn-ghost" id="dropMoonBtn" onclick="setDropWorld('moon')">🌕 Moon (no air)</button>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="ballBtn" onclick="setDropObj('ball')">⚽ Ball</button>
+            <button class="btn btn-ghost" id="featherBtn" onclick="setDropObj('feather')">🪶 Feather</button>
+          </div>
+          <button class="btn btn-purple" onclick="dropObject()">▼ Drop!</button>
+          <button class="btn btn-ghost" onclick="resetDrop()">↺ Reset</button>
+          <div id="dropBox" style="position:relative;height:180px;background:linear-gradient(180deg,#e0f2fe,#f8faff);border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:8px">
+            <div id="dropObj" style="position:absolute;left:50%;top:10px;transform:translateX(-50%);font-size:32px;transition:top 1s ease-in">⚽</div>
+            <!-- air resistance indicator (Earth only) -->
+            <div id="airResArrow" style="position:absolute;left:calc(50% + 28px);top:40px;font-size:20px;color:#2563eb">↑</div>
+            <div id="airResLbl" style="position:absolute;left:calc(50% + 28px);top:62px;font-size:10px;font-weight:800;color:#2563eb;white-space:nowrap">air resistance</div>
+            <!-- ground -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:28px;background:#15803d;border-radius:0 0 12px 12px"></div>
+            <div id="dropResult" style="position:absolute;top:8px;left:8px;font-size:11px;font-weight:900;color:#0f2044;background:rgba(255,255,255,.85);border-radius:8px;padding:4px 8px;display:none"></div>
+          </div>
+          <div id="dropExplain" style="margin-top:8px;font-size:12px;font-weight:700;color:#475569;display:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">A skydiver opens their parachute and decelerates rapidly. Explain in terms of forces, air resistance and terminal velocity.</p>
+      <textarea id="skyExplain" placeholder="When the parachute opens, air resistance... This means the resultant force... So the skydiver... Eventually at a new terminal velocity..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('skyExplain','skyExpF',['air resistance','increase','surface area','resultant','decelerate','terminal velocity','balance','weight'],'✅ Excellent terminal velocity explanation.','❌ Model: Parachute opens → huge surface area → air resistance greatly increases → air resistance now GREATER than weight → resultant force upward → skydiver decelerates. Eventually new terminal velocity reached when air resistance = weight again (lower speed than before).')">Check</button>
+      <div class="fb" id="skyExpF"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 6. CFU ══ -->
+<section class="section" id="cfu">
+  <div class="stag">Final Check</div>
+  <h2>Test Yourself — 20 Questions</h2>
+  <p class="lead">Three tiers. Work through Secure first.</p>
+  <div class="cfu-tabs">
+    <button class="cfu-tab active" onclick="showTab('fsec',this)">🟢 Secure (1–8)</button>
+    <button class="cfu-tab" onclick="showTab('fbld',this)">🟡 Build (9–15)</button>
+    <button class="cfu-tab" onclick="showTab('fstr',this)">🔴 Stretch (16–20)</button>
+  </div>
+  <div class="cfu-panel active" id="tab-fsec">
+    <div class="qb"><div class="qn">Q1 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Speed = ?</p><div class="choices"><button class="choice" onclick="choice(this,true,'f1c','✅ Speed = distance ÷ time.','')">distance ÷ time</button><button class="choice" onclick="choice(this,false,'f1c','','❌ Force = mass × acceleration. Speed = distance ÷ time.')">mass × acceleration</button></div><div class="fb" id="f1c"></div></div>
+    <div class="qb"><div class="qn">Q2 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A car travels 120 m in 8 s. Speed = ?</p><input type="number" id="f2c" placeholder="m/s"><button class="btn btn-blue" onclick="checkCalc('f2c',15,'f2cf','✅ 120÷8 = 15 m/s','❌ v=d÷t = 120÷8 = 15 m/s')" style="margin-left:6px">Check</button><div class="fb" id="f2cf"></div></div>
+    <div class="qb"><div class="qn">Q3 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A horizontal line on a distance-time graph means...</p><div class="choices"><button class="choice" onclick="choice(this,true,'f3c','✅ Stopped — distance not changing.','')">The object is stopped</button><button class="choice" onclick="choice(this,false,'f3c','','❌ Constant speed would be a diagonal. Horizontal on D-T = stopped.')">The object moves at constant speed</button></div><div class="fb" id="f3c"></div></div>
+    <div class="qb"><div class="qn">Q4 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Units of acceleration?</p><div class="choices"><button class="choice" onclick="choice(this,false,'f4c','','❌ m/s is speed. Acceleration is m/s².')">m/s</button><button class="choice" onclick="choice(this,true,'f4c','✅ m/s² — metres per second squared.','')">m/s²</button></div><div class="fb" id="f4c"></div></div>
+    <div class="qb"><div class="qn">Q5 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Mass is measured in ___. Weight is measured in ___.</p><div class="choices"><button class="choice" onclick="choice(this,true,'f5c','✅ Mass=kg, Weight=N (Newtons — it\'s a force).','')">kg and N</button><button class="choice" onclick="choice(this,false,'f5c','','❌ They are different units. Mass = kg. Weight = N (a force).')">Both in kg</button></div><div class="fb" id="f5c"></div></div>
+    <div class="qb"><div class="qn">Q6 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Weight of 5 kg on Earth (g=10)?</p><input type="number" id="f6c" placeholder="N"><button class="btn btn-blue" onclick="checkCalc('f6c',50,'f6cf','✅ W=5×10=50 N','❌ W=m×g=5×10=50 N')" style="margin-left:6px">Check</button><div class="fb" id="f6cf"></div></div>
+    <div class="qb"><div class="qn">Q7 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Balanced forces means...</p><div class="choices"><button class="choice" onclick="choice(this,false,'f7c','','❌ Balanced forces means resultant = 0 N, which could mean stopped OR constant speed.')">The object must be stopped</button><button class="choice" onclick="choice(this,true,'f7c','✅ Correct — zero resultant means constant velocity (could be moving at constant speed OR stationary).','')">Constant velocity — could be moving or stopped</button></div><div class="fb" id="f7c"></div></div>
+    <div class="qb"><div class="qn">Q8 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">F = ma. Mass = 8 kg, a = 5 m/s². Force = ?</p><input type="number" id="f8c" placeholder="N"><button class="btn btn-blue" onclick="checkCalc('f8c',40,'f8cf','✅ F=8×5=40 N','❌ F=m×a=8×5=40 N')" style="margin-left:6px">Check</button><div class="fb" id="f8cf"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('fbld',this)">Next: Build →</button>
+  </div>
+  <div class="cfu-panel" id="tab-fbld">
+    <div class="qb"><div class="qn">Q9 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A train speeds up from 10 to 50 m/s in 20 s. Acceleration?</p><input type="number" id="f9c" placeholder="m/s²"><button class="btn btn-blue" onclick="checkCalc('f9c',2,'f9cf','✅ (50-10)÷20=2 m/s²','❌ a=Δv÷t=(50-10)÷20=40÷20=2 m/s²')" style="margin-left:6px">Check</button><div class="fb" id="f9cf"></div></div>
+    <div class="qb"><div class="qn">Q10 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">On a speed-time graph, a flat horizontal line means...</p><div class="choices"><button class="choice" onclick="choice(this,false,'f10c','','❌ Stopped would be ON the x-axis (speed=0). Horizontal ABOVE zero = constant speed — object is still moving!')">The object is stopped</button><button class="choice" onclick="choice(this,true,'f10c','✅ Correct — flat on S-T graph means speed not changing = constant speed (still moving!).','')">Constant speed — still moving!</button></div><div class="fb" id="f10c"></div></div>
+    <div class="qb"><div class="qn">Q11 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">An astronaut has mass 70 kg. Weight on Moon (g=1.6)?</p><input type="number" id="f11c" placeholder="N"><button class="btn btn-blue" onclick="checkCalc('f11c',112,'f11cf','✅ W=70×1.6=112 N','❌ W=m×g=70×1.6=112 N')" style="margin-left:6px">Check</button><div class="fb" id="f11cf"></div></div>
+    <div class="qb"><div class="qn">Q12 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">400 N right, 250 N left. Resultant force?</p><input type="number" id="f12c" placeholder="N (include direction in text below)"><button class="btn btn-blue" onclick="checkCalc('f12c',150,'f12cf','✅ 400-250=150 N to the right.','❌ 400-250=150 N to the right (right force is bigger)')" style="margin-left:6px">Check</button><div class="fb" id="f12cf"></div></div>
+    <div class="qb"><div class="qn">Q13 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">1500 kg car, resultant 6000 N. Acceleration?</p><input type="number" id="f13c" placeholder="m/s²"><button class="btn btn-blue" onclick="checkCalc('f13c',4,'f13cf','✅ a=F÷m=6000÷1500=4 m/s²','❌ a=F÷m=6000÷1500=4 m/s²')" style="margin-left:6px">Check</button><div class="fb" id="f13cf"></div></div>
+    <div class="qb"><div class="qn">Q14 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A skydiver falls at terminal velocity. Forces acting?</p><div class="choices"><button class="choice" onclick="choice(this,false,'f14c','','❌ Weight > air resistance would mean still accelerating. At terminal velocity they are equal.')">Weight is greater than air resistance</button><button class="choice" onclick="choice(this,true,'f14c','✅ Correct — terminal velocity = balanced forces. Weight = air resistance, resultant = 0 N.','')">Weight equals air resistance — balanced forces</button></div><div class="fb" id="f14c"></div></div>
+    <div class="qb"><div class="qn">Q15 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">S-T graph: straight line from (0,0) to (8,40). Find acceleration and distance.</p><textarea id="f15c" style="min-height:60px" placeholder="a = ...  distance = (area under graph) = ..."></textarea><button class="btn btn-green" onclick="checkSome('f15c','f15cf',['5','160'],'✅ a=(40-0)÷8=5 m/s². Distance=area=½×8×40=160 m','❌ a=Δv÷t=40÷8=5 m/s². Distance=area=½×base×height=½×8×40=160 m')">Check</button><div class="fb" id="f15cf"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('fstr',this)">Next: Stretch →</button>
+  </div>
+  <div class="cfu-panel" id="tab-fstr">
+    <div class="qb"><div class="qn">Q16 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Same 4000 N force: Car A = 800 kg, Car B = 8000 kg. Which accelerates more? By how much?</p><textarea id="f16c" style="min-height:65px" placeholder="Car A: a = F÷m = ...   Car B: a = F÷m = ..."></textarea><button class="btn btn-green" onclick="checkSome('f16c','f16cf',['5','0.5','car A','800','8000','ten','×10'],'✅ Excellent F=ma application.','❌ Model: Car A: a=4000÷800=5 m/s². Car B: a=4000÷8000=0.5 m/s². Car A accelerates 10× more. Same force, less mass → greater acceleration (F=ma).')">Check</button><div class="fb" id="f16cf"></div></div>
+    <div class="qb"><div class="qn">Q17 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Explain fully why a feather falls slower than a ball in air but NOT in a vacuum.</p><textarea id="f17c" style="min-height:70px" placeholder="In air, the feather... because... In a vacuum..."></textarea><button class="btn btn-green" onclick="checkSome('f17c','f17cf',['air resistance','surface area','vacuum','no air','gravity','same','feather','mass'],'✅ Excellent — you contrasted air and vacuum correctly.','❌ Model: In air: feather has large surface area relative to its weight → large air resistance → slows significantly. Ball has small area relative to weight → less effect. In a vacuum: no air resistance → only gravity acts → both accelerate at same rate (g) → land together.')">Check</button><div class="fb" id="f17cf"></div></div>
+    <div class="qb"><div class="qn">Q18 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A person weighs 800 N on Earth and 128 N on planet X. Find the gravitational field strength of planet X. What is their mass everywhere?</p><textarea id="f18c" style="min-height:65px" placeholder="Mass on Earth: m = W÷g = ...   g on planet X = W÷m = ..."></textarea><button class="btn btn-green" onclick="checkSome('f18c','f18cf',['80','1.6','mass','same','kg','80 kg'],'✅ Excellent — mass constant, g calculated correctly.','❌ Model: Mass = 800÷10 = 80 kg (same everywhere). g on planet X = 128÷80 = 1.6 N/kg (same as the Moon!).')">Check</button><div class="fb" id="f18cf"></div></div>
+    <div class="qb"><div class="qn">Q19 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">S-T graph: (0,0)→(5,30)→(10,30)→(15,0). Calculate total distance.</p><textarea id="f19c" style="min-height:65px" placeholder="Section 1 (triangle): ...   Section 2 (rectangle): ...   Section 3 (triangle): ...   Total = ..."></textarea><button class="btn btn-green" onclick="checkSome('f19c','f19cf',['375','75','150','300'],'✅ Excellent area calculation.','❌ Model: S1: triangle ½×5×30=75 m. S2: rectangle 5×30=150 m. S3: triangle ½×5×30=75 m. Total=75+150+75=300 m.')">Check</button><div class="fb" id="f19cf"></div></div>
+    <div class="qb"><div class="qn">Q20 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Describe the full journey of a skydiver from jump to landing, linking forces, acceleration and terminal velocity at each stage.</p><textarea id="f20c" style="min-height:90px" placeholder="Stage 1 (just jumped): ... Stage 2 (speeding up): ... Stage 3 (terminal velocity): ... Stage 4 (parachute opens): ..."></textarea><button class="btn btn-green" onclick="checkSome('f20c','f20cf',['terminal velocity','parachute','air resistance','weight','balanced','decelerate','accelerate'],'✅ Excellent extended answer — all stages covered.','❌ Model: Stage 1: weight>>air resistance→large downward resultant→rapid acceleration. Stage 2: as speed increases, air resistance grows→resultant decreases→less acceleration. Stage 3: weight=air resistance→balanced→terminal velocity (~55 m/s). Stage 4: parachute opens→huge air resistance>>weight→resultant upward→deceleration→new lower terminal velocity (~5 m/s)→safe landing.')">Check</button><div class="fb" id="f20cf"></div></div>
+    <button class="btn btn-ghost" style="margin-top:8px" onclick="showTab('fsec',this)">← Back to Secure</button>
+  </div>
+</section>
+</main></div>
+
+<script>
+function el(id){return document.getElementById(id)}
+function showFB(id,ok,msg){const f=el(id);f.textContent=msg;f.className='fb show '+(ok?'ok':'no')}
+function choice(btn,ok,fid,okM,noM){
+  const p=btn.closest('.choices,.qb,.task');
+  if(p)p.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  showFB(fid,ok,ok?okM:noM);
+}
+function checkSome(tid,fid,words,okM,noM){
+  const t=el(tid).value.toLowerCase().trim();
+  if(!t){showFB(fid,false,'Write an answer first.');return;}
+  showFB(fid,words.some(w=>t.includes(w)),okM,noM);
+}
+function checkCalc(tid,ans,fid,okM,noM){
+  const v=parseFloat(el(tid).value);if(isNaN(v)){showFB(fid,false,'Enter a number first.');return;}
+  showFB(fid,Math.abs(v-ans)<0.05,okM,noM);
+}
+function showTab(id,btn){
+  document.querySelectorAll('.cfu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.cfu-tab').forEach(t=>t.classList.remove('active'));
+  el('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// ── SPEED-TIME GRAPH SIMULATION ─────────────────
+function updateSTG(){
+  const u=+el('uSlider').value, v=+el('vSlider').value, t=+el('tSlider').value;
+  el('uLbl').textContent=u; el('vLbl').textContent=v; el('tLbl').textContent=t;
+  const a=((v-u)/t).toFixed(2);
+  el('accOut').textContent=a;
+  const desc=+a>0?'Accelerating ↑':+a<0?'Decelerating ↓':'Constant speed →';
+  el('accDesc').textContent=desc;
+  el('accDescBox').style.borderColor=+a>0?'#86efac':+a<0?'#fca5a5':'#bae6fd';
+  el('accDescBox').style.background=+a>0?'#f0fdf4':+a<0?'#fff1f2':'#f0f9ff';
+  el('accDesc').style.color=+a>0?'#15803d':+a<0?'#b91c1c':'#0891b2';
+  // draw S-T graph
+  // Map: x-axis 0→t, y-axis 0→60 m/s
+  const x0=40,x1=240,y0=185,y1=25; // canvas bounds
+  const xScale=(x1-x0)/Math.max(t,1);
+  const yScale=(y0-y1)/60;
+  const startX=x0, startY=y0-u*yScale;
+  const endX=x0+t*xScale, endY=y0-v*yScale;
+  el('stgLine').setAttribute('x1',startX); el('stgLine').setAttribute('y1',startY);
+  el('stgLine').setAttribute('x2',endX); el('stgLine').setAttribute('y2',endY);
+  // shaded area
+  el('stgArea').setAttribute('points',`${startX},${y0} ${startX},${startY} ${endX},${endY} ${endX},${y0}`);
+  // gradient label
+  const midX=(startX+endX)/2, midY=(startY+endY)/2;
+  el('gradLabel').setAttribute('x',midX); el('gradLabel').setAttribute('y',midY-8);
+  el('gradLabel').textContent=`a = ${a} m/s²`;
+  // area/distance
+  const dist=(0.5*(u+v)*t).toFixed(1);
+  el('areaLabel').textContent=`Area under graph = distance = ½×(${u}+${v})×${t} = ${dist} m`;
+  el('tTickLabel').setAttribute('x',endX); el('tTickLabel').textContent=t+'s';
+}
+
+function selectSTGPred(btn,choice){
+  document.querySelectorAll('#stgPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='correct';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('stgPredF',ok,ok?'✅ Correct! Constant acceleration = straight line. a=(30-0)÷10=3 m/s². Now drag the sliders to see it!':'❌ Constant acceleration gives a STRAIGHT line on an S-T graph. Drag the sliders to see — the line is always straight for constant acceleration.');
+}
+
+// ── FORCE SIMULATION ────────────────────────────
+function updateForces(){
+  const R=+el('rightSlider').value, L=+el('leftSlider').value;
+  const M=+el('massSlider').value;
+  el('rightLbl').textContent=R; el('leftLbl').textContent=L; el('massLbl').textContent=M;
+  const res=R-L;
+  el('resultantOut').textContent=Math.abs(res)+' N '+(res>0?'→':res<0?'←':'(balanced)');
+  el('forceStatus').textContent=res===0?'Balanced — constant velocity!':'Unbalanced — accelerating '+Math.abs(res)+'N '+(res>0?'right':'left');
+  el('forceStatus').style.color=res===0?'#15803d':'#c2410c';
+  const a=res===0?0:(res/M).toFixed(2);
+  el('fmaOut').textContent=a+' m/s²';
+  // arrow sizes (proportional, capped)
+  const rLen=Math.min(100,R/5); const lLen=Math.min(100,L/5);
+  el('rightArrow').setAttribute('x1','155'); el('rightArrow').setAttribute('x2',155+rLen); el('rightArrowLbl').setAttribute('x',155+rLen/2); el('rightArrowLbl').textContent=R+'N →';
+  el('leftArrow').setAttribute('x1','105'); el('leftArrow').setAttribute('x2',105-lLen); el('leftArrowLbl').setAttribute('x',105-lLen/2); el('leftArrowLbl').textContent='← '+L+'N';
+  // crate position
+  const pos=105+(res>0?15:res<0?-15:0);
+  el('forceCrate').setAttribute('x',pos);
+}
+
+function selectForcePred(btn,choice){
+  document.querySelectorAll('#forcePredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='right';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('forcePredF',ok,ok?'✅ Correct! Resultant = 400-150=250 N right → accelerates right. Test it in the simulator!':'❌ The larger force wins! Resultant = 400-150 = 250 N to the right. Set the sliders to see the crate move right!');
+}
+
+// ── WEIGHT/GRAVITY SIMULATION ───────────────────
+let currentG=10, currentPlanet='Earth 🌍';
+let dropWorld='earth', dropObjType='ball';
+
+function setPlanet(g,name){
+  currentG=g; currentPlanet=name;
+  updateWeight();
+}
+function updateWeight(){
+  const m=+el('massWtSlider').value;
+  el('massWtLbl').textContent=m;
+  el('massDisplay').textContent=m+' kg';
+  el('weightOut').textContent=(m*currentG).toFixed(0)+' N';
+  el('planetLbl').textContent='on '+currentPlanet+' (g = '+currentG+' N/kg)';
+}
+function setDropWorld(w){
+  dropWorld=w;
+  el('dropEarthBtn').className='btn '+(w==='earth'?'btn-blue':'btn-ghost');
+  el('dropMoonBtn').className='btn '+(w==='moon'?'btn-blue':'btn-ghost');
+  el('airResArrow').style.display=w==='earth'?'block':'none';
+  el('airResLbl').style.display=w==='earth'?'block':'none';
+  resetDrop();
+}
+function setDropObj(o){
+  dropObjType=o;
+  el('ballBtn').className='btn '+(dropObjType==='ball'?'btn-purple':'btn-ghost');
+  el('featherBtn').className='btn '+(dropObjType==='feather'?'btn-purple':'btn-ghost');
+  el('dropObj').textContent=dropObjType==='ball'?'⚽':'🪶';
+  resetDrop();
+}
+function dropObject(){
+  const duration=dropWorld==='moon'?900:dropObjType==='feather'?2200:850;
+  el('dropObj').style.transition=`top ${duration}ms ease-in`;
+  el('dropObj').style.top='145px';
+  setTimeout(()=>{
+    const res=el('dropResult');res.style.display='block';
+    const exp=el('dropExplain');exp.style.display='block';
+    if(dropWorld==='earth'&&dropObjType==='feather'){
+      res.textContent='🪶 Slow fall — air resistance!';
+      exp.textContent='On Earth: feather has large surface area → large air resistance relative to its tiny weight → falls slowly.';
+    } else if(dropWorld==='earth'&&dropObjType==='ball'){
+      res.textContent='⚽ Fast fall — little air resistance';
+      exp.textContent='On Earth: ball is dense with small surface area → air resistance small relative to weight → falls quickly.';
+    } else {
+      res.textContent='✅ Both fall at same rate in vacuum!';
+      exp.textContent='On Moon: no atmosphere → no air resistance → only gravity acts on both → same acceleration (g=1.6 N/kg) → land together!';
+    }
+  },duration);
+}
+function resetDrop(){
+  el('dropObj').style.transition='top 0.1s';
+  el('dropObj').style.top='10px';
+  el('dropResult').style.display='none';
+  el('dropExplain').style.display='none';
+}
+
+function selectGravPred(btn,choice){
+  document.querySelectorAll('#gravPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='same';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('gravPredF',ok,ok?'✅ Correct! In a vacuum, no air resistance means gravity pulls all objects equally — they land together. Test it on Moon mode!':'❌ In a vacuum there is NO air resistance. Gravity pulls all objects at the same rate regardless of mass. Try the Moon drop test to see this!');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  updateSTG(); updateForces(); updateWeight();
+  setDropWorld('earth'); setDropObj('ball');
+  el('dropEarthBtn').className='btn btn-blue';
+  el('ballBtn').className='btn btn-purple';
+  dropObjType='ball';
+});
+</script>
+</body></html>

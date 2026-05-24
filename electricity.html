@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Electricity & Magnetism – Year 7 Science</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0f2044;--blue:#2563eb;--teal:#0891b2;--green:#15803d;--orange:#c2410c;
+  --purple:#6d28d9;--red:#b91c1c;--ink:#1a2535;--muted:#64748b;
+  --card:#fff;--bg:#f0f6ff;--line:#cbd5e1;--soft:#e8f0fe;
+  --shadow:0 4px 24px rgba(15,32,68,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.page{max-width:1180px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(15,32,68,.09)}
+.hero{min-height:340px;display:grid;place-items:center;text-align:center;padding:50px 24px 40px;
+  background:linear-gradient(135deg,#0f2044 0%,#1e3a8a 50%,#0891b2 100%);position:relative;overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80%20%,rgba(8,145,178,.4),transparent 40%),
+             radial-gradient(circle at 10%80%,rgba(37,99,235,.3),transparent 35%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(32px,5.5vw,60px);font-weight:800;line-height:1.05;margin-bottom:12px}
+.hero p{font-size:clamp(14px,1.8vw,17px);font-weight:700;color:#bae6fd;max-width:750px;margin:0 auto 18px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:800}
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:9px 16px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.nav a{text-decoration:none;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;transition:.2s}
+.nav a:hover,.nav a.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav a.home{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{padding:28px 18px 70px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin:24px 0}
+.stag{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px;margin-bottom:8px}
+.stag.teal{background:var(--teal)}.stag.green{background:var(--green)}.stag.purple{background:var(--purple)}.stag.orange{background:var(--orange)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:5px}
+h3{font-size:16px;font-weight:800;color:var(--navy);margin:12px 0 5px}
+.lead{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:18px}
+.big-idea{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:18px;padding:18px 22px;margin-bottom:20px}
+.big-idea .lbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:5px}
+.big-idea p{font-size:15px;font-weight:700;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.vocab{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.vc{background:var(--soft);border:1px solid #93c5fd;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;color:#1e3a8a}
+.mc{background:#fff1f2;border:2px solid #fca5a5;border-radius:16px;padding:14px 16px;margin:12px 0}
+.mc strong{color:var(--red);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.worked{background:#f0f9ff;border:1px solid #bae6fd;border-radius:16px;padding:16px;margin:12px 0}
+.wlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.task{background:#f8faff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}
+.tlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.choices{display:flex;flex-direction:column;gap:7px;margin:9px 0}
+.choice{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;text-align:left;cursor:pointer;transition:.15s;width:100%}
+.choice:hover{border-color:#93c5fd;background:#f0f6ff}
+.choice.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.choice.wrong{background:#fff1f2;border-color:#fecaca;color:#b91c1c}
+.fb{font-size:13px;font-weight:800;min-height:16px;margin-top:6px;padding:8px 12px;border-radius:10px;display:none}
+.fb.show{display:block}
+.fb.ok{background:#f0fdf4;color:var(--green);border:1px solid #86efac}
+.fb.no{background:#fff1f2;color:var(--red);border:1px solid #fecaca}
+input[type=number]{padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:15px;font-family:'Nunito',sans-serif;width:140px}
+input[type=number]:focus{outline:none;border-color:var(--blue)}
+input[type=range]{width:100%;accent-color:var(--blue);margin:5px 0}
+textarea{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;min-height:75px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--blue)}
+select{padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;background:#fff;width:100%}
+select:focus{outline:none;border-color:var(--blue)}
+.btn{border:none;border-radius:999px;padding:9px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:.15s;margin:3px 2px}
+.btn:hover{transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:#fff}.btn-green{background:var(--green);color:#fff}
+.btn-purple{background:var(--purple);color:#fff}.btn-ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn-teal{background:var(--teal);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:#1e3a8a;color:#fff;padding:9px 10px;font-weight:800;text-align:left}
+td{padding:8px 10px;border:1px solid var(--line);vertical-align:middle}
+tr:nth-child(even) td{background:#f8faff}
+.formula-box{background:linear-gradient(135deg,#1e3a8a,var(--purple));color:#fff;border-radius:16px;text-align:center;padding:18px;font-size:clamp(18px,3vw,28px);font-weight:900;margin:14px 0}
+.formula-box span{opacity:.7;font-size:.55em;display:block;margin-top:4px}
+.sym-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.sym-card{background:#f8faff;border:1.5px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.sym-card svg{width:72px;height:36px;display:block;margin:0 auto 5px}
+.sym-card p{font-size:12px;font-weight:800;color:var(--navy)}
+.cfu-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.cfu-tab{padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:800;font-size:12px;cursor:pointer;background:#fff}
+.cfu-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cfu-panel{display:none}.cfu-panel.active{display:block}
+.qb{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.qn{font-size:10px;font-weight:900;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.tb{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10px;font-weight:900;margin-left:5px}
+.tg{background:#dcfce7;color:#15803d}.ty{background:#fef9c3;color:#92400e}.tr{background:#fee2e2;color:#b91c1c}
+/* SIM WRAPPER */
+.sim-wrapper{background:linear-gradient(135deg,#f0f6ff,#e8f0ff);border:2px solid #93c5fd;border-radius:20px;padding:22px;margin:16px 0}
+.sim-phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:8px 0}
+.sim-phase-label{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.phase-num{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.phase-title{font-size:13px;font-weight:900;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.phase-num.predict{background:#7c3aed}.phase-num.simulate{background:#0891b2}.phase-num.explain{background:#15803d}
+/* CIRCUIT INTERACTIVE */
+.circuit-container{position:relative;cursor:pointer;user-select:none}
+.lamp-glow{transition:fill .3s,opacity .3s}
+/* ELECTRON ANIMATION */
+@keyframes flowRight{0%{transform:translateX(-120px)}100%{transform:translateX(120px)}}
+@keyframes flowLeft{0%{transform:translateX(120px)}100%{transform:translateX(-120px)}}
+.e-right{animation:flowRight 1.2s linear infinite}
+.e-left{animation:flowLeft 1.2s linear infinite}
+.e-fast .e-right{animation-duration:.6s}
+.e-fast .e-left{animation-duration:.6s}
+.e-slow .e-right{animation-duration:2.4s}
+.e-slow .e-left{animation-duration:2.4s}
+/* FIELD LINES */
+@keyframes fieldPulse{0%,100%{opacity:.4}50%{opacity:.9}}
+.field-line{animation:fieldPulse 2s ease-in-out infinite}
+svg.diagram{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+@media(max-width:700px){.grid2,.grid3,.sym-grid{grid-template-columns:1fr 1fr}.nav{position:static}}
+</style>
+</head>
+<body><div class="page">
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>⚡ Electricity &amp; Magnetism</h1>
+    <p>Circuits · Current · Voltage · Resistance · Static electricity · Electromagnets</p>
+    <div class="badges">
+      <span class="badge">🔌 Interactive circuits</span>
+      <span class="badge">⚡ Live electron flow</span>
+      <span class="badge">🧲 Magnetic field sim</span>
+      <span class="badge">🔢 20 CFU questions</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="index.html" class="home">🏠 Hub</a>
+  <a href="working-scientifically.html">🔬 Working Sci.</a>
+  <a href="forces.html">🚗 Forces</a>
+  <a href="electricity.html" class="active">⚡ Electricity</a>
+  <a href="ecosystems.html">🌱 Ecosystems</a>
+</nav>
+
+<main>
+<div class="big-idea"><div class="lbl">Big Idea</div><p>Electricity flows as a current of charged particles (electrons) around a complete circuit. Voltage drives the current; resistance opposes it. The relationship: Current = Voltage ÷ Resistance (I = V ÷ R).</p></div>
+
+<!-- ══ 1. CIRCUIT SYMBOLS ══ -->
+<section class="section" id="symbols">
+  <div class="stag">Section 1</div>
+  <h2>Circuit Symbols</h2>
+  <p class="lead">Circuit symbols are a universal language used by scientists and engineers worldwide.</p>
+  <div class="sym-grid">
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="26" y2="18" stroke="#0f2044" stroke-width="2"/><line x1="26" y1="7" x2="26" y2="29" stroke="#0f2044" stroke-width="4"/><line x1="34" y1="12" x2="34" y2="24" stroke="#0f2044" stroke-width="2"/><line x1="34" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Cell</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="20" y2="18" stroke="#0f2044" stroke-width="2"/><circle cx="36" cy="18" r="13" stroke="#0f2044" stroke-width="2" fill="none"/><line x1="26" y1="28" x2="46" y2="8" stroke="#0f2044" stroke-width="2"/><line x1="46" y1="28" x2="26" y2="8" stroke="#0f2044" stroke-width="2"/><line x1="49" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Lamp (bulb)</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="18" y2="18" stroke="#0f2044" stroke-width="2"/><circle cx="20" cy="18" r="3" fill="#0f2044"/><line x1="20" y1="18" x2="50" y2="8" stroke="#0f2044" stroke-width="2"/><circle cx="52" cy="18" r="3" fill="#0f2044"/><line x1="52" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Switch (open)</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="16" y2="18" stroke="#0f2044" stroke-width="2"/><rect x="16" y="11" width="40" height="14" stroke="#0f2044" stroke-width="2" fill="none"/><line x1="56" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Resistor</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="20" y2="18" stroke="#0f2044" stroke-width="2"/><circle cx="36" cy="18" r="13" stroke="#0f2044" stroke-width="2" fill="none"/><text x="36" y="23" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#0f2044">A</text><line x1="49" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Ammeter (A)</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="20" y2="18" stroke="#0f2044" stroke-width="2"/><circle cx="36" cy="18" r="13" stroke="#0f2044" stroke-width="2" fill="none"/><text x="36" y="23" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#0f2044">V</text><line x1="49" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Voltmeter (V)</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="16" y2="18" stroke="#0f2044" stroke-width="2"/><line x1="16" y1="7" x2="16" y2="29" stroke="#0f2044" stroke-width="4"/><line x1="24" y1="12" x2="24" y2="24" stroke="#0f2044" stroke-width="2"/><line x1="32" y1="7" x2="32" y2="29" stroke="#0f2044" stroke-width="4"/><line x1="40" y1="12" x2="40" y2="24" stroke="#0f2044" stroke-width="2"/><line x1="40" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Battery (cells)</p></div>
+    <div class="sym-card"><svg viewBox="0 0 72 36"><line x1="4" y1="18" x2="22" y2="18" stroke="#0f2044" stroke-width="2"/><polygon points="22,9 22,27 40,18" stroke="#0f2044" stroke-width="2" fill="none"/><line x1="40" y1="9" x2="40" y2="27" stroke="#0f2044" stroke-width="3"/><line x1="40" y1="18" x2="68" y2="18" stroke="#0f2044" stroke-width="2"/></svg><p>Diode</p></div>
+  </div>
+  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:12px;margin-top:10px">
+    <p style="font-size:14px;font-weight:800;color:#92400e">💡 Key rule: Ammeter → in <strong>series</strong> (part of the loop). Voltmeter → in <strong>parallel</strong> (across a component). Never mix these up!</p>
+  </div>
+  <div class="task"><div class="tlbl">Check it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">Where is an ammeter placed in a circuit?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,true,'symF','✅ Correct — in series (part of the main loop) so all current passes through it.','')">In series — part of the main current loop</button>
+      <button class="choice" onclick="choice(this,false,'symF','','❌ A voltmeter goes in parallel across a component. An ammeter goes IN SERIES so all current flows through it.')">In parallel — across a component</button>
+    </div>
+    <div class="fb" id="symF"></div>
+  </div>
+</section>
+
+<!-- ══ 2. SERIES & PARALLEL ══ -->
+<section class="section" id="circuits">
+  <div class="stag teal">Section 2</div>
+  <h2>Series and Parallel Circuits</h2>
+  <p class="lead">The most important difference: a break in series stops everything. In parallel, each branch is independent.</p>
+  <div class="mc"><strong>⚠️ Key misconception: current is used up</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Current is <strong>NOT</strong> used up as it flows around a circuit. In a series circuit, the current is the <em>same everywhere</em> in the loop. Energy is transferred to the components, but the current itself keeps flowing around. Think of it like a water pump — the same water goes round and round.</p>
+  </div>
+
+  <div class="grid2">
+    <!-- SERIES — interactive -->
+    <div>
+      <h3>Series circuit — one loop</h3>
+      <p style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:6px">🖱️ Click the switch to open/close it!</p>
+      <svg id="seriesSVG" class="diagram" viewBox="0 0 320 260" onclick="toggleSeriesSwitch()" style="cursor:pointer">
+        <!-- outer rectangle wire -->
+        <rect x="30" y="40" width="260" height="180" fill="none" stroke="#0f2044" stroke-width="3" rx="8"/>
+        <!-- Cell -->
+        <line x1="30" y1="100" x2="30" y2="118" stroke="#0f2044" stroke-width="5"/>
+        <line x1="30" y1="118" x2="30" y2="122" stroke="#0f2044" stroke-width="2"/>
+        <line x1="30" y1="140" x2="30" y2="160" stroke="#0f2044" stroke-width="5"/>
+        <text x="48" y="132" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044">Cell</text>
+        <!-- Current arrow label -->
+        <text id="serCurrentLabel" x="160" y="32" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#2563eb">current →</text>
+        <!-- Switch on top wire -->
+        <circle cx="200" cy="40" r="3.5" fill="#0f2044"/>
+        <line id="switchLine" x1="200" y1="40" x2="230" y2="28" stroke="#0f2044" stroke-width="2.5"/>
+        <circle cx="232" cy="40" r="3.5" fill="#0f2044"/>
+        <text x="216" y="22" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044" id="switchLabel">open</text>
+        <!-- Lamp 1 — bottom right -->
+        <circle id="lamp1" cx="250" cy="180" r="18" stroke="#0f2044" stroke-width="2" fill="#e5e7eb"/>
+        <line x1="237" y1="193" x2="263" y2="167" stroke="#0f2044" stroke-width="2"/>
+        <line x1="263" y1="193" x2="237" y2="167" stroke="#0f2044" stroke-width="2"/>
+        <text x="250" y="215" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044">Lamp 1</text>
+        <!-- Lamp 2 — bottom left -->
+        <circle id="lamp2" cx="100" cy="180" r="18" stroke="#0f2044" stroke-width="2" fill="#e5e7eb"/>
+        <line x1="87" y1="193" x2="113" y2="167" stroke="#0f2044" stroke-width="2"/>
+        <line x1="113" y1="193" x2="87" y2="167" stroke="#0f2044" stroke-width="2"/>
+        <text x="100" y="215" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044">Lamp 2</text>
+        <!-- ONE LOOP label -->
+        <text x="160" y="145" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#1d4ed8">ONE LOOP</text>
+        <text x="160" y="161" text-anchor="middle" font-family="Nunito" font-size="10" fill="#475569" font-weight="700">Same current everywhere</text>
+      </svg>
+      <div id="seriesStatus" style="margin-top:8px;padding:10px;border-radius:10px;font-size:13px;font-weight:800;background:#fff1f2;border:1px solid #fca5a5;color:#b91c1c">
+        🔴 Switch open → circuit incomplete → both lamps OFF
+      </div>
+      <div class="card" style="margin-top:8px">
+        <p style="font-size:13px;font-weight:700;color:#475569">✅ Current same everywhere in the loop<br>✅ If one lamp breaks → <strong>ALL lamps go off</strong><br>✅ Voltage shared between components</p>
+      </div>
+    </div>
+
+    <!-- PARALLEL — interactive -->
+    <div>
+      <h3>Parallel circuit — branches</h3>
+      <p style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:6px">🖱️ Click the switch on Branch 2 to toggle it!</p>
+      <svg id="parallelSVG" class="diagram" viewBox="0 0 320 260" onclick="toggleParallelSwitch()" style="cursor:pointer">
+        <!-- main wires -->
+        <line x1="30" y1="40" x2="290" y2="40" stroke="#0f2044" stroke-width="3"/>
+        <line x1="30" y1="220" x2="290" y2="220" stroke="#0f2044" stroke-width="3"/>
+        <line x1="30" y1="40" x2="30" y2="220" stroke="#0f2044" stroke-width="3"/>
+        <!-- Cell on left -->
+        <line x1="30" y1="105" x2="30" y2="115" stroke="#0f2044" stroke-width="5"/>
+        <line x1="30" y1="117" x2="30" y2="122" stroke="#0f2044" stroke-width="2"/>
+        <line x1="30" y1="128" x2="30" y2="155" stroke="#0f2044" stroke-width="5"/>
+        <text x="42" y="132" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044">Cell</text>
+        <!-- Branch dividers -->
+        <line x1="130" y1="40" x2="130" y2="220" stroke="#0f2044" stroke-width="3"/>
+        <line x1="230" y1="40" x2="230" y2="220" stroke="#0f2044" stroke-width="3"/>
+        <!-- Lamp 1 in branch 1 (always on when main switch closed) -->
+        <circle id="plamp1" cx="180" cy="130" r="18" stroke="#0f2044" stroke-width="2" fill="#e5e7eb"/>
+        <line x1="167" y1="143" x2="193" y2="117" stroke="#0f2044" stroke-width="2"/>
+        <line x1="193" y1="143" x2="167" y2="117" stroke="#0f2044" stroke-width="2"/>
+        <text x="180" y="108" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#0f2044">Lamp 1</text>
+        <!-- Lamp 2 in branch 2 (has its own switch) -->
+        <circle id="plamp2" cx="260" cy="130" r="18" stroke="#94a3b8" stroke-width="2" fill="#f1f5f9"/>
+        <line x1="247" y1="143" x2="273" y2="117" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="273" y1="143" x2="247" y2="117" stroke="#94a3b8" stroke-width="2"/>
+        <text x="260" y="108" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#94a3b8">Lamp 2</text>
+        <!-- Branch 2 switch -->
+        <circle cx="230" cy="58" r="3.5" fill="#0f2044"/>
+        <line id="pSwitchLine" x1="230" y1="58" x2="250" y2="46" stroke="#0f2044" stroke-width="2.5"/>
+        <circle cx="252" cy="58" r="3.5" fill="#0f2044"/>
+        <text id="pSwitchLbl" x="241" y="40" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="800" fill="#dc2626">open</text>
+        <!-- BRANCHES label -->
+        <text x="195" y="185" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#1d4ed8">BRANCHES</text>
+        <text x="195" y="200" text-anchor="middle" font-family="Nunito" font-size="10" fill="#475569" font-weight="700">Each independent</text>
+      </svg>
+      <div id="parallelStatus" style="margin-top:8px;padding:10px;border-radius:10px;font-size:13px;font-weight:800;background:#f0fdf4;border:1px solid #86efac;color:#15803d">
+        🟢 Lamp 1 ON · 🔴 Lamp 2 OFF (switch open) — Lamp 1 unaffected!
+      </div>
+      <div class="card" style="margin-top:8px">
+        <p style="font-size:13px;font-weight:700;color:#475569">✅ Each branch gets the <strong>full voltage</strong><br>✅ If one lamp breaks → <strong>others stay on</strong><br>✅ Home lights use parallel circuits</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="task"><div class="tlbl">Check it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">In a series circuit, lamp 1 breaks. What happens to lamp 2?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,true,'serBrkF','✅ Correct — one break in a series circuit stops current flowing everywhere in the loop.','')">Lamp 2 goes off — the loop is broken so no current can flow anywhere</button>
+      <button class="choice" onclick="choice(this,false,'serBrkF','','❌ That would be true in a PARALLEL circuit. In series there is only ONE loop — any break stops ALL current.')">Lamp 2 stays on — it has its own branch</button>
+    </div>
+    <div class="fb" id="serBrkF"></div>
+  </div>
+</section>
+
+<!-- ══ 3. IVR SIMULATION ══ -->
+<section class="section" id="ivr">
+  <div class="stag purple">Section 3 · Simulation</div>
+  <h2>Current, Voltage and Resistance</h2>
+  <p class="lead">These three quantities are linked by one formula: I = V ÷ R. Changing resistance or voltage changes the current.</p>
+  <div class="formula-box">I = V ÷ R<span>I = current (A) &nbsp;|&nbsp; V = voltage (V) &nbsp;|&nbsp; R = resistance (Ω)</span></div>
+  <div class="vocab">
+    <span class="vc">current (I) = flow of charge, amps (A)</span>
+    <span class="vc">voltage (V) = energy per charge, volts (V)</span>
+    <span class="vc">resistance (R) = opposition to flow, ohms (Ω)</span>
+  </div>
+  <div class="mc"><strong>⚠️ Current is NOT used up!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">The same current flows at every point in a series circuit. What is transferred to the lamp is <em>energy</em> — not current. The current keeps flowing around the full loop.</p>
+  </div>
+  <div class="worked"><div class="wlbl">Worked Example</div>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:3px 0"><strong>Q:</strong> Voltage = 12 V, Resistance = 4 Ω. Find current.</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:3px 0"><strong>Formula:</strong> I = V ÷ R &nbsp; → &nbsp; I = 12 ÷ 4 &nbsp; → &nbsp; <strong>I = 3 A</strong></p>
+  </div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">The resistance in a circuit is doubled (from 2 Ω to 4 Ω). The voltage stays the same at 6 V. What do you predict happens to the current?</p>
+      <div class="choices" id="ivrPredChoices">
+        <button class="choice" onclick="selectIVRPred(this,'halves')">The current halves — it gets harder for charge to flow</button>
+        <button class="choice" onclick="selectIVRPred(this,'same')">The current stays the same — voltage drives it</button>
+        <button class="choice" onclick="selectIVRPred(this,'doubles')">The current doubles — more resistance means more energy</button>
+      </div>
+      <div class="fb" id="ivrPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — electron flow visualisation</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Drag the sliders. Watch the electrons in the wire — do they speed up or slow down?</em></p>
+      <div class="grid2">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">Voltage: <strong id="voltLbl">6</strong> V</label>
+          <input type="range" id="voltSlider" min="1" max="12" value="6" oninput="updateIVR()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">Resistance: <strong id="resLbl">2</strong> Ω</label>
+          <input type="range" id="resSlider" min="1" max="12" value="2" oninput="updateIVR()">
+          <!-- Formula triangle -->
+          <div style="margin-top:12px;text-align:center">
+            <svg viewBox="0 0 180 110" style="width:160px;display:block;margin:0 auto">
+              <polygon points="90,8 170,100 10,100" fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+              <line x1="10" y1="100" x2="170" y2="100" stroke="#1e3a8a" stroke-width="2"/>
+              <line x1="90" y1="8" x2="90" y2="100" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="4"/>
+              <rect id="vBox" x="58" y="12" width="64" height="38" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <text x="90" y="36" text-anchor="middle" font-family="Nunito" font-size="16" font-weight="900" fill="#1e3a8a">V</text>
+              <rect id="iBox" x="14" y="62" width="64" height="34" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+              <text x="46" y="84" text-anchor="middle" font-family="Nunito" font-size="16" font-weight="900" fill="#15803d">I</text>
+              <rect id="rBox" x="102" y="62" width="64" height="34" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+              <text x="134" y="84" text-anchor="middle" font-family="Nunito" font-size="16" font-weight="900" fill="#92400e">R</text>
+              <text x="90" y="108" text-anchor="middle" font-family="Nunito" font-size="10" fill="#64748b" font-weight="700">Cover what you want to find</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <!-- Electron flow SVG -->
+          <svg id="electronSVG" viewBox="0 0 280 160" style="width:100%;border-radius:12px;border:1px solid var(--line);background:#f8faff">
+            <!-- wire tube -->
+            <rect x="10" y="65" width="260" height="30" rx="15" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+            <!-- resistor block in middle -->
+            <rect id="resistorBlock" x="105" y="60" width="70" height="40" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+            <text x="140" y="85" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="900" fill="#92400e" id="resistorLabel">2Ω</text>
+            <!-- electron container clipped to wire -->
+            <clipPath id="wireClip"><rect x="10" y="65" width="260" height="30" rx="15"/></clipPath>
+            <g clip-path="url(#wireClip)" id="electronGroup">
+              <!-- electrons placed by JS -->
+            </g>
+            <!-- labels -->
+            <text x="16" y="55" font-family="Nunito" font-size="10" font-weight="800" fill="#1e3a8a">→ conventional current</text>
+            <text x="16" y="110" font-family="Nunito" font-size="10" font-weight="700" fill="#64748b">← electrons flow</text>
+            <text x="140" y="130" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#0891b2" id="currentDisplay">Current: 3.0 A</text>
+            <text x="140" y="148" text-anchor="middle" font-family="Nunito" font-size="10" fill="#64748b" font-weight="700" id="ivrDesc">Medium current</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">What happened to the electron flow when you increased the resistance? What happened to the current? Explain why using I = V ÷ R.</p>
+      <textarea id="ivrExplain" placeholder="When I increased the resistance, the electrons... The current... This is because using I=V÷R..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('ivrExplain','ivrExpF',['decrease','slower','less','resistance','oppose','I=V÷R','divide','smaller'],'✅ Excellent — you connected the visual to the formula.','❌ Model: When resistance increased, the electrons slowed down — there were fewer passing any point per second. The current decreased. Using I=V÷R: higher R with same V gives smaller I.')">Check</button>
+      <div class="fb" id="ivrExpF"></div>
+    </div>
+  </div>
+
+  <h3>Practice calculations</h3>
+  <table>
+    <tr><th>Voltage (V)</th><th>Resistance (Ω)</th><th>Current (A)</th><th>Your answer</th><th></th></tr>
+    <tr><td>6 V</td><td>2 Ω</td><td>?</td><td><input type="number" id="c1" style="width:80px"></td><td><button class="btn btn-blue" onclick="checkCalc('c1',3,'cf1','✅ 6÷2 = 3 A','❌ I=V÷R = 6÷2 = 3 A')" style="padding:6px 12px">✓</button><div class="fb" id="cf1"></div></td></tr>
+    <tr><td>12 V</td><td>4 Ω</td><td>?</td><td><input type="number" id="c2" style="width:80px"></td><td><button class="btn btn-blue" onclick="checkCalc('c2',3,'cf2','✅ 12÷4 = 3 A','❌ I=V÷R = 12÷4 = 3 A')" style="padding:6px 12px">✓</button><div class="fb" id="cf2"></div></td></tr>
+    <tr><td>?</td><td>5 Ω</td><td>2 A</td><td><input type="number" id="c3" style="width:80px"></td><td><button class="btn btn-blue" onclick="checkCalc('c3',10,'cf3','✅ V=I×R = 2×5 = 10 V','❌ V=I×R = 2×5 = 10 V')" style="padding:6px 12px">✓</button><div class="fb" id="cf3"></div></td></tr>
+    <tr><td>9 V</td><td>?</td><td>3 A</td><td><input type="number" id="c4" style="width:80px"></td><td><button class="btn btn-blue" onclick="checkCalc('c4',3,'cf4','✅ R=V÷I = 9÷3 = 3 Ω','❌ R=V÷I = 9÷3 = 3 Ω')" style="padding:6px 12px">✓</button><div class="fb" id="cf4"></div></td></tr>
+  </table>
+</section>
+
+<!-- ══ 4. CONDUCTORS & INSULATORS ══ -->
+<section class="section" id="conductors">
+  <div class="stag green">Section 4</div>
+  <h2>Conductors and Insulators</h2>
+  <p class="lead">Conductors let charge flow freely. Insulators don't. This depends on whether the material has free electrons.</p>
+  <div class="grid2">
+    <div class="card"><h3>⚡ Conductors</h3><p style="font-size:13px;font-weight:700;color:#475569;margin:6px 0">Have free electrons that can move and carry charge.</p><div class="vocab"><span class="vc">copper</span><span class="vc">iron</span><span class="vc">aluminium</span><span class="vc">silver</span><span class="vc">graphite</span></div><p style="font-size:12px;color:#475569;font-weight:700">Used for: wires, circuit tracks, electrodes</p></div>
+    <div class="card"><h3>🛑 Insulators</h3><p style="font-size:13px;font-weight:700;color:#475569;margin:6px 0">Electrons held tightly — cannot carry charge.</p><div class="vocab"><span class="vc">plastic</span><span class="vc">rubber</span><span class="vc">wood</span><span class="vc">glass</span><span class="vc">air</span></div><p style="font-size:12px;color:#475569;font-weight:700">Used for: wire coating, plug casings, handles</p></div>
+  </div>
+  <div class="task"><div class="tlbl">Sort it</div>
+    <table>
+      <tr><th>Material</th><th>Conductor or Insulator?</th><th></th></tr>
+      <tr><td>Copper wire</td><td><select id="m1"><option value="">Choose...</option><option value="c">Conductor</option><option value="i">Insulator</option></select></td><td><button class="btn btn-green" onclick="checkDD('m1','c','mf1','✅ Conductor — free electrons.','❌ Copper is a CONDUCTOR — it has free electrons that carry charge.')" style="padding:6px 12px">✓</button><div class="fb" id="mf1"></div></td></tr>
+      <tr><td>Rubber</td><td><select id="m2"><option value="">Choose...</option><option value="c">Conductor</option><option value="i">Insulator</option></select></td><td><button class="btn btn-green" onclick="checkDD('m2','i','mf2','✅ Insulator — used to coat wires.','❌ Rubber is an INSULATOR — electrons are tightly held. That is why it coats electric cables.')" style="padding:6px 12px">✓</button><div class="fb" id="mf2"></div></td></tr>
+      <tr><td>Graphite (carbon)</td><td><select id="m3"><option value="">Choose...</option><option value="c">Conductor</option><option value="i">Insulator</option></select></td><td><button class="btn btn-green" onclick="checkDD('m3','c','mf3','✅ Conductor — unusual for a non-metal!','❌ Graphite is a CONDUCTOR — unusual for a non-metal. It has delocalised electrons like metals.')" style="padding:6px 12px">✓</button><div class="fb" id="mf3"></div></td></tr>
+      <tr><td>Plastic</td><td><select id="m4"><option value="">Choose...</option><option value="c">Conductor</option><option value="i">Insulator</option></select></td><td><button class="btn btn-green" onclick="checkDD('m4','i','mf4','✅ Insulator — used for plug casings.','❌ Plastic is an INSULATOR — used to protect us from live wires.')" style="padding:6px 12px">✓</button><div class="fb" id="mf4"></div></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══ 5. STATIC ELECTRICITY ══ -->
+<section class="section" id="static">
+  <div class="stag orange">Section 5</div>
+  <h2>Static Electricity</h2>
+  <p class="lead">Static electricity builds up when charge cannot flow — it's caused by the <strong>transfer of electrons</strong> between objects.</p>
+  <div class="mc"><strong>⚠️ Electrons move — not protons!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">When you rub a balloon on hair, <strong>electrons</strong> (negative charges) transfer from hair to balloon. Balloon becomes negatively charged. Hair becomes positively charged. Protons never move.</p></div>
+  <div class="grid2">
+    <div class="vocab" style="display:block">
+      <div class="vc" style="margin:4px 0;border-radius:10px">positive charge = <strong>lost</strong> electrons</div>
+      <div class="vc" style="margin:4px 0;border-radius:10px">negative charge = <strong>gained</strong> electrons</div>
+      <div class="vc" style="margin:4px 0;border-radius:10px">opposite charges → <strong>attract</strong></div>
+      <div class="vc" style="margin:4px 0;border-radius:10px">same charges → <strong>repel</strong></div>
+    </div>
+    <div>
+      <svg class="diagram" viewBox="0 0 300 240">
+        <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#15803d"/></marker></defs>
+        <!-- Balloon -->
+        <ellipse cx="95" cy="120" rx="58" ry="75" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+        <ellipse cx="95" cy="192" rx="12" ry="6" fill="#d97706" opacity=".5"/>
+        <line x1="95" y1="192" x2="95" y2="210" stroke="#d97706" stroke-width="2"/>
+        <text x="95" y="105" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#92400e">Balloon</text>
+        <text x="95" y="124" text-anchor="middle" font-family="Nunito" font-size="14" font-weight="900" fill="#dc2626">– – –</text>
+        <text x="95" y="142" text-anchor="middle" font-family="Nunito" font-size="10" fill="#7c2d12" font-weight="700">(negatively charged)</text>
+        <!-- Wall -->
+        <rect x="210" y="50" width="55" height="160" fill="#e0e7ff" stroke="#6366f1" stroke-width="2" rx="6"/>
+        <text x="237" y="118" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#4338ca">Wall</text>
+        <text x="237" y="138" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#2563eb">+ + +</text>
+        <text x="237" y="156" text-anchor="middle" font-family="Nunito" font-size="10" fill="#1d4ed8" font-weight="700">(induced +)</text>
+        <!-- Attraction arrow -->
+        <line x1="156" y1="120" x2="207" y2="128" stroke="#15803d" stroke-width="3" marker-end="url(#ah)"/>
+        <text x="180" y="112" text-anchor="middle" font-family="Nunito" font-size="11" fill="#15803d" font-weight="800">attraction</text>
+        <!-- Caption -->
+        <text x="150" y="228" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#374151">Opposite charges attract → balloon sticks!</text>
+        <text x="150" y="20" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#0f2044">Static electricity: balloon on wall</text>
+      </svg>
+    </div>
+  </div>
+  <div class="task"><div class="tlbl">Explain it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:7px">A balloon is rubbed on hair. Explain why it then sticks to a wall.</p>
+    <textarea id="statQ" placeholder="When the balloon is rubbed on hair, electrons transfer... The balloon becomes... The wall surface becomes... so..."></textarea>
+    <button class="btn btn-green" onclick="checkSome('statQ','statF',['electron','negative','positive','attract','transfer','opposite','induce'],'✅ Good — you described electron transfer and attraction correctly.','❌ Model: Rubbing transfers electrons from hair to balloon — balloon becomes negatively charged. The negative balloon repels electrons in the wall, leaving the wall surface positively charged. Opposite charges (negative balloon and positive wall surface) attract — balloon sticks.')">Check</button>
+    <div class="fb" id="statF"></div>
+  </div>
+</section>
+
+<!-- ══ 6. MAGNETS & ELECTROMAGNETS SIMULATION ══ -->
+<section class="section" id="magnets">
+  <div class="stag teal">Section 6 · Simulation</div>
+  <h2>Magnets and Electromagnets</h2>
+  <p class="lead">Electromagnets use electricity to create a magnetic field. Unlike permanent magnets, they can be switched on/off and their strength varied.</p>
+  <div class="mc"><strong>⚠️ Not all metals are magnetic!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Only iron, steel, nickel and cobalt are magnetic. Copper, aluminium and gold are NOT magnetic — a magnet will not pick up a copper coin.</p></div>
+  <div class="vocab">
+    <span class="vc">magnetic materials = iron, steel, nickel, cobalt</span>
+    <span class="vc">poles = N and S, strongest parts of magnet</span>
+    <span class="vc">attract = N+S pull together</span>
+    <span class="vc">repel = N+N or S+S push apart</span>
+  </div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">An electromagnet currently picks up 3 paperclips. You double the number of coils from 10 to 20 (same current). How many paperclips do you predict it will now pick up?</p>
+      <div class="choices" id="magPredChoices">
+        <button class="choice" onclick="selectMagPred(this,'same')">Still about 3 — coils don't matter, only current does</button>
+        <button class="choice" onclick="selectMagPred(this,'more')">More paperclips — more coils = stronger magnetic field</button>
+        <button class="choice" onclick="selectMagPred(this,'fewer')">Fewer — adding coils increases resistance and weakens it</button>
+      </div>
+      <div class="fb" id="magPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — magnetic field visualisation</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Adjust current and coils — watch the field lines grow and the paperclips respond!</em></p>
+      <div class="grid2">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">Current: <strong id="magILbl">3</strong> A</label>
+          <input type="range" id="magISlider" min="0" max="10" value="3" oninput="updateMagnet()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">Number of coils: <strong id="magCLbl">10</strong></label>
+          <input type="range" id="magCSlider" min="1" max="40" value="10" oninput="updateMagnet()">
+          <div style="margin-top:12px;background:#f8faff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center">
+            <div style="font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Strength</div>
+            <div id="magStrengthLbl" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--navy);margin:4px 0">Weak</div>
+            <div id="magClipsLbl" style="font-size:13px;font-weight:700;color:var(--muted)">Picks up ~0 paperclips</div>
+          </div>
+        </div>
+        <div>
+          <!-- Electromagnet field SVG -->
+          <svg id="magnetSVG" viewBox="0 0 260 220" style="width:100%;border-radius:12px;border:1px solid var(--line);background:#f8faff">
+            <!-- iron core -->
+            <rect x="90" y="85" width="80" height="35" rx="8" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+            <text x="130" y="107" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="800" fill="#374151">iron core</text>
+            <!-- coils (orange) -->
+            <g id="coilsGroup" stroke="#f59e0b" stroke-width="4" fill="none">
+              <path d="M100 88 C100 72 110 72 110 88 C110 120 120 120 120 88 C120 72 130 72 130 88 C130 120 140 120 140 88 C140 72 150 72 150 88 C150 120 160 120 160 88"/>
+            </g>
+            <!-- N and S labels -->
+            <rect x="50" y="90" width="38" height="25" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="69" y="107" text-anchor="middle" font-family="Nunito" font-size="14" font-weight="900" fill="#1e3a8a">N</text>
+            <rect x="172" y="90" width="38" height="25" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="191" y="107" text-anchor="middle" font-family="Nunito" font-size="14" font-weight="900" fill="#b91c1c">S</text>
+            <!-- field lines (added by JS) -->
+            <g id="fieldLines"></g>
+            <!-- paperclips area -->
+            <text x="130" y="165" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#374151">Paperclips attracted:</text>
+            <g id="paperclips"></g>
+            <text x="130" y="210" text-anchor="middle" font-family="Nunito" font-size="10" fill="#64748b" font-weight="700">Strength = current × coils</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">What two things can you do to make an electromagnet stronger? Explain why each one works.</p>
+      <textarea id="magExplain" placeholder="1. Increase the... because...&#10;2. Increase the... because..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('magExplain','magExpF',['current','coil','stronger','field','more','turn','increase'],'✅ Correct — both methods identified with reasoning.','❌ Model: 1. Increase the current — more electrons flowing means a stronger magnetic field around each coil. 2. Increase the number of coils (turns) — each coil adds to the total magnetic field.')">Check</button>
+      <div class="fb" id="magExpF"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. CFU ══ -->
+<section class="section" id="cfu">
+  <div class="stag">Final Check</div>
+  <h2>Test Yourself — 20 Questions</h2>
+  <p class="lead">Three tiers. Work through Secure first.</p>
+  <div class="cfu-tabs">
+    <button class="cfu-tab active" onclick="showTab('esec',this)">🟢 Secure (1–8)</button>
+    <button class="cfu-tab" onclick="showTab('ebld',this)">🟡 Build (9–15)</button>
+    <button class="cfu-tab" onclick="showTab('estr',this)">🔴 Stretch (16–20)</button>
+  </div>
+  <div class="cfu-panel active" id="tab-esec">
+    <div class="qb"><div class="qn">Q1 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Current is measured in...</p><div class="choices"><button class="choice" onclick="choice(this,true,'e1','✅ Amps (A).','')">Amps (A)</button><button class="choice" onclick="choice(this,false,'e1','','❌ Volts measure voltage. Current is amps (A).')">Volts (V)</button></div><div class="fb" id="e1"></div></div>
+    <div class="qb"><div class="qn">Q2 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Resistance is measured in...</p><div class="choices"><button class="choice" onclick="choice(this,true,'e2','✅ Ohms (Ω).','')">Ohms (Ω)</button><button class="choice" onclick="choice(this,false,'e2','','❌ Amps measure current. Resistance is ohms (Ω).')">Amps (A)</button></div><div class="fb" id="e2"></div></div>
+    <div class="qb"><div class="qn">Q3 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">In a series circuit, if one lamp breaks...</p><div class="choices"><button class="choice" onclick="choice(this,true,'e3','✅ All lamps go off — one break stops all current in the loop.','')">All lamps go off</button><button class="choice" onclick="choice(this,false,'e3','','❌ That would be parallel. Series = one loop — any break stops all current.')">Other lamps stay on</button></div><div class="fb" id="e3"></div></div>
+    <div class="qb"><div class="qn">Q4 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Which materials are magnetic?</p><div class="choices"><button class="choice" onclick="choice(this,false,'e4','','❌ Copper and aluminium are NOT magnetic. Only iron, steel, nickel and cobalt are.')">Copper and aluminium</button><button class="choice" onclick="choice(this,true,'e4','✅ Iron, steel, nickel and cobalt — the only magnetic materials.','')">Iron, steel, nickel and cobalt</button></div><div class="fb" id="e4"></div></div>
+    <div class="qb"><div class="qn">Q5 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Where is an ammeter placed?</p><div class="choices"><button class="choice" onclick="choice(this,true,'e5','✅ In series — all current must flow through it.','')">In series — part of the main loop</button><button class="choice" onclick="choice(this,false,'e5','','❌ Voltmeter goes in parallel. Ammeter goes IN SERIES.')">In parallel — across a component</button></div><div class="fb" id="e5"></div></div>
+    <div class="qb"><div class="qn">Q6 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Static electricity is caused by...</p><div class="choices"><button class="choice" onclick="choice(this,true,'e6','✅ Transfer of electrons causing a build-up of charge.','')">Transfer of electrons causing a build-up of charge</button><button class="choice" onclick="choice(this,false,'e6','','❌ Static electricity doesn\'t need a complete circuit — it is a build-up of charge on an insulator.')">A complete circuit</button></div><div class="fb" id="e6"></div></div>
+    <div class="qb"><div class="qn">Q7 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What does a switch do?</p><div class="choices"><button class="choice" onclick="choice(this,true,'e7','✅ Opens or closes the circuit.','')">Opens or closes a circuit</button><button class="choice" onclick="choice(this,false,'e7','','❌ An ammeter measures current. A switch opens or closes the circuit.')">Measures current</button></div><div class="fb" id="e7"></div></div>
+    <div class="qb"><div class="qn">Q8 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Calculate: Voltage = 6 V, Resistance = 3 Ω. Current = ?</p><input type="number" id="e8i" placeholder="A"><button class="btn btn-blue" onclick="checkCalc('e8i',2,'e8f','✅ I = 6÷3 = 2 A','❌ I = V÷R = 6÷3 = 2 A')" style="margin-left:6px">Check</button><div class="fb" id="e8f"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('ebld',this)">Next: Build →</button>
+  </div>
+  <div class="cfu-panel" id="tab-ebld">
+    <div class="qb"><div class="qn">Q9 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Calculate: Current = 4 A, Resistance = 2 Ω. Voltage = ?</p><input type="number" id="e9i" placeholder="V"><button class="btn btn-blue" onclick="checkCalc('e9i',8,'e9f','✅ V=I×R = 4×2 = 8 V','❌ V=I×R = 4×2 = 8 V')">Check</button><div class="fb" id="e9f"></div></div>
+    <div class="qb"><div class="qn">Q10 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Voltage = 12 V, Current = 2 A. Resistance = ?</p><input type="number" id="e10i" placeholder="Ω"><button class="btn btn-blue" onclick="checkCalc('e10i',6,'e10f','✅ R=V÷I = 12÷2 = 6 Ω','❌ R=V÷I = 12÷2 = 6 Ω')">Check</button><div class="fb" id="e10f"></div></div>
+    <div class="qb"><div class="qn">Q11 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">If resistance increases and voltage stays the same, current...</p><div class="choices"><button class="choice" onclick="choice(this,true,'e11','✅ Decreases — I=V÷R, so larger R means smaller I.','')">Decreases</button><button class="choice" onclick="choice(this,false,'e11','','❌ More resistance opposes flow. Same voltage, higher R → lower I.')">Increases</button></div><div class="fb" id="e11"></div></div>
+    <div class="qb"><div class="qn">Q12 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A series circuit has two lamps: 3 Ω and 5 Ω. Total resistance?</p><input type="number" id="e12i" placeholder="Ω"><button class="btn btn-blue" onclick="checkCalc('e12i',8,'e12f','✅ In series: R_total = R1+R2 = 3+5 = 8 Ω','❌ In series, resistances add: 3+5 = 8 Ω')">Check</button><div class="fb" id="e12f"></div></div>
+    <div class="qb"><div class="qn">Q13 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is the difference between a conductor and an insulator?</p><textarea id="e13t" style="min-height:60px" placeholder="A conductor... An insulator..."></textarea><button class="btn btn-green" onclick="checkSome('e13t','e13f',['conductor','insulator','free electron','allow','flow','resist','copper','rubber'],'✅ Good comparison.','❌ Model: A conductor allows charge to flow easily because it has free electrons (e.g. copper). An insulator does not allow charge to flow because electrons are tightly held (e.g. rubber, plastic).')">Check</button><div class="fb" id="e13f"></div></div>
+    <div class="qb"><div class="qn">Q14 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Give one real-world use of an electromagnet.</p><textarea id="e14t" style="min-height:55px" placeholder="Electromagnets are used in..."></textarea><button class="btn btn-green" onclick="checkSome('e14t','e14f',['crane','bell','speaker','MRI','motor','relay','scrapyard','sorting'],'✅ Good example.','❌ Model: Scrapyard cranes (pick up and release metal), electric bells, MRI scanners, loudspeakers, electric motors.')">Check</button><div class="fb" id="e14f"></div></div>
+    <div class="qb"><div class="qn">Q15 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">12 V battery, two series lamps: 2 Ω and 4 Ω. Calculate the current.</p><input type="number" id="e15i" placeholder="A"><button class="btn btn-blue" onclick="checkCalc('e15i',2,'e15f','✅ Total R=6Ω, I=12÷6=2 A','❌ Total R=2+4=6Ω. I=V÷R=12÷6=2 A')">Check</button><div class="fb" id="e15f"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('estr',this)">Next: Stretch →</button>
+  </div>
+  <div class="cfu-panel" id="tab-estr">
+    <div class="qb"><div class="qn">Q16 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">"Current is used up as it passes through a lamp." Explain what is wrong.</p><textarea id="e16t" style="min-height:65px" placeholder="The student is wrong because..."></textarea><button class="btn btn-green" onclick="checkSome('e16t','e16f',['same','not used','energy','charge','everywhere','flow'],'✅ Excellent — misconception corrected.','❌ Model: Current is not used up. The same current flows at every point in a series circuit. What is transferred to the lamp is energy — not current. The flow of charge (current) continues around the whole loop.')">Check</button><div class="fb" id="e16f"></div></div>
+    <div class="qb"><div class="qn">Q17 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Explain why home circuits are wired in parallel rather than series, using the ideas of voltage and switching.</p><textarea id="e17t" style="min-height:70px" placeholder="Home circuits are parallel because..."></textarea><button class="btn btn-green" onclick="checkSome('e17t','e17f',['full voltage','independent','branch','switch','one','parallel','off','broken'],'✅ Excellent explanation.','❌ Model: In parallel, each appliance receives the full mains voltage so it works at full power. Each has its own branch so it can be switched off independently without affecting others. In series, one fault turns everything off and each appliance shares the voltage.')">Check</button><div class="fb" id="e17f"></div></div>
+    <div class="qb"><div class="qn">Q18 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Explain what happens to electrons when a plastic rod is rubbed with a cloth and becomes negatively charged.</p><textarea id="e18t" style="min-height:65px" placeholder="When the cloth rubs the rod, electrons..."></textarea><button class="btn btn-green" onclick="checkSome('e18t','e18f',['electron','transfer','negative','cloth','positive','gain','lose'],'✅ Good electron transfer explanation.','❌ Model: Electrons transfer from the cloth to the plastic rod. The rod gains electrons and becomes negatively charged. The cloth loses electrons and becomes positively charged. Protons do not move.')">Check</button><div class="fb" id="e18f"></div></div>
+    <div class="qb"><div class="qn">Q19 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">An electromagnet's coils increase from 10 to 30 (same current). Predict and explain the effect on strength.</p><textarea id="e19t" style="min-height:65px" placeholder="The strength will... because..."></textarea><button class="btn btn-green" onclick="checkSome('e19t','e19f',['increase','stronger','coil','magnetic field','more turns','greater'],'✅ Excellent.','❌ Model: Strength increases. Each additional coil adds to the total magnetic field around the core. Tripling the coils (10→30) significantly increases strength, even at the same current.')">Check</button><div class="fb" id="e19f"></div></div>
+    <div class="qb"><div class="qn">Q20 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Explain one advantage of an electromagnet over a permanent magnet for use in a scrapyard crane.</p><textarea id="e20t" style="min-height:65px" placeholder="An electromagnet is better because..."></textarea><button class="btn btn-green" onclick="checkSome('e20t','e20f',['switch','off','on','release','drop','control','permanent'],'✅ Excellent application.','❌ Model: An electromagnet can be switched off to release the metal — a permanent magnet cannot be turned off, so the metal would stay attached and could not be put down in the right place.')">Check</button><div class="fb" id="e20f"></div></div>
+    <button class="btn btn-ghost" style="margin-top:8px" onclick="showTab('esec',this)">← Back to Secure</button>
+  </div>
+</section>
+</main></div>
+
+<script>
+function el(id){return document.getElementById(id)}
+function showFB(id,ok,msg){const f=el(id);f.textContent=msg;f.className='fb show '+(ok?'ok':'no')}
+function choice(btn,ok,fid,okM,noM){
+  const p=btn.closest('.choices,.qb,.task');
+  if(p)p.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  showFB(fid,ok,ok?okM:noM);
+}
+function checkSome(tid,fid,words,okM,noM){
+  const t=el(tid).value.toLowerCase().trim();
+  if(!t){showFB(fid,false,'Write an answer first.');return;}
+  showFB(fid,words.some(w=>t.includes(w)),okM,noM);
+}
+function checkDD(id,correct,fid,okM,noM){
+  const v=el(id).value;if(!v){showFB(fid,false,'Select first.');return;}
+  showFB(fid,v===correct,okM,noM);
+}
+function checkCalc(tid,ans,fid,okM,noM){
+  const v=parseFloat(el(tid).value);if(isNaN(v)){showFB(fid,false,'Enter a number first.');return;}
+  showFB(fid,Math.abs(v-ans)<0.05,okM,noM);
+}
+function showTab(id,btn){
+  document.querySelectorAll('.cfu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.cfu-tab').forEach(t=>t.classList.remove('active'));
+  el('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// ── SERIES SWITCH ──────────────────────────────
+let seriesClosed=false;
+function toggleSeriesSwitch(){
+  seriesClosed=!seriesClosed;
+  const line=el('switchLine');
+  const lbl=el('switchLabel');
+  const l1=el('lamp1'),l2=el('lamp2');
+  const status=el('seriesStatus');
+  const curLbl=el('serCurrentLabel');
+  if(seriesClosed){
+    line.setAttribute('x2','232');line.setAttribute('y2','40');
+    lbl.textContent='closed';
+    l1.setAttribute('fill','#fef08a');l2.setAttribute('fill','#fef08a');
+    status.style.background='#f0fdf4';status.style.borderColor='#86efac';status.style.color='#15803d';
+    status.textContent='🟢 Switch closed → circuit complete → both lamps ON';
+    curLbl.textContent='current → flowing!';
+  } else {
+    line.setAttribute('x2','230');line.setAttribute('y2','28');
+    lbl.textContent='open';
+    l1.setAttribute('fill','#e5e7eb');l2.setAttribute('fill','#e5e7eb');
+    status.style.background='#fff1f2';status.style.borderColor='#fca5a5';status.style.color='#b91c1c';
+    status.textContent='🔴 Switch open → circuit incomplete → both lamps OFF';
+    curLbl.textContent='current →';
+  }
+}
+
+// ── PARALLEL SWITCH ────────────────────────────
+let parallelBranch2=false;
+function toggleParallelSwitch(){
+  parallelBranch2=!parallelBranch2;
+  const line=el('pSwitchLine'),lbl=el('pSwitchLbl');
+  const l1=el('plamp1'),l2=el('plamp2');
+  const status=el('parallelStatus');
+  // lamp1 always on (main switch assumed closed)
+  l1.setAttribute('fill','#fef08a');
+  if(parallelBranch2){
+    line.setAttribute('x2','252');line.setAttribute('y2','58');
+    lbl.textContent='closed';lbl.setAttribute('fill','#15803d');
+    l2.setAttribute('fill','#fef08a');l2.setAttribute('stroke','#0f2044');
+    status.style.background='#f0fdf4';status.style.borderColor='#86efac';status.style.color='#15803d';
+    status.textContent='🟢 Lamp 1 ON · 🟢 Lamp 2 ON — each branch independent!';
+  } else {
+    line.setAttribute('x2','250');line.setAttribute('y2','46');
+    lbl.textContent='open';lbl.setAttribute('fill','#dc2626');
+    l2.setAttribute('fill','#f1f5f9');l2.setAttribute('stroke','#94a3b8');
+    status.style.background='#f0fdf4';status.style.borderColor='#86efac';status.style.color='#15803d';
+    status.textContent='🟢 Lamp 1 ON · 🔴 Lamp 2 OFF (switch open) — Lamp 1 unaffected!';
+  }
+}
+// init: lamp1 on
+
+
+// ── IVR ELECTRON SIMULATION ─────────────────────
+function updateIVR(){
+  const V=parseFloat(el('voltSlider').value);
+  const R=parseFloat(el('resSlider').value);
+  const I=V/R;
+  el('voltLbl').textContent=V;
+  el('resLbl').textContent=R;
+  el('resistorLabel').textContent=R+'Ω';
+  el('currentDisplay').textContent='Current: '+I.toFixed(1)+' A';
+  el('ivrDesc').textContent=I>4?'High current — electrons flowing fast!':I<1.5?'Low current — electrons barely moving':'Medium current';
+  // Draw electrons
+  drawElectrons(I);
+  // Update formula triangle highlight
+  el('iBox').setAttribute('fill',I>4?'#bbf7d0':I<1.5?'#fee2e2':'#f0fdf4');
+}
+function drawElectrons(current){
+  const g=el('electronGroup');g.innerHTML='';
+  const count=Math.max(2,Math.min(12,Math.round(current*2)));
+  const speed=Math.max(0.4,Math.min(2.5,current/3));
+  for(let i=0;i<count;i++){
+    const x=15+(i/count)*230;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x);c.setAttribute('cy','80');c.setAttribute('r','6');
+    c.setAttribute('fill','#3b82f6');c.setAttribute('opacity','0.85');
+    c.setAttribute('stroke','#1d4ed8');c.setAttribute('stroke-width','1.5');
+    // animation
+    c.style.animation=`flowRight ${(1.5/speed).toFixed(2)}s linear ${(-i/count*(1.5/speed)).toFixed(2)}s infinite`;
+    g.appendChild(c);
+  }
+}
+function selectIVRPred(btn,choice){
+  document.querySelectorAll('#ivrPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='halves';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('ivrPredF',ok,ok?'✅ Correct! Doubling R halves I (I=V÷R). Now test it with the simulation below!':'❌ Try the simulation — set R=2 then R=4 (same V=6) and watch the electrons. What happens?');
+}
+
+// ── MAGNET SIMULATION ───────────────────────────
+function updateMagnet(){
+  const I=parseFloat(el('magISlider').value);
+  const C=parseFloat(el('magCSlider').value);
+  el('magILbl').textContent=I;el('magCLbl').textContent=C;
+  const strength=I*C;
+  const label=strength>150?'Strong 💪':strength>50?'Medium':'Weak';
+  const clips=strength>150?6:strength>80?4:strength>30?2:strength>5?1:0;
+  el('magStrengthLbl').textContent=label;
+  el('magClipsLbl').textContent='Picks up ~'+clips+' paperclip'+(clips!==1?'s':'');
+  drawFieldLines(strength);
+  drawClips(clips);
+}
+function drawFieldLines(strength){
+  const g=el('fieldLines');g.innerHTML='';
+  const lineCount=strength>150?8:strength>50?5:strength>10?3:1;
+  const colors=['#3b82f6','#60a5fa','#93c5fd','#bfdbfe'];
+  for(let i=0;i<lineCount;i++){
+    const scale=1+(i*0.18);
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    const d=`M 50 102 Q ${50-30*scale} ${60-i*5} ${130-10} ${60-i*8} Q ${130+10+30*scale} ${60-i*5} 210 102`;
+    path.setAttribute('d',d);
+    path.setAttribute('stroke',colors[Math.min(i,3)]);
+    path.setAttribute('stroke-width','2');
+    path.setAttribute('fill','none');
+    path.setAttribute('opacity','0.7');
+    path.style.animation=`fieldPulse ${1.5+i*0.3}s ease-in-out ${i*0.2}s infinite`;
+    g.appendChild(path);
+  }
+}
+function drawClips(count){
+  const g=el('paperclips');g.innerHTML='';
+  for(let i=0;i<count;i++){
+    const x=90+i*16,y=172;
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',x);t.setAttribute('y',y);
+    t.setAttribute('text-anchor','middle');t.setAttribute('font-size','14');
+    t.textContent='📎';g.appendChild(t);
+  }
+  if(count===0){
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x','130');t.setAttribute('y','175');t.setAttribute('text-anchor','middle');
+    t.setAttribute('font-family','Nunito');t.setAttribute('font-size','11');
+    t.setAttribute('fill','#94a3b8');t.setAttribute('font-weight','700');
+    t.textContent='(no paperclips — too weak)';g.appendChild(t);
+  }
+}
+function selectMagPred(btn,choice){
+  document.querySelectorAll('#magPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='more';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('magPredF',ok,ok?'✅ Correct! More coils = stronger field = more paperclips. Now test it!':'❌ Test it! Increase the coils slider and watch the field lines grow and more paperclips appear.');
+}
+
+// init
+document.addEventListener('DOMContentLoaded',()=>{
+  el('plamp1').setAttribute('fill','#fef08a');
+  updateIVR();
+  updateMagnet();
+});
+</script>
+</body></html>

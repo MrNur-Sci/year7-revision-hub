@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ecosystems – Year 7 Science</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0f2044;--blue:#2563eb;--teal:#0891b2;--green:#15803d;--orange:#c2410c;
+  --purple:#6d28d9;--red:#b91c1c;--ink:#1a2535;--muted:#64748b;
+  --card:#fff;--bg:#f0fff4;--line:#cbd5e1;--soft:#e8f0fe;
+  --shadow:0 4px 24px rgba(15,32,68,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.page{max-width:1180px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(15,32,68,.09)}
+.hero{min-height:340px;display:grid;place-items:center;text-align:center;padding:50px 24px 40px;
+  background:linear-gradient(135deg,#14532d 0%,#15803d 50%,#0891b2 100%);position:relative;overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(8,145,178,.35),transparent 40%),
+             radial-gradient(circle at 10% 80%,rgba(21,128,61,.4),transparent 35%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(32px,5.5vw,60px);font-weight:800;line-height:1.05;margin-bottom:12px}
+.hero p{font-size:clamp(14px,1.8vw,17px);font-weight:700;color:#bbf7d0;max-width:750px;margin:0 auto 18px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:800}
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:9px 16px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.nav a{text-decoration:none;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;transition:.2s}
+.nav a:hover,.nav a.active{background:var(--green);color:#fff;border-color:var(--green)}
+.nav a.home{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{padding:28px 18px 70px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin:24px 0}
+.stag{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px;margin-bottom:8px}
+.stag.teal{background:var(--teal)}.stag.blue{background:var(--blue)}.stag.purple{background:var(--purple)}.stag.orange{background:var(--orange)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:5px}
+h3{font-size:16px;font-weight:800;color:var(--navy);margin:12px 0 5px}
+.lead{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:18px}
+.big-idea{background:linear-gradient(135deg,#14532d,var(--teal));color:#fff;border-radius:18px;padding:18px 22px;margin-bottom:20px}
+.big-idea .lbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:5px}
+.big-idea p{font-size:15px;font-weight:700;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.vocab{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.vc{background:#dcfce7;border:1px solid #86efac;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;color:#14532d}
+.mc{background:#fff1f2;border:2px solid #fca5a5;border-radius:16px;padding:14px 16px;margin:12px 0}
+.mc strong{color:var(--red);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.worked{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:16px;margin:12px 0}
+.wlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+.task{background:#f8faff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}
+.tlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+.choices{display:flex;flex-direction:column;gap:7px;margin:9px 0}
+.choice{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;text-align:left;cursor:pointer;transition:.15s;width:100%}
+.choice:hover{border-color:#86efac;background:#f0fdf4}
+.choice.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.choice.wrong{background:#fff1f2;border-color:#fecaca;color:#b91c1c}
+.fb{font-size:13px;font-weight:800;min-height:16px;margin-top:6px;padding:8px 12px;border-radius:10px;display:none}
+.fb.show{display:block}
+.fb.ok{background:#f0fdf4;color:var(--green);border:1px solid #86efac}
+.fb.no{background:#fff1f2;color:var(--red);border:1px solid #fecaca}
+input[type=number]{padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:15px;font-family:'Nunito',sans-serif;width:140px}
+input[type=number]:focus{outline:none;border-color:var(--green)}
+input[type=range]{width:100%;accent-color:var(--green);margin:5px 0}
+textarea{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;min-height:75px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--green)}
+select{padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;background:#fff;width:100%}
+select:focus{outline:none;border-color:var(--green)}
+.btn{border:none;border-radius:999px;padding:9px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:.15s;margin:3px 2px}
+.btn:hover{transform:translateY(-1px)}
+.btn-green{background:var(--green);color:#fff}.btn-blue{background:var(--blue);color:#fff}
+.btn-orange{background:var(--orange);color:#fff}.btn-ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn-teal{background:var(--teal);color:#fff}.btn-red{background:var(--red);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:#14532d;color:#fff;padding:9px 10px;font-weight:800;text-align:left}
+td{padding:8px 10px;border:1px solid var(--line);vertical-align:middle}
+tr:nth-child(even) td{background:#f0fdf4}
+.cfu-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.cfu-tab{padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:800;font-size:12px;cursor:pointer;background:#fff}
+.cfu-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cfu-panel{display:none}.cfu-panel.active{display:block}
+.qb{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.qn{font-size:10px;font-weight:900;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.tb{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10px;font-weight:900;margin-left:5px}
+.tg{background:#dcfce7;color:#15803d}.ty{background:#fef9c3;color:#92400e}.tr{background:#fee2e2;color:#b91c1c}
+/* SIM WRAPPER */
+.sim-wrapper{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:20px;padding:22px;margin:16px 0}
+.sim-phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:8px 0}
+.sim-phase-label{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.phase-num{background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.phase-title{font-size:13px;font-weight:900;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.phase-num.predict{background:#7c3aed}.phase-num.simulate{background:#0891b2}.phase-num.explain{background:#15803d}
+/* FOOD WEB POP BARS */
+.pop-bar-wrap{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.pop-bar-row{display:flex;align-items:center;gap:10px}
+.pop-bar-label{width:110px;font-size:13px;font-weight:800;color:var(--navy);flex-shrink:0}
+.pop-bar-outer{flex:1;background:#e2e8f0;border-radius:999px;height:22px;overflow:hidden;position:relative}
+.pop-bar-inner{height:100%;border-radius:999px;transition:width .8s cubic-bezier(.4,0,.2,1),background .5s;display:flex;align-items:center;padding-left:8px}
+.pop-bar-num{font-size:11px;font-weight:900;color:#fff;white-space:nowrap}
+/* LEAF ANIMATION */
+@keyframes bubbleRise{0%{transform:translateY(0) scale(1);opacity:.7}100%{transform:translateY(-55px) scale(.4);opacity:0}}
+.o2-bubble{animation:bubbleRise 2s ease-in infinite}
+/* FLOWER interactive */
+.flower-part{cursor:pointer;transition:opacity .2s}
+.flower-part:hover{opacity:.8}
+.flower-tooltip{pointer-events:none}
+svg.diagram{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+/* FACT FILE CARDS */
+.fact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.fact-card{border-radius:16px;padding:14px;border:2px solid var(--line);transition:.2s}
+.fact-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(15,32,68,.12)}
+.fact-card .fc-icon{font-size:36px;text-align:center;margin-bottom:8px}
+.fact-card h4{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:4px}
+.fact-card p{font-size:12px;font-weight:700;color:#475569;line-height:1.4}
+.fc-wind{background:#eff6ff;border-color:#93c5fd}
+.fc-animal{background:#fff7ed;border-color:#fed7aa}
+.fc-water{background:#f0f9ff;border-color:#bae6fd}
+.fc-explosion{background:#fdf4ff;border-color:#e9d5ff}
+@media(max-width:700px){.grid2,.grid3,.grid4,.fact-grid{grid-template-columns:1fr 1fr}.nav{position:static}}
+</style>
+</head>
+<body><div class="page">
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>🌱 Ecosystems</h1>
+    <p>Food chains · Food webs · Photosynthesis · Flower structure · Seed dispersal · Fieldwork</p>
+    <div class="badges">
+      <span class="badge">🌿 Food web cascade sim</span>
+      <span class="badge">🌞 Photosynthesis leaf sim</span>
+      <span class="badge">🌸 Interactive flower diagram</span>
+      <span class="badge">🔢 20 CFU questions</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="index.html" class="home">🏠 Hub</a>
+  <a href="working-scientifically.html">🔬 Working Sci.</a>
+  <a href="forces.html">🚗 Forces</a>
+  <a href="electricity.html">⚡ Electricity</a>
+  <a href="ecosystems.html" class="active">🌱 Ecosystems</a>
+</nav>
+
+<main>
+<div class="big-idea"><div class="lbl">Big Idea</div><p>Ecosystems are webs of interdependent organisms and their environment. Energy flows from producers to consumers through food chains. Plants capture that energy through photosynthesis — the foundation of almost all life on Earth.</p></div>
+
+<!-- ══ 1. ECOSYSTEMS & FOOD CHAINS ══ -->
+<section class="section" id="foodchains">
+  <div class="stag">Section 1</div>
+  <h2>Ecosystems, Habitats and Food Chains</h2>
+  <p class="lead">A food chain shows how energy passes from one organism to the next. Arrows show the direction of energy transfer — not "what eats what".</p>
+  <div class="vocab">
+    <span class="vc">ecosystem = all organisms + their environment</span>
+    <span class="vc">habitat = where an organism lives</span>
+    <span class="vc">population = all of one species in an area</span>
+    <span class="vc">community = all populations together</span>
+    <span class="vc">producer = makes own food (photosynthesis)</span>
+    <span class="vc">consumer = eats other organisms</span>
+    <span class="vc">predator = hunts prey</span>
+    <span class="vc">decomposer = breaks down dead matter</span>
+  </div>
+  <div class="mc"><strong>⚠️ Arrows show energy transfer — NOT "who eats whom"!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Grass → Rabbit → Fox. The arrow points <strong>in the direction energy moves</strong>. Energy goes FROM grass INTO the rabbit. Many students draw arrows backwards. Always ask: "which way does the energy go?"</p></div>
+  <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:14px;padding:16px;margin:12px 0;text-align:center">
+    <p style="font-size:17px;font-weight:900;color:#14532d">🌿 Grass &nbsp;→&nbsp; 🐇 Rabbit &nbsp;→&nbsp; 🦊 Fox &nbsp;→&nbsp; 🦅 Eagle</p>
+    <p style="font-size:12px;font-weight:700;color:#166534;margin-top:6px">Each arrow = "is eaten by" / "energy passes to" the next organism</p>
+  </div>
+  <div class="task"><div class="tlbl">Check it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">In the food chain above, what is the producer?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,true,'fc1','✅ Correct — grass makes its own food by photosynthesis. All food chains start with a producer.','')">Grass — it makes its own food by photosynthesis</button>
+      <button class="choice" onclick="choice(this,false,'fc1','','❌ The rabbit is a primary consumer — it eats the producer. Grass is the producer.')">Rabbit — it is at the start of the chain</button>
+      <button class="choice" onclick="choice(this,false,'fc1','','❌ The fox is a secondary consumer — it eats the rabbit. Grass is the producer.')">Fox — it has the most energy</button>
+    </div>
+    <div class="fb" id="fc1"></div>
+  </div>
+</section>
+
+<!-- ══ 2. FOOD WEB SIMULATION ══ -->
+<section class="section" id="foodweb">
+  <div class="stag teal">Section 2 · Simulation</div>
+  <h2>Food Web — Population Cascade</h2>
+  <p class="lead">A food web links many food chains together. Change one population and the whole system responds — sometimes in unexpected ways.</p>
+
+  <!-- Food web SVG diagram -->
+  <svg class="diagram" viewBox="0 0 620 310" style="margin-bottom:14px">
+    <text x="310" y="22" text-anchor="middle" font-family="Syne" font-size="14" font-weight="800" fill="#0f2044">Meadow Food Web</text>
+    <!-- Grass -->
+    <rect x="30" y="120" width="110" height="50" rx="14" fill="#dcfce7" stroke="#15803d" stroke-width="2.5"/>
+    <text x="85" y="141" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#14532d">🌿 Grass</text>
+    <text x="85" y="158" text-anchor="middle" font-family="Nunito" font-size="10" fill="#166534" font-weight="700">Producer</text>
+    <!-- Rabbit -->
+    <rect x="195" y="60" width="120" height="50" rx="14" fill="#fef9c3" stroke="#d97706" stroke-width="2.5"/>
+    <text x="255" y="81" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#92400e">🐇 Rabbit</text>
+    <text x="255" y="98" text-anchor="middle" font-family="Nunito" font-size="10" fill="#78350f" font-weight="700">1° consumer</text>
+    <!-- Grasshopper -->
+    <rect x="195" y="195" width="130" height="50" rx="14" fill="#fef9c3" stroke="#d97706" stroke-width="2.5"/>
+    <text x="260" y="216" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#92400e">🦗 Grasshopper</text>
+    <text x="260" y="233" text-anchor="middle" font-family="Nunito" font-size="10" fill="#78350f" font-weight="700">1° consumer</text>
+    <!-- Fox -->
+    <rect x="390" y="60" width="110" height="50" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="445" y="81" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#991b1b">🦊 Fox</text>
+    <text x="445" y="98" text-anchor="middle" font-family="Nunito" font-size="10" fill="#991b1b" font-weight="700">2° consumer</text>
+    <!-- Owl -->
+    <rect x="390" y="195" width="110" height="50" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="445" y="216" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="900" fill="#991b1b">🦉 Owl</text>
+    <text x="445" y="233" text-anchor="middle" font-family="Nunito" font-size="10" fill="#991b1b" font-weight="700">2° consumer</text>
+    <!-- Decomposer -->
+    <rect x="520" y="120" width="90" height="50" rx="14" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+    <text x="565" y="141" text-anchor="middle" font-family="Nunito" font-size="12" font-weight="900" fill="#374151">🍄 Fungi</text>
+    <text x="565" y="158" text-anchor="middle" font-family="Nunito" font-size="10" fill="#6b7280" font-weight="700">Decomposer</text>
+    <!-- Arrows: Grass→Rabbit -->
+    <defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0f2044"/></marker></defs>
+    <line x1="140" y1="130" x2="192" y2="90" stroke="#0f2044" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="140" y1="160" x2="192" y2="210" stroke="#0f2044" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="315" y1="85" x2="387" y2="85" stroke="#0f2044" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="325" y1="220" x2="387" y2="220" stroke="#0f2044" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="310" y1="75" x2="388" y2="215" stroke="#0f2044" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+    <text x="310" y="295" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="700" fill="#64748b">Arrows show direction of energy transfer. Dashed = rabbit also eaten by owl.</text>
+  </svg>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">A drought severely reduces the grass population. <strong>What do you predict will happen to the rabbit and fox populations?</strong></p>
+      <div class="choices" id="fwPredChoices">
+        <button class="choice" onclick="selectFWPred(this,'decrease')">Both rabbits and foxes will decrease — less food at every level</button>
+        <button class="choice" onclick="selectFWPred(this,'foxincrease')">Rabbits decrease but foxes increase — foxes eat more when food is scarce</button>
+        <button class="choice" onclick="selectFWPred(this,'same')">Populations stay the same — animals adapt</button>
+      </div>
+      <div class="fb" id="fwPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — press a scenario and watch the cascade</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Each button changes a condition. Watch all five populations respond at once — notice the cascade!</em></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        <button class="btn btn-green" onclick="setScenario('normal')">🌿 Normal conditions</button>
+        <button class="btn btn-orange" onclick="setScenario('drought')">☀️ Drought — grass halved</button>
+        <button class="btn btn-red" onclick="setScenario('disease')">🦠 Disease — rabbits halved</button>
+        <button class="btn btn-teal" onclick="setScenario('nofox')">🚫 Foxes removed</button>
+        <button class="btn btn-ghost" onclick="setScenario('normal')">↺ Reset</button>
+      </div>
+      <!-- Population bars -->
+      <div class="pop-bar-wrap" id="popBars">
+        <!-- filled by JS -->
+      </div>
+      <div id="cascadeExplain" style="margin-top:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:12px;font-size:13px;font-weight:800;color:#14532d;display:none"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">In the drought scenario, explain the cascade effect on foxes. Use the terms: <em>food chain, population, decrease, producer</em>.</p>
+      <textarea id="fwExplain" placeholder="When grass decreased, rabbits... because... This meant foxes... because..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('fwExplain','fwExpF',['grass','rabbit','fox','decrease','less food','producer','food chain','energy'],'✅ Excellent — you traced the cascade through the food chain.','❌ Model: Grass (producer) decreased → less food for rabbits → rabbit population decreases → less food for foxes → fox population also decreases. This cascade shows how interconnected the food web is.')">Check</button>
+      <div class="fb" id="fwExpF"></div>
+    </div>
+  </div>
+  <div class="mc"><strong>⚠️ Misconception: predators always increase when prey decreases</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Students often think foxes would increase if rabbits decreased because "less competition." Wrong — foxes eat rabbits, so less prey = less food for predators = predators also decline.</p></div>
+</section>
+
+<!-- ══ 3. PHOTOSYNTHESIS SIMULATION ══ -->
+<section class="section" id="photosynthesis">
+  <div class="stag blue">Section 3 · Simulation</div>
+  <h2>Photosynthesis and Limiting Factors</h2>
+  <p class="lead">Photosynthesis converts light energy into glucose. The rate can be limited by light intensity, CO₂ concentration or temperature.</p>
+  <div style="background:linear-gradient(135deg,#14532d,#0891b2);color:#fff;border-radius:16px;text-align:center;padding:18px;font-size:clamp(14px,2.5vw,22px);font-weight:900;margin:14px 0">
+    carbon dioxide + water → glucose + oxygen
+    <div style="font-size:.6em;opacity:.75;margin-top:4px">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ &nbsp;|&nbsp; needs light energy &nbsp;|&nbsp; in chloroplasts</div>
+  </div>
+  <div class="mc"><strong>⚠️ Plants don't get food from the soil!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Plants <strong>make</strong> their own glucose using CO₂, water and light energy. Soil provides minerals (like nitrates) for growth — but glucose (food) is made by photosynthesis, not absorbed from the ground.</p></div>
+  <div class="vocab">
+    <span class="vc">chloroplast = where photosynthesis happens</span>
+    <span class="vc">chlorophyll = green pigment, absorbs light</span>
+    <span class="vc">limiting factor = the variable in shortest supply that restricts the rate</span>
+    <span class="vc">light intensity = brightness of light</span>
+  </div>
+
+  <div class="sim-wrapper">
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">Light intensity is very low (5%). CO₂ is high (90%). You increase the light to 80%. <strong>What do you predict happens to the rate of photosynthesis?</strong></p>
+      <div class="choices" id="photoPredChoices">
+        <button class="choice" onclick="selectPhotoPred(this,'increase')">Rate increases a lot — light was the limiting factor</button>
+        <button class="choice" onclick="selectPhotoPred(this,'small')">Rate increases slightly — CO₂ is still limiting it</button>
+        <button class="choice" onclick="selectPhotoPred(this,'same')">Rate stays the same — CO₂ is so high it doesn't matter</button>
+      </div>
+      <div class="fb" id="photoPredF"></div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — watch the leaf respond</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>Drag the sliders. Watch the oxygen bubbles and leaf colour change — the limiting factor is highlighted in red.</em></p>
+      <div class="grid2">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:3px">💡 Light intensity: <strong id="lightLbl">50</strong>%</label>
+          <input type="range" id="lightSlider" min="0" max="100" value="50" oninput="updatePhoto()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">🌬️ CO₂ concentration: <strong id="co2Lbl">50</strong>%</label>
+          <input type="range" id="co2Slider" min="0" max="100" value="50" oninput="updatePhoto()">
+          <label style="font-size:13px;font-weight:800;display:block;margin:8px 0 3px">🌡️ Temperature: <strong id="tempLbl">25</strong>°C</label>
+          <input type="range" id="tempSlider" min="0" max="45" value="25" oninput="updatePhoto()">
+          <!-- outputs -->
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Rate</div>
+              <div id="rateOut" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--navy)">50%</div>
+            </div>
+            <div id="limitBox" style="background:#fff1f2;border:1px solid #fca5a5;border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Limiting factor</div>
+              <div id="limitOut" style="font-size:13px;font-weight:900;color:var(--red);margin-top:3px">Light</div>
+            </div>
+          </div>
+        </div>
+        <!-- Leaf SVG with bubbles -->
+        <div>
+          <svg id="leafSVG" viewBox="0 0 220 260" style="width:100%;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#e0f2fe,#f8faff)">
+            <!-- sun -->
+            <circle id="sunCircle" cx="175" cy="35" r="22" fill="#fde68a" stroke="#f59e0b" stroke-width="2" opacity="0.5"/>
+            <text x="175" y="41" text-anchor="middle" font-size="18">☀️</text>
+            <!-- stem -->
+            <line x1="110" y1="245" x2="110" y2="200" stroke="#15803d" stroke-width="5"/>
+            <!-- leaf shape -->
+            <ellipse id="leafShape" cx="110" cy="155" rx="65" ry="80" fill="#4ade80" stroke="#15803d" stroke-width="2" transform="rotate(-15,110,155)"/>
+            <!-- leaf veins -->
+            <line x1="110" y1="200" x2="110" y2="90" stroke="#15803d" stroke-width="1.5" opacity=".5"/>
+            <line x1="110" y1="160" x2="155" y2="130" stroke="#15803d" stroke-width="1" opacity=".4"/>
+            <line x1="110" y1="150" x2="68" y2="120" stroke="#15803d" stroke-width="1" opacity=".4"/>
+            <line x1="110" y1="140" x2="148" y2="112" stroke="#15803d" stroke-width="1" opacity=".4"/>
+            <!-- CO2 arrows in -->
+            <text id="co2Arrow" x="30" y="160" font-size="11" font-weight="800" fill="#0891b2" opacity="0.7">CO₂ →</text>
+            <!-- O2 bubbles container -->
+            <g id="bubbleGroup"></g>
+            <!-- stoma label -->
+            <text x="110" y="250" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#374151">Leaf (cross section view)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">Set the light to maximum (100%) and CO₂ to minimum (0%). What happens and why? What is the limiting factor?</p>
+      <textarea id="photoExplain" placeholder="When CO₂ is 0%, the rate... even though light is maximum, because... The limiting factor is..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('photoExplain','photoExpF',['CO2','carbon dioxide','rate','zero','limiting factor','reactant','needed','can\'t'],'✅ Excellent — you identified CO₂ as the limiting factor.','❌ Model: Even with maximum light, if CO₂ = 0% the rate drops to near zero. CO₂ is a reactant — without it, the reaction cannot happen no matter how much light there is. CO₂ is the limiting factor.')">Check</button>
+      <div class="fb" id="photoExpF"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 4. FLOWER STRUCTURE ══ -->
+<section class="section" id="flower">
+  <div class="stag orange">Section 4</div>
+  <h2>Flower Structure — Interactive Diagram</h2>
+  <p class="lead">Click each part of the flower to reveal its function. Learn each part before the match task below.</p>
+  <div class="grid2">
+    <div>
+      <!-- Interactive flower SVG -->
+      <svg id="flowerSVG" class="diagram" viewBox="0 0 380 400">
+        <text x="190" y="22" text-anchor="middle" font-family="Syne" font-size="13" font-weight="800" fill="#0f2044">Click any part to learn its function</text>
+        <!-- STEM -->
+        <rect class="flower-part" x="170" y="330" width="20" height="60" rx="6" fill="#16a34a" stroke="#15803d" stroke-width="2" onclick="showFlowerPart('stem')"/>
+        <!-- SEPAL (green base leaves) -->
+        <ellipse class="flower-part" cx="142" cy="320" rx="28" ry="14" fill="#4ade80" stroke="#15803d" stroke-width="1.5" transform="rotate(-40,142,320)" onclick="showFlowerPart('sepal')"/>
+        <ellipse class="flower-part" cx="218" cy="320" rx="28" ry="14" fill="#4ade80" stroke="#15803d" stroke-width="1.5" transform="rotate(40,218,320)" onclick="showFlowerPart('sepal')"/>
+        <ellipse class="flower-part" cx="180" cy="325" rx="14" ry="24" fill="#4ade80" stroke="#15803d" stroke-width="1.5" onclick="showFlowerPart('sepal')"/>
+        <!-- PETALS (5 large) -->
+        <ellipse class="flower-part" cx="100" cy="230" rx="45" ry="25" fill="#fbbf24" stroke="#d97706" stroke-width="2" transform="rotate(-50,100,230)" onclick="showFlowerPart('petal')"/>
+        <ellipse class="flower-part" cx="135" cy="175" rx="45" ry="25" fill="#fbbf24" stroke="#d97706" stroke-width="2" transform="rotate(-20,135,175)" onclick="showFlowerPart('petal')"/>
+        <ellipse class="flower-part" cx="190" cy="160" rx="45" ry="25" fill="#fbbf24" stroke="#d97706" stroke-width="2" onclick="showFlowerPart('petal')"/>
+        <ellipse class="flower-part" cx="245" cy="175" rx="45" ry="25" fill="#fbbf24" stroke="#d97706" stroke-width="2" transform="rotate(20,245,175)" onclick="showFlowerPart('petal')"/>
+        <ellipse class="flower-part" cx="278" cy="230" rx="45" ry="25" fill="#fbbf24" stroke="#d97706" stroke-width="2" transform="rotate(50,278,230)" onclick="showFlowerPart('petal')"/>
+        <!-- OVARY (base, green-pink) -->
+        <ellipse class="flower-part" cx="190" cy="305" rx="28" ry="20" fill="#fda4af" stroke="#e11d48" stroke-width="2" onclick="showFlowerPart('ovary')"/>
+        <text x="190" y="310" text-anchor="middle" font-family="Nunito" font-size="9" font-weight="900" fill="#9f1239" pointer-events="none">OVARY</text>
+        <!-- STYLE -->
+        <rect class="flower-part" x="186" y="255" width="8" height="48" rx="3" fill="#f43f5e" stroke="#e11d48" stroke-width="1.5" onclick="showFlowerPart('style')"/>
+        <!-- STIGMA (top of carpel) -->
+        <ellipse class="flower-part" cx="190" cy="250" rx="16" ry="9" fill="#f43f5e" stroke="#e11d48" stroke-width="2" onclick="showFlowerPart('stigma')"/>
+        <text x="190" y="255" text-anchor="middle" font-family="Nunito" font-size="8" font-weight="900" fill="#fff" pointer-events="none">STIGMA</text>
+        <!-- STAMENS (4 anthers on filaments) -->
+        <line class="flower-part" x1="155" y1="270" x2="168" y2="253" stroke="#3b82f6" stroke-width="2.5" onclick="showFlowerPart('stamen')"/>
+        <ellipse class="flower-part" cx="166" cy="248" rx="7" ry="5" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5" onclick="showFlowerPart('anther')"/>
+        <line class="flower-part" x1="163" y1="275" x2="172" y2="258" stroke="#3b82f6" stroke-width="2.5" onclick="showFlowerPart('stamen')"/>
+        <ellipse class="flower-part" cx="172" cy="252" rx="7" ry="5" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5" onclick="showFlowerPart('anther')"/>
+        <line class="flower-part" x1="217" y1="275" x2="208" y2="258" stroke="#3b82f6" stroke-width="2.5" onclick="showFlowerPart('stamen')"/>
+        <ellipse class="flower-part" cx="208" cy="252" rx="7" ry="5" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5" onclick="showFlowerPart('anther')"/>
+        <line class="flower-part" x1="225" y1="270" x2="214" y2="253" stroke="#3b82f6" stroke-width="2.5" onclick="showFlowerPart('stamen')"/>
+        <ellipse class="flower-part" cx="213" cy="248" rx="7" ry="5" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5" onclick="showFlowerPart('anther')"/>
+        <!-- Label pointers -->
+        <line x1="155" y1="245" x2="80" y2="225" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3"/>
+        <text x="75" y="220" text-anchor="end" font-family="Nunito" font-size="11" font-weight="800" fill="#2563eb">Anther</text>
+        <line x1="186" y1="250" x2="120" y2="235" stroke="#e11d48" stroke-width="1" stroke-dasharray="3"/>
+        <text x="115" y="230" text-anchor="end" font-family="Nunito" font-size="11" font-weight="800" fill="#e11d48">Stigma</text>
+        <line x1="186" y1="280" x2="120" y2="275" stroke="#e11d48" stroke-width="1" stroke-dasharray="3"/>
+        <text x="115" y="270" text-anchor="end" font-family="Nunito" font-size="11" font-weight="800" fill="#e11d48">Style</text>
+        <line x1="190" y1="320" x2="265" y2="340" stroke="#e11d48" stroke-width="1" stroke-dasharray="3"/>
+        <text x="270" y="344" font-family="Nunito" font-size="11" font-weight="800" fill="#e11d48">Ovary</text>
+        <line x1="100" y1="235" x2="55" y2="270" stroke="#d97706" stroke-width="1" stroke-dasharray="3"/>
+        <text x="50" y="285" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#d97706">Petal</text>
+        <line x1="152" y1="320" x2="100" y2="355" stroke="#15803d" stroke-width="1" stroke-dasharray="3"/>
+        <text x="95" y="368" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#15803d">Sepal</text>
+      </svg>
+    </div>
+    <div>
+      <!-- Tooltip box -->
+      <div id="flowerTooltip" style="background:#fff;border:2px solid var(--line);border-radius:16px;padding:18px;min-height:120px;margin-bottom:12px">
+        <p style="font-size:13px;font-weight:700;color:var(--muted)">👆 Click a part of the flower to see its function here</p>
+      </div>
+      <!-- Quick match -->
+      <div class="task"><div class="tlbl">Match it</div>
+        <table>
+          <tr><th>Part</th><th>Function</th></tr>
+          <tr><td>Anther</td><td><select id="fp1"><option value="">Choose...</option><option value="a">Produces pollen</option><option value="b">Receives pollen</option><option value="c">Contains ovules</option><option value="d">Attracts pollinators</option></select></td></tr>
+          <tr><td>Stigma</td><td><select id="fp2"><option value="">Choose...</option><option value="a">Produces pollen</option><option value="b">Receives pollen (sticky)</option><option value="c">Contains ovules</option><option value="d">Attracts pollinators</option></select></td></tr>
+          <tr><td>Ovary</td><td><select id="fp3"><option value="">Choose...</option><option value="a">Produces pollen</option><option value="b">Receives pollen</option><option value="c">Contains ovules → seeds</option><option value="d">Attracts pollinators</option></select></td></tr>
+          <tr><td>Petal</td><td><select id="fp4"><option value="">Choose...</option><option value="a">Produces pollen</option><option value="b">Receives pollen</option><option value="c">Contains ovules</option><option value="d">Brightly coloured to attract pollinators</option></select></td></tr>
+        </table>
+        <button class="btn btn-green" onclick="checkFlowerMatch()">Check all</button>
+        <div class="fb" id="flowerMatchF"></div>
+      </div>
+    </div>
+  </div>
+  <div class="task" style="margin-top:10px"><div class="tlbl">Key Process</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">What is pollination?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,false,'pollF','','❌ That is fertilisation — when the pollen tube reaches the ovule. Pollination is just the transfer of pollen.')">When pollen fuses with an ovule to form a seed</button>
+      <button class="choice" onclick="choice(this,true,'pollF','✅ Correct — pollination is the transfer of pollen from anther to stigma. Fertilisation comes later.','')">The transfer of pollen from anther to stigma</button>
+    </div>
+    <div class="fb" id="pollF"></div>
+  </div>
+</section>
+
+<!-- ══ 5. SEED DISPERSAL — FACT FILE FIRST ══ -->
+<section class="section" id="seeds">
+  <div class="stag teal">Section 5</div>
+  <h2>Seed Dispersal</h2>
+  <p class="lead">Plants disperse seeds to reduce competition with the parent plant and spread to new areas. <strong>Read the fact file first — then try the matching task.</strong></p>
+
+  <h3>📋 Seed Dispersal Fact File</h3>
+  <div class="fact-grid">
+    <div class="fact-card fc-wind">
+      <div class="fc-icon">💨</div>
+      <h4>Wind dispersal</h4>
+      <p><strong>Feature:</strong> Light seeds, wings or parachute structures<br><strong>Examples:</strong> Dandelion (parachute of hairs), sycamore (helicopter wing), thistle<br><strong>Why it works:</strong> Caught by air currents, travel long distances</p>
+    </div>
+    <div class="fact-card fc-animal">
+      <div class="fc-icon">🐦</div>
+      <h4>Animal dispersal</h4>
+      <p><strong>Feature:</strong> Hooks/spines to catch fur, OR tasty fruit (seeds pass through gut)<br><strong>Examples:</strong> Burdock (hooks), blackberry (eaten), holly berry<br><strong>Why it works:</strong> Animals move seeds far away</p>
+    </div>
+    <div class="fact-card fc-water">
+      <div class="fc-icon">🌊</div>
+      <h4>Water dispersal</h4>
+      <p><strong>Feature:</strong> Buoyant, waterproof outer layer<br><strong>Examples:</strong> Coconut (fibrous, floats for months), water lily, mangrove<br><strong>Why it works:</strong> Float in rivers or ocean currents</p>
+    </div>
+    <div class="fact-card fc-explosion">
+      <div class="fc-icon">💥</div>
+      <h4>Self-dispersal (explosion)</h4>
+      <p><strong>Feature:</strong> Seed pods dry and twist, shooting seeds out<br><strong>Examples:</strong> Peas/beans, gorse, squirting cucumber<br><strong>Why it works:</strong> Seeds propelled away from parent plant</p>
+    </div>
+  </div>
+
+  <div class="task" style="margin-top:16px"><div class="tlbl">Now try — Match each plant to its dispersal method</div>
+    <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">📖 <em>Use the fact file above — all the information you need is there!</em></p>
+    <table>
+      <tr><th>Plant</th><th>Key feature</th><th>Dispersal method</th></tr>
+      <tr>
+        <td>🌼 Dandelion</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Tiny seeds with white parachute of hairs</td>
+        <td><select id="sd1"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+      <tr>
+        <td>🌿 Burdock</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Seed heads covered in tiny hooks that catch on fur</td>
+        <td><select id="sd2"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+      <tr>
+        <td>🥥 Coconut</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Very large, fibrous outer husk — extremely buoyant</td>
+        <td><select id="sd3"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+      <tr>
+        <td>🫘 Pea pod</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Pod dries and twists, catapulting seeds outward</td>
+        <td><select id="sd4"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+      <tr>
+        <td>🍓 Blackberry</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Tasty fruit — seeds pass through animals' digestive systems</td>
+        <td><select id="sd5"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+      <tr>
+        <td>🍁 Sycamore</td>
+        <td style="font-size:12px;font-weight:700;color:#475569">Single wing (samara) spins like a helicopter as it falls</td>
+        <td><select id="sd6"><option value="">Choose...</option><option value="wind">Wind</option><option value="animal">Animal</option><option value="water">Water</option><option value="self">Self/Explosion</option></select></td>
+      </tr>
+    </table>
+    <button class="btn btn-green" onclick="checkSeeds()">Check all</button>
+    <div class="fb" id="seedF"></div>
+  </div>
+  <div class="task"><div class="tlbl">Explain it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:7px">Why do plants benefit from dispersing their seeds away from the parent plant?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,true,'sdExpF','✅ Correct — reduced competition for light, water and nutrients is the main benefit.','')">Reduces competition with the parent plant for light, water and minerals</button>
+      <button class="choice" onclick="choice(this,false,'sdExpF','','❌ Seeds still need water wherever they land! The benefit is reducing competition with the parent.')">Means the seeds don't need water to germinate</button>
+    </div>
+    <div class="fb" id="sdExpF"></div>
+  </div>
+</section>
+
+<!-- ══ 6. FIELDWORK ══ -->
+<section class="section" id="fieldwork">
+  <div class="stag purple">Section 6</div>
+  <h2>Fieldwork and Quadrats</h2>
+  <p class="lead">Scientists use quadrats to sample organisms in a habitat. The technique must be done randomly to avoid bias.</p>
+  <div class="vocab">
+    <span class="vc">quadrat = square frame used to sample organisms</span>
+    <span class="vc">random sampling = placing quadrats without choosing preferred areas</span>
+    <span class="vc">mean = sum of counts ÷ number of quadrats</span>
+    <span class="vc">estimate = use mean × total area ÷ quadrat area</span>
+  </div>
+  <div class="mc"><strong>⚠️ Why does random placement matter?</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">If you choose where to place quadrats, you might unconsciously pick areas with more (or fewer) organisms, making your sample unrepresentative. Random placement removes your bias from the results.</p></div>
+  <div class="worked"><div class="wlbl">Worked Example</div>
+    <p style="font-size:14px;font-weight:700;color:var(--green);margin:3px 0"><strong>Daisy counts in 5 quadrats:</strong> 3, 7, 4, 4, 2</p>
+    <p style="font-size:14px;font-weight:700;color:var(--green);margin:3px 0"><strong>Mean:</strong> (3+7+4+4+2) ÷ 5 = 20 ÷ 5 = <strong>4 daisies per quadrat</strong></p>
+    <p style="font-size:14px;font-weight:700;color:var(--green);margin:3px 0"><strong>Estimate total:</strong> If field = 100 m², quadrat = 1 m² → 4 × 100 = ~400 daisies</p>
+  </div>
+  <div class="task"><div class="tlbl">Calculate</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">Plantain counts in six quadrats: 5, 8, 6, 6, 7, 4. Calculate the mean.</p>
+    <input type="number" id="quadCalc" placeholder="daisies per m²" step="0.1">
+    <button class="btn btn-green" onclick="checkCalc('quadCalc',6,'quadF','✅ Correct! (5+8+6+6+7+4)÷6 = 36÷6 = 6','❌ Model: Add all values: 5+8+6+6+7+4=36. Divide by 6 quadrats: 36÷6 = 6 per quadrat')" style="margin-left:8px">Check</button>
+    <div class="fb" id="quadF"></div>
+  </div>
+</section>
+
+<!-- ══ 7. CFU ══ -->
+<section class="section" id="cfu">
+  <div class="stag">Final Check</div>
+  <h2>Test Yourself — 20 Questions</h2>
+  <p class="lead">Three tiers. Work through Secure first.</p>
+  <div class="cfu-tabs">
+    <button class="cfu-tab active" onclick="showTab('gsec',this)">🟢 Secure (1–8)</button>
+    <button class="cfu-tab" onclick="showTab('gbld',this)">🟡 Build (9–15)</button>
+    <button class="cfu-tab" onclick="showTab('gstr',this)">🔴 Stretch (16–20)</button>
+  </div>
+  <div class="cfu-panel active" id="tab-gsec">
+    <div class="qb"><div class="qn">Q1 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What does an arrow in a food chain show?</p><div class="choices"><button class="choice" onclick="choice(this,false,'g1','','❌ Arrows show energy transfer, not who eats whom — a very common error!')">Which animal eats which</button><button class="choice" onclick="choice(this,true,'g1','✅ Correct — arrows show the direction of energy transfer.','')">The direction of energy transfer</button></div><div class="fb" id="g1"></div></div>
+    <div class="qb"><div class="qn">Q2 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is a producer?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g2','✅ Correct — producers make their own food by photosynthesis.','')">An organism that makes its own food by photosynthesis</button><button class="choice" onclick="choice(this,false,'g2','','❌ An organism that eats plants is a primary consumer. A producer makes its own food.')">An organism that eats plants</button></div><div class="fb" id="g2"></div></div>
+    <div class="qb"><div class="qn">Q3 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What are the products of photosynthesis?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g3','✅ Correct — glucose and oxygen are the products.','')">Glucose and oxygen</button><button class="choice" onclick="choice(this,false,'g3','','❌ Carbon dioxide and water are reactants (ingredients). Glucose and oxygen are the products.')">Carbon dioxide and water</button></div><div class="fb" id="g3"></div></div>
+    <div class="qb"><div class="qn">Q4 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Where does photosynthesis take place in a leaf cell?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g4','✅ Correct — chloroplasts contain chlorophyll which absorbs light energy.','')">In the chloroplasts</button><button class="choice" onclick="choice(this,false,'g4','','❌ The nucleus controls the cell but doesn\'t carry out photosynthesis. Chloroplasts do.')">In the nucleus</button></div><div class="fb" id="g4"></div></div>
+    <div class="qb"><div class="qn">Q5 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is the function of the stigma in a flower?</p><div class="choices"><button class="choice" onclick="choice(this,false,'g5','','❌ Pollen is produced by the anther. The stigma receives pollen — it is sticky.')">Produces pollen</button><button class="choice" onclick="choice(this,true,'g5','✅ Correct — the stigma is sticky to catch pollen grains.','')">Receives pollen — it is sticky</button></div><div class="fb" id="g5"></div></div>
+    <div class="qb"><div class="qn">Q6 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Why do plants disperse their seeds?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g6','✅ Correct — reduces competition for resources and allows spread to new habitats.','')">Reduce competition with the parent and spread to new areas</button><button class="choice" onclick="choice(this,false,'g6','','❌ Seeds still need water. Dispersal is about reducing competition with the parent plant.')">So seeds don\'t need water to grow</button></div><div class="fb" id="g6"></div></div>
+    <div class="qb"><div class="qn">Q7 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is a quadrat used for?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g7','✅ Correct — quadrats sample organisms in a defined area of a habitat.','')">Sampling organisms in a habitat</button><button class="choice" onclick="choice(this,false,'g7','','❌ A thermometer measures temperature. A quadrat is used to count organisms in a sample area.')">Measuring temperature</button></div><div class="fb" id="g7"></div></div>
+    <div class="qb"><div class="qn">Q8 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Dandelion counts: 3, 5, 4, 4, 4. Calculate the mean.</p><input type="number" id="g8i" placeholder="per m²"><button class="btn btn-blue" onclick="checkCalc('g8i',4,'g8f','✅ Correct! (3+5+4+4+4)÷5 = 20÷5 = 4','❌ Model: Sum=20, divide by 5 = 4 per quadrat')" style="margin-left:6px">Check</button><div class="fb" id="g8f"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('gbld',this)">Next: Build →</button>
+  </div>
+  <div class="cfu-panel" id="tab-gbld">
+    <div class="qb"><div class="qn">Q9 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Grass → Rabbit → Fox. Grass is removed by disease. What happens to fox numbers over time? Explain.</p><textarea id="g9t" style="min-height:60px" placeholder="Fox numbers will... because..."></textarea><button class="btn btn-green" onclick="checkSome('g9t','g9f',['decrease','less','rabbit','food','energy','chain','fewer'],'✅ Good cascade explanation.','❌ Model: Fox numbers will decrease. Without grass, rabbit numbers fall. With fewer rabbits, foxes have less food and their population also declines. This is a cascade effect through the food chain.')">Check</button><div class="fb" id="g9f"></div></div>
+    <div class="qb"><div class="qn">Q10 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Which of these is a limiting factor for photosynthesis?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g10','✅ Correct — CO₂, light and temperature are the three main limiting factors.','')">CO₂ concentration, light intensity and temperature</button><button class="choice" onclick="choice(this,false,'g10','','❌ Chlorophyll is present in the leaf and doesn\'t usually limit the rate. The three limiting factors are CO₂, light and temperature.')">Chlorophyll concentration and leaf colour</button></div><div class="fb" id="g10"></div></div>
+    <div class="qb"><div class="qn">Q11 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A dandelion has a parachute of hairs on its seed. What dispersal method is this and why does it work?</p><textarea id="g11t" style="min-height:60px" placeholder="This is wind dispersal because..."></textarea><button class="btn btn-green" onclick="checkSome('g11t','g11f',['wind','air','light','float','current','parachute','carry'],'✅ Correct — wind dispersal explained.','❌ Model: Wind dispersal. The parachute of hairs makes the seed very light and creates drag — air currents can carry it large distances from the parent plant.')">Check</button><div class="fb" id="g11f"></div></div>
+    <div class="qb"><div class="qn">Q12 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is the difference between pollination and fertilisation?</p><textarea id="g12t" style="min-height:60px" placeholder="Pollination is... Fertilisation is..."></textarea><button class="btn btn-green" onclick="checkSome('g12t','g12f',['pollination','anther','stigma','fertilisation','ovule','fuse','nucleus','transfer'],'✅ Good distinction.','❌ Model: Pollination = transfer of pollen from anther to stigma. Fertilisation = fusion of pollen nucleus with ovule nucleus to form a seed.')">Check</button><div class="fb" id="g12f"></div></div>
+    <div class="qb"><div class="qn">Q13 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Why must quadrats be placed randomly?</p><textarea id="g13t" style="min-height:60px" placeholder="Random placement reduces..."></textarea><button class="btn btn-green" onclick="checkSome('g13t','g13f',['bias','representative','fair','random','unconscious','choose'],'✅ Good — bias and representativeness both mentioned.','❌ Model: Random placement reduces bias. If scientists choose where to place quadrats they may unconsciously pick areas with more organisms, making the sample unrepresentative of the whole habitat.')">Check</button><div class="fb" id="g13f"></div></div>
+    <div class="qb"><div class="qn">Q14 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A coconut has a fibrous, waterproof husk. What dispersal method does this suggest?</p><div class="choices"><button class="choice" onclick="choice(this,false,'g14','','❌ A parachute structure would suggest wind. A fibrous, waterproof, floating husk → water dispersal.')">Wind dispersal</button><button class="choice" onclick="choice(this,true,'g14','✅ Correct — the buoyant, waterproof husk allows coconuts to float in ocean currents for months.','')">Water dispersal</button></div><div class="fb" id="g14"></div></div>
+    <div class="qb"><div class="qn">Q15 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Light increases from 10% to 80%. CO₂ stays at 80%. What happens to the photosynthesis rate?</p><div class="choices"><button class="choice" onclick="choice(this,true,'g15','✅ Correct — light was limiting. Increasing it allows the rate to increase significantly.','')">Rate increases a lot — light was the limiting factor</button><button class="choice" onclick="choice(this,false,'g15','','❌ If CO₂ is already high and light was the limiting factor, increasing light gives a large increase in rate.')">Rate stays the same — CO₂ controls everything</button></div><div class="fb" id="g15"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('gstr',this)">Next: Stretch →</button>
+  </div>
+  <div class="cfu-panel" id="tab-gstr">
+    <div class="qb"><div class="qn">Q16 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Foxes are removed from a food web (Grass→Rabbit→Fox→Eagle). Predict what happens to rabbit AND eagle populations over time. Explain the full cascade.</p><textarea id="g16t" style="min-height:80px" placeholder="If foxes are removed, rabbits will... because... then eagles..."></textarea><button class="btn btn-green" onclick="checkSome('g16t','g16f',['rabbit','increase','eagle','grass','decrease','competition','prey','predator'],'✅ Excellent systems-thinking response.','❌ Model: Rabbits increase — fewer predators. Overgrazing may reduce grass. Eagle numbers may initially increase (more rabbits) then later decrease as grass/rabbit populations fluctuate. Removing a predator has complex knock-on effects throughout the food web.')">Check</button><div class="fb" id="g16f"></div></div>
+    <div class="qb"><div class="qn">Q17 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">"Plants absorb food from the soil through their roots." Explain why this is incorrect.</p><textarea id="g17t" style="min-height:65px" placeholder="This is wrong because plants..."></textarea><button class="btn btn-green" onclick="checkSome('g17t','g17f',['photosynthesis','make','produce','glucose','CO2','water','light','chloroplast','soil','mineral'],'✅ Excellent — misconception corrected.','❌ Model: Plants do not absorb food from soil. They MAKE their own glucose by photosynthesis using CO₂, water and light energy in chloroplasts. The soil provides water and minerals (like nitrates) — not food/glucose.')">Check</button><div class="fb" id="g17f"></div></div>
+    <div class="qb"><div class="qn">Q18 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A student finds 400 daisies in 8 quadrats (each 1 m²). The field is 200 m². Estimate the total number of daisies in the field.</p><input type="number" id="g18i" placeholder="daisies"><button class="btn btn-blue" onclick="checkCalc('g18i',10000,'g18f','✅ Correct! Mean=50/m², × 200m² = 10,000 daisies','❌ Model: Mean per m² = 400÷8 = 50. Total = 50 × 200 = 10,000 daisies')" style="margin-left:6px">Check</button><div class="fb" id="g18f"></div></div>
+    <div class="qb"><div class="qn">Q19 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Explain how an insect-pollinated flower is adapted compared to a wind-pollinated flower.</p><textarea id="g19t" style="min-height:65px" placeholder="Insect-pollinated flowers have... whereas wind-pollinated flowers..."></textarea><button class="btn btn-green" onclick="checkSome('g19t','g19f',['petal','colour','nectar','scent','insect','large','wind','feathery','stigma','no petal','hanging'],'✅ Excellent comparison.','❌ Model: Insect-pollinated: large colourful petals to attract insects, nectar and scent as reward, sticky pollen. Wind-pollinated: small/no petals (no need to attract insects), feathery dangling stigmas to catch wind-blown pollen, large amounts of light pollen.')">Check</button><div class="fb" id="g19f"></div></div>
+    <div class="qb"><div class="qn">Q20 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Why might increasing CO₂ concentration above 80% have little effect on the photosynthesis rate if light intensity is only 20%?</p><textarea id="g20t" style="min-height:65px" placeholder="Even though CO₂ is very high..."></textarea><button class="btn btn-green" onclick="checkSome('g20t','g20f',['light','limiting','factor','rate','restrict','maximum','bottleneck','low'],'✅ Excellent limiting factor understanding.','❌ Model: The rate is limited by the lowest factor — in this case light (only 20%). Even if CO₂ is at maximum, the plant cannot photosynthesise faster because there is not enough light energy to drive the reaction. Increasing CO₂ further makes no difference when light is the bottleneck.')">Check</button><div class="fb" id="g20f"></div></div>
+    <button class="btn btn-ghost" style="margin-top:8px" onclick="showTab('gsec',this)">← Back to Secure</button>
+  </div>
+</section>
+</main></div>
+
+<script>
+function el(id){return document.getElementById(id)}
+function showFB(id,ok,msg){const f=el(id);f.textContent=msg;f.className='fb show '+(ok?'ok':'no')}
+function choice(btn,ok,fid,okM,noM){
+  const p=btn.closest('.choices,.qb,.task');
+  if(p)p.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  showFB(fid,ok,ok?okM:noM);
+}
+function checkSome(tid,fid,words,okM,noM){
+  const t=el(tid).value.toLowerCase().trim();
+  if(!t){showFB(fid,false,'Write an answer first.');return;}
+  showFB(fid,words.some(w=>t.includes(w)),okM,noM);
+}
+function checkDD(id,correct,fid,okM,noM){
+  const v=el(id).value;if(!v){showFB(fid,false,'Select first.');return;}
+  showFB(fid,v===correct,okM,noM);
+}
+function checkCalc(tid,ans,fid,okM,noM){
+  const v=parseFloat(el(tid).value);if(isNaN(v)){showFB(fid,false,'Enter a number first.');return;}
+  showFB(fid,Math.abs(v-ans)<0.5,okM,noM);
+}
+function showTab(id,btn){
+  document.querySelectorAll('.cfu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.cfu-tab').forEach(t=>t.classList.remove('active'));
+  el('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// ── FOOD WEB SIMULATION ──────────────────────────
+const scenarios={
+  normal:{grass:100,rabbit:80,grasshopper:60,fox:40,owl:30},
+  drought:{grass:30,rabbit:35,grasshopper:22,fox:18,owl:15},
+  disease:{grass:100,rabbit:25,grasshopper:60,fox:20,owl:18},
+  nofox:{grass:85,rabbit:140,grasshopper:60,fox:0,owl:55}
+};
+const orgColors={grass:'#16a34a',rabbit:'#d97706',grasshopper:'#b45309',fox:'#dc2626',owl:'#7c3aed'};
+const orgEmoji={grass:'🌿',rabbit:'🐇',grasshopper:'🦗',fox:'🦊',owl:'🦉'};
+const orgNames={grass:'Grass',rabbit:'Rabbit',grasshopper:'Grasshopper',fox:'Fox',owl:'Owl'};
+const maxPop={grass:100,rabbit:80,grasshopper:60,fox:40,owl:30}; // normal = 100%
+
+const explanations={
+  normal:'Normal conditions — all populations at healthy levels. Energy flows throughout the food web.',
+  drought:'☀️ Drought: Grass (producer) halved → less food for rabbits and grasshoppers → both decrease → foxes and owls lose prey → all predators decline. This is a cascade effect — one change ripples through the whole web.',
+  disease:'🦠 Rabbit disease: Rabbit population crashes → foxes lose their main prey and decline sharply. Owls lose some prey. Grasshoppers are unaffected (not dependent on rabbits). Grass recovers as fewer rabbits eat it.',
+  nofox:'🚫 Foxes removed: Rabbits lose a key predator → rabbit population booms → rabbits overgraze the grass → grass declines. Owls also increase initially with more prey available. This shows why predators are important for ecosystem balance.'
+};
+
+let currentScenario='normal';
+function setScenario(name){
+  currentScenario=name;
+  const pops=scenarios[name];
+  renderPopBars(pops);
+  const expBox=el('cascadeExplain');
+  expBox.style.display='block';
+  expBox.textContent=explanations[name];
+}
+function renderPopBars(pops){
+  const wrap=el('popBars');wrap.innerHTML='';
+  const norm=scenarios.normal;
+  ['grass','rabbit','grasshopper','fox','owl'].forEach(org=>{
+    const val=pops[org];const base=norm[org];
+    // Show as % of normal so normal always = 100%, changes are clearly visible
+    const pct=Math.min(150,Math.round((val/base)*100));
+    const change=val>base?'▲':val<base?'▼':'=';
+    const changeColor=val>base?'#15803d':val<base?'#dc2626':'#64748b';
+    const barColor=val>base?'#15803d':val<base?'#dc2626':orgColors[org];
+    const row=document.createElement('div');row.className='pop-bar-row';
+    row.innerHTML=`
+      <div class="pop-bar-label">${orgEmoji[org]} ${orgNames[org]}</div>
+      <div class="pop-bar-outer">
+        <div class="pop-bar-inner" style="width:${Math.max(2,pct)}%;background:${barColor}">
+          <span class="pop-bar-num">${val===0?'0 (extinct)':val}</span>
+        </div>
+      </div>
+      <span style="width:52px;font-size:12px;font-weight:900;color:${changeColor};text-align:right;flex-shrink:0">${change} ${val===base?'(normal)':((val/base*100).toFixed(0)+'%')}</span>`;
+    wrap.appendChild(row);
+  });
+}
+function selectFWPred(btn,choice){
+  document.querySelectorAll('#fwPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='decrease';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('fwPredF',ok,ok?'✅ Correct! Less grass → less food for rabbits → less food for foxes. Now press "Drought" to see it!':'❌ Less food at the bottom means less for everything above. Try the Drought button to see the cascade!');
+}
+
+// ── PHOTOSYNTHESIS SIMULATION ──────────────────
+let bubblesActive=false;
+function updatePhoto(){
+  const L=+el('lightSlider').value;
+  const C=+el('co2Slider').value;
+  const T=+el('tempSlider').value;
+  el('lightLbl').textContent=L;
+  el('co2Lbl').textContent=C;
+  el('tempLbl').textContent=T;
+  const tempScore=Math.max(0,100-Math.abs(T-25)*4);
+  const rate=Math.round(Math.min(L,C,tempScore));
+  el('rateOut').textContent=rate+'%';
+  // limiting factor
+  const minVal=Math.min(L,C,tempScore);
+  const limitName=minVal===L?'Light intensity':minVal===C?'CO₂ concentration':'Temperature';
+  el('limitOut').textContent=limitName;
+  el('limitBox').style.borderColor=rate<30?'#fca5a5':'#86efac';
+  el('limitBox').style.background=rate<30?'#fff1f2':'#f0fdf4';
+  el('limitOut').style.color=rate<30?'#b91c1c':'#15803d';
+  // leaf colour
+  const greenVal=Math.round(100+rate*1.2);
+  el('leafShape').setAttribute('fill',`rgb(${Math.max(50,180-rate)},${greenVal},${Math.max(40,80-rate)})`);
+  // sun opacity
+  el('sunCircle').setAttribute('opacity',(0.2+L/100*0.8).toFixed(2));
+  // bubbles
+  drawBubbles(rate);
+}
+function drawBubbles(rate){
+  const g=el('bubbleGroup');g.innerHTML='';
+  const count=Math.floor(rate/12);
+  for(let i=0;i<count;i++){
+    const x=70+Math.random()*80;
+    const y=100+Math.random()*60;
+    const r=3+Math.random()*4;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);
+    c.setAttribute('fill','rgba(147,197,253,0.7)');c.setAttribute('stroke','#60a5fa');c.setAttribute('stroke-width','1');
+    c.style.animation=`bubbleRise ${1+Math.random()*1.5}s ease-in ${Math.random()*2}s infinite`;
+    // O2 label
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',x);t.setAttribute('y',y+1);t.setAttribute('text-anchor','middle');
+    t.setAttribute('font-family','Nunito');t.setAttribute('font-size','7');t.setAttribute('font-weight','900');t.setAttribute('fill','#1d4ed8');
+    t.textContent='O₂';t.style.animation=`bubbleRise ${1+Math.random()*1.5}s ease-in ${Math.random()*2}s infinite`;
+    g.appendChild(c);g.appendChild(t);
+  }
+}
+function selectPhotoPred(btn,choice){
+  document.querySelectorAll('#photoPredChoices .choice').forEach(b=>b.disabled=true);
+  const ok=choice==='increase';
+  btn.classList.add(ok?'correct':'wrong');
+  showFB('photoPredF',ok,ok?'✅ Correct! When light is the limiting factor, increasing it increases the rate significantly. Set the sliders to test it!':'❌ Test it! Set light=5%, CO₂=90%, note the rate. Then increase light to 80%. What do you see?');
+}
+
+// ── FLOWER INTERACTIVE ──────────────────────────
+const flowerData={
+  anther:{name:'Anther',color:'#60a5fa',text:'The <strong>anther</strong> is the male part of the stamen. It produces pollen grains, each containing a male nucleus. Pollen is needed for fertilisation.',function:'Produces pollen (male)'},
+  stamen:{name:'Stamen (filament)',color:'#3b82f6',text:'The <strong>filament</strong> is the stalk that holds up the anther. Together, the anther and filament make up the stamen — the male reproductive part of the flower.',function:'Holds the anther in position'},
+  stigma:{name:'Stigma',color:'#f43f5e',text:'The <strong>stigma</strong> is the sticky tip of the carpel (female part). It catches pollen grains brought by insects or wind. "Stigma = sticky" — a useful way to remember!',function:'Receives pollen — sticky surface'},
+  style:{name:'Style',color:'#fb7185',text:'The <strong>style</strong> connects the stigma to the ovary. After pollination, the pollen tube grows down through the style to reach the ovule in the ovary.',function:'Connects stigma to ovary, pollen tube grows through it'},
+  ovary:{name:'Ovary',color:'#fda4af',text:'The <strong>ovary</strong> contains one or more ovules. After fertilisation, the ovary develops into a fruit and the ovule becomes a seed.',function:'Contains ovules → becomes fruit after fertilisation'},
+  petal:{name:'Petal',color:'#fbbf24',text:'<strong>Petals</strong> are often brightly coloured and scented to attract insect pollinators. Wind-pollinated flowers have small, dull petals — they don\'t need to attract insects.',function:'Attracts pollinators with colour and scent'},
+  sepal:{name:'Sepal',color:'#4ade80',text:'<strong>Sepals</strong> are leaf-like structures that protect the flower bud before it opens. They fold back when the flower blooms.',function:'Protects the flower bud'},
+  stem:{name:'Stem',color:'#16a34a',text:'The <strong>stem</strong> supports the flower and transports water and minerals up from the roots, and glucose down from the leaves.',function:'Supports the flower and transports materials'}
+};
+function showFlowerPart(part){
+  const d=flowerData[part];if(!d)return;
+  el('flowerTooltip').innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:14px;height:14px;border-radius:50%;background:${d.color};flex-shrink:0"></div>
+      <strong style="font-size:16px;color:var(--navy)">${d.name}</strong>
+    </div>
+    <p style="font-size:14px;font-weight:700;color:#374151;margin-bottom:8px">${d.text}</p>
+    <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px">
+      <span style="font-size:12px;font-weight:900;color:#15803d">Function: </span>
+      <span style="font-size:12px;font-weight:700;color:#166534">${d.function}</span>
+    </div>`;
+}
+function checkFlowerMatch(){
+  const a1=el('fp1').value,a2=el('fp2').value,a3=el('fp3').value,a4=el('fp4').value;
+  if(!a1||!a2||!a3||!a4){showFB('flowerMatchF',false,'Select an answer for each row first.');return;}
+  const ok=a1==='a'&&a2==='b'&&a3==='c'&&a4==='d';
+  showFB('flowerMatchF',ok,ok?'✅ All correct! Anther→pollen, Stigma→receives pollen, Ovary→ovules/seeds, Petal→attracts pollinators':'❌ Not all correct. Model: Anther=produces pollen | Stigma=receives pollen | Ovary=contains ovules→seeds | Petal=attracts pollinators');
+}
+
+// ── SEED DISPERSAL ──────────────────────────────
+function checkSeeds(){
+  const answers={sd1:'wind',sd2:'animal',sd3:'water',sd4:'self',sd5:'animal',sd6:'wind'};
+  let allCorrect=true,wrongPlants=[];
+  for(const[id,correct] of Object.entries(answers)){
+    const v=el(id).value;
+    if(v!==correct){allCorrect=false;wrongPlants.push(id);}
+  }
+  if(allCorrect){showFB('seedF',true,'✅ All correct! Dandelion=wind, Burdock=animal, Coconut=water, Pea=self/explosion, Blackberry=animal, Sycamore=wind');}
+  else{showFB('seedF',false,'❌ Some incorrect. Check the fact file above! Key: Dandelion=wind (parachute hairs), Burdock=animal (hooks on fur), Coconut=water (fibrous floating husk), Pea pod=self/explosion (twisting pod), Blackberry=animal (eaten, seeds in gut), Sycamore=wind (helicopter wing)');}
+}
+
+// init
+document.addEventListener('DOMContentLoaded',()=>{
+  setScenario('normal');
+  updatePhoto();
+});
+</script>
+</body></html>

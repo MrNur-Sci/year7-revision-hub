@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Year 7 Science Revision Hub</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0f2044;--blue:#2563eb;--teal:#0891b2;--green:#15803d;--orange:#c2410c;
+  --purple:#6d28d9;--red:#b91c1c;--ink:#1a2535;--muted:#64748b;
+  --card:#fff;--bg:#f0f6ff;--line:#cbd5e1;--soft:#e8f0fe;
+  --shadow:0 8px 32px rgba(15,32,68,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.page{max-width:1200px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(15,32,68,.09)}
+
+/* ── HERO ── */
+.hero{min-height:540px;display:grid;place-items:center;text-align:center;padding:70px 24px 60px;
+  background:
+    radial-gradient(ellipse at 85% 10%,rgba(109,40,217,.5),transparent 38%),
+    radial-gradient(ellipse at 8%  80%,rgba(8,145,178,.4), transparent 32%),
+    radial-gradient(ellipse at 50% 50%,rgba(37,99,235,.2), transparent 60%),
+    linear-gradient(145deg,#070d1f 0%,#0f2044 40%,#1e3a8a 75%,#0e7490 100%);
+  position:relative;overflow:hidden;color:#fff}
+/* animated star-dots */
+.hero::before{content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 1px),
+    radial-gradient(circle,rgba(255,255,255,.10) 1px,transparent 1px);
+  background-size:38px 38px,64px 64px;
+  background-position:0 0,19px 19px;
+  pointer-events:none;animation:stardrift 60s linear infinite}
+@keyframes stardrift{to{background-position:38px 38px,57px 57px}}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.28);padding:7px 18px;border-radius:999px;
+  font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:22px;color:#bae6fd}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(40px,7vw,82px);font-weight:800;
+  line-height:1.02;margin-bottom:16px;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:#7dd3fc}
+.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:700;color:#bfdbfe;
+  max-width:680px;margin:0 auto 30px;line-height:1.5}
+.stat-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.stat-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);
+  border-radius:16px;padding:12px 20px;min-width:110px;text-align:center}
+.stat-pill .n{font-family:'Syne',sans-serif;font-size:26px;font-weight:800}
+.stat-pill .l{font-size:11px;font-weight:700;color:#93c5fd;margin-top:2px}
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta{padding:13px 28px;border-radius:999px;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:15px;cursor:pointer;text-decoration:none;transition:.2s;border:none;display:inline-block}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.cta-white{background:#fff;color:var(--navy)}
+.cta-outline{background:rgba(255,255,255,.13);color:#fff;border:2px solid rgba(255,255,255,.38)}
+
+/* ── MAIN ── */
+main{padding:40px 22px 80px}
+h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;
+  color:var(--navy);line-height:1.1;margin-bottom:6px}
+.intro{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:22px}
+
+/* ── MODULE CARDS ── */
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-bottom:48px}
+.mc{border-radius:24px;overflow:hidden;text-decoration:none;color:inherit;
+  box-shadow:var(--shadow);transition:.25s;display:flex;flex-direction:column;
+  border:1px solid var(--line)}
+.mc:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(15,32,68,.18)}
+.mc-head{padding:26px 26px 18px;color:#fff;position:relative;overflow:hidden;min-height:150px}
+.mc-head::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.14),transparent 50%)}
+.mc-icon{font-size:54px;margin-bottom:10px;display:block}
+.mc-title{font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,24px);
+  font-weight:800;margin-bottom:5px;position:relative;z-index:1}
+.mc-sub{font-size:13px;font-weight:700;opacity:.85;position:relative;z-index:1;line-height:1.4}
+.ws-bg{background:linear-gradient(135deg,#0f2044 0%,#0e7490 100%)}
+.fo-bg{background:linear-gradient(135deg,#1a1033 0%,#7c3aed 100%)}
+.el-bg{background:linear-gradient(135deg,#1e3a8a 0%,#0891b2 100%)}
+.ec-bg{background:linear-gradient(135deg,#14532d 0%,#15803d 100%)}
+.mc-body{background:#fff;padding:18px 22px;flex:1;display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{background:var(--soft);border:1px solid #93c5fd;border-radius:999px;
+  padding:3px 10px;font-size:11px;font-weight:800;color:#1e3a8a}
+.mc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.mc-meta{font-size:12px;font-weight:800;color:var(--muted)}
+.open-btn{background:var(--navy);color:#fff;padding:9px 20px;border-radius:999px;
+  font-weight:800;font-size:13px;text-decoration:none;transition:.15s}
+.open-btn:hover{background:var(--blue)}
+
+/* ── FORMULA SHEET ── */
+.formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px}
+.formula-card{background:linear-gradient(135deg,#f0f6ff,#e8f4ff);border:1.5px solid #93c5fd;
+  border-radius:16px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px}
+.formula-card .fi{font-size:26px;flex-shrink:0;margin-top:2px}
+.formula-card .feq{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--navy);line-height:1.2}
+.formula-card .fname{font-size:11px;color:var(--muted);font-weight:700;margin-top:3px}
+
+/* ── KEY TERMS ACCORDION ── */
+.acc{margin-bottom:40px}
+.acc-item{border:1px solid var(--line);border-radius:14px;margin:6px 0;overflow:hidden}
+.acc-head{background:#f8faff;padding:13px 18px;cursor:pointer;font-weight:800;
+  font-size:14px;display:flex;justify-content:space-between;align-items:center;
+  user-select:none;transition:.15s}
+.acc-head:hover{background:#eef6ff}
+.acc-arrow{font-size:16px;transition:transform .2s;color:var(--muted)}
+.acc-item.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{display:none;padding:14px 18px;font-size:14px;font-weight:700;
+  line-height:1.6;color:#374151;background:#fff;border-top:1px solid var(--line)}
+.acc-body.open{display:block}
+.acc-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10px;
+  font-weight:900;margin-right:6px}
+.tag-ws{background:#dbeafe;color:#1e3a8a}
+.tag-fo{background:#ede9fe;color:#4c1d95}
+.tag-el{background:#e0f2fe;color:#0c4a6e}
+.tag-ec{background:#dcfce7;color:#14532d}
+
+/* ── MIXED QUIZ ── */
+.quiz-shell{background:linear-gradient(135deg,#f8faff,#eef6ff);
+  border:2px solid var(--line);border-radius:22px;padding:26px;margin-bottom:40px}
+.quiz-topbar{display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.quiz-qnum{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.05em;text-transform:uppercase}
+.quiz-score-wrap{display:flex;align-items:center;gap:10px}
+.quiz-score{font-size:13px;font-weight:900;color:var(--green)}
+.prog-bar{background:#e2e8f0;border-radius:999px;height:8px;width:140px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--teal));
+  border-radius:999px;width:5%;transition:width .4s ease}
+.quiz-q{font-weight:800;font-size:15px;margin-bottom:10px;color:var(--ink)}
+.quiz-topic{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;
+  font-weight:800;margin-bottom:8px}
+.quiz-choices{display:grid;gap:8px}
+.qchoice{background:#fff;border:2px solid var(--line);border-radius:12px;padding:11px 16px;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;cursor:pointer;
+  text-align:left;transition:.15s;width:100%}
+.qchoice:hover:not(:disabled){border-color:#93c5fd;background:#f0f6ff}
+.qchoice.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.qchoice.wrong{background:#fff1f2;border-color:#fecaca;color:#b91c1c}
+.quiz-fb{font-weight:800;font-size:13px;min-height:16px;margin:8px 0;
+  padding:8px 12px;border-radius:9px;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.ok{background:#f0fdf4;color:var(--green);border:1px solid #86efac}
+.quiz-fb.no{background:#fff1f2;color:var(--red);border:1px solid #fecaca}
+.quiz-nav{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btn-next{background:var(--blue);color:#fff;border:none;border-radius:999px;
+  padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:.15s}
+.btn-next:hover{background:var(--navy);transform:translateY(-1px)}
+
+/* ── EXAM TIPS ── */
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.tip{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
+  box-shadow:0 2px 12px rgba(15,32,68,.07)}
+.tip-icon{font-size:28px;margin-bottom:8px}
+.tip-title{font-weight:900;color:var(--navy);font-size:14px;margin-bottom:5px}
+.tip-body{font-size:13px;color:var(--muted);font-weight:700;line-height:1.5}
+
+/* ── PROGRESS TRACKER ── */
+.tracker{background:linear-gradient(135deg,#0f2044,#1e3a8a);color:#fff;
+  border-radius:22px;padding:26px;margin-bottom:40px}
+.tracker h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px}
+.tracker-sub{font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:18px}
+.tracker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tc{background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.18);
+  border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;
+  transition:.2s;user-select:none}
+.tc:hover{background:rgba(255,255,255,.16)}
+.tc.done{background:rgba(21,128,61,.38);border-color:rgba(134,239,172,.5)}
+.tc.done .tc-check{opacity:1}
+.tc-icon{font-size:28px;display:block;margin-bottom:6px}
+.tc-label{font-size:12px;font-weight:800;line-height:1.3}
+.tc-check{font-size:18px;opacity:0;transition:opacity .2s;margin-top:4px;display:block}
+.tracker-msg{font-size:13px;font-weight:800;color:#93c5fd;margin-top:14px;text-align:center}
+/* progress strip -->
+.tp-strip{background:rgba(255,255,255,.1);border-radius:999px;height:8px;
+  margin-top:16px;overflow:hidden}
+.tp-fill{height:100%;background:linear-gradient(90deg,#34d399,#06b6d4);
+  border-radius:999px;width:0%;transition:width .6s ease}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .modules,.tips-grid,.formula-grid{grid-template-columns:1fr}
+  .tracker-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .formula-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">📚 End-of-Year Exam Revision &nbsp;·&nbsp; Year 7 Science</div>
+    <h1>Your Science<br><em>Revision Hub</em></h1>
+    <p class="hero-sub">Interactive simulations, worked examples, model answers and 20 tiered questions per topic — everything you need to prepare for your end-of-year exam.</p>
+    <div class="stat-row">
+      <div class="stat-pill"><div class="n">4</div><div class="l">Topics</div></div>
+      <div class="stat-pill"><div class="n">80+</div><div class="l">Questions</div></div>
+      <div class="stat-pill"><div class="n">12</div><div class="l">Simulations</div></div>
+      <div class="stat-pill"><div class="n">POE</div><div class="l">Learning structure</div></div>
+    </div>
+    <div class="cta-row">
+      <a href="#modules" class="cta cta-white">Start revising ↓</a>
+      <a href="#quiz" class="cta cta-outline">Quick mix quiz</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ MODULE CARDS ═══ -->
+<section id="modules">
+  <h2>Choose a topic</h2>
+  <p class="intro">Each page teaches the key ideas, then lets you predict, simulate and explain — followed by 20 tiered questions with model answers.</p>
+  <div class="modules">
+
+    <a class="mc" href="working-scientifically.html">
+      <div class="mc-head ws-bg">
+        <span class="mc-icon">🔬</span>
+        <div class="mc-title">Working Scientifically</div>
+        <div class="mc-sub">Variables · Fair testing · Graph skills · Conclusions · Evaluations</div>
+      </div>
+      <div class="mc-body">
+        <div class="chips">
+          <span class="chip">Lab safety</span><span class="chip">Hypotheses</span>
+          <span class="chip">Variables</span><span class="chip">Anomalies &amp; means</span>
+          <span class="chip">Correlation</span><span class="chip">Conclusions</span>
+          <span class="chip">Evaluations</span><span class="chip">Dissolving sim</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);font-weight:700">Master the skills scientists use in every investigation — from writing hypotheses to evaluating your method.</p>
+        <div class="mc-footer">
+          <span class="mc-meta">20 questions &nbsp;·&nbsp; 3 tiers</span>
+          <span class="open-btn">Open →</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="mc" href="forces.html">
+      <div class="mc-head fo-bg">
+        <span class="mc-icon">🚗</span>
+        <div class="mc-title">Forces &amp; Motion</div>
+        <div class="mc-sub">Speed · D-T &amp; S-T graphs · Acceleration · F=ma · Gravity · Terminal velocity</div>
+      </div>
+      <div class="mc-body">
+        <div class="chips">
+          <span class="chip">v = d÷t</span><span class="chip">D-T graphs</span>
+          <span class="chip">S-T graphs</span><span class="chip">a = Δv÷t</span>
+          <span class="chip">F = ma</span><span class="chip">Resultant forces</span>
+          <span class="chip">W = mg</span><span class="chip">Terminal velocity</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);font-weight:700">From speed calculations to terminal velocity — see forces act and graphs build in real time.</p>
+        <div class="mc-footer">
+          <span class="mc-meta">20 questions &nbsp;·&nbsp; 3 tiers</span>
+          <span class="open-btn">Open →</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="mc" href="electricity.html">
+      <div class="mc-head el-bg">
+        <span class="mc-icon">⚡</span>
+        <div class="mc-title">Electricity &amp; Magnetism</div>
+        <div class="mc-sub">Circuits · Current · Voltage · Resistance · Static · Electromagnets</div>
+      </div>
+      <div class="mc-body">
+        <div class="chips">
+          <span class="chip">Circuit symbols</span><span class="chip">Series vs parallel</span>
+          <span class="chip">I = V÷R</span><span class="chip">Ammeters &amp; voltmeters</span>
+          <span class="chip">Conductors</span><span class="chip">Static electricity</span>
+          <span class="chip">Magnetism</span><span class="chip">Electromagnets</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);font-weight:700">Click to open and close circuits, watch electrons flow, and see magnetic field lines build.</p>
+        <div class="mc-footer">
+          <span class="mc-meta">20 questions &nbsp;·&nbsp; 3 tiers</span>
+          <span class="open-btn">Open →</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="mc" href="ecosystems.html">
+      <div class="mc-head ec-bg">
+        <span class="mc-icon">🌱</span>
+        <div class="mc-title">Ecosystems</div>
+        <div class="mc-sub">Food webs · Photosynthesis · Plant reproduction · Seed dispersal · Fieldwork</div>
+      </div>
+      <div class="mc-body">
+        <div class="chips">
+          <span class="chip">Food chains &amp; webs</span><span class="chip">Pollinators</span>
+          <span class="chip">Photosynthesis</span><span class="chip">Limiting factors</span>
+          <span class="chip">Flower structure</span><span class="chip">Seed dispersal</span>
+          <span class="chip">Quadrats</span><span class="chip">Population cascades</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);font-weight:700">Remove a species and watch the cascade. Watch O₂ bubbles respond to light. Click a flower to learn its parts.</p>
+        <div class="mc-footer">
+          <span class="mc-meta">20 questions &nbsp;·&nbsp; 3 tiers</span>
+          <span class="open-btn">Open →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══ FORMULA SHEET ═══ -->
+<section>
+  <h2>📐 Key formulae</h2>
+  <p class="intro">These are the equations you need to recall and rearrange in the exam. Cover the right-hand side and practise saying each one.</p>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <div class="fi">🏎️</div>
+      <div><div class="feq">v = d ÷ t</div><div class="fname">Speed = Distance ÷ Time &nbsp;(m/s)</div></div>
+    </div>
+    <div class="formula-card">
+      <div class="fi">⚡</div>
+      <div><div class="feq">a = Δv ÷ t</div><div class="fname">Acceleration = Δspeed ÷ Time &nbsp;(m/s²)</div></div>
+    </div>
+    <div class="formula-card">
+      <div class="fi">💪</div>
+      <div><div class="feq">F = m × a</div><div class="fname">Force = Mass × Acceleration &nbsp;(N)</div></div>
+    </div>
+    <div class="formula-card">
+      <div class="fi">🌍</div>
+      <div><div class="feq">W = m × g</div><div class="fname">Weight = Mass × Gravity &nbsp;(N)</div></div>
+    </div>
+    <div class="formula-card">
+      <div class="fi">🔌</div>
+      <div><div class="feq">I = V ÷ R</div><div class="fname">Current = Voltage ÷ Resistance &nbsp;(A)</div></div>
+    </div>
+    <div class="formula-card">
+      <div class="fi">🌿</div>
+      <div><div class="feq">CO₂ + H₂O → glucose + O₂</div><div class="fname">Photosynthesis (needs light energy)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MIXED QUIZ ═══ -->
+<section id="quiz">
+  <h2>⚡ Mixed quick-fire quiz</h2>
+  <p class="intro">10 questions across all four topics. Use this to find your gaps — then go back to the right module to fill them.</p>
+  <div class="quiz-shell">
+    <div class="quiz-topbar">
+      <div class="quiz-qnum" id="qNum">Question 1 of 10</div>
+      <div class="quiz-score-wrap">
+        <span class="quiz-score" id="qScore">Score: 0</span>
+        <div class="prog-bar"><div class="prog-fill" id="qProg"></div></div>
+      </div>
+    </div>
+    <div id="quizArea"></div>
+    <div class="quiz-nav">
+      <button class="btn-next" id="qNextBtn" onclick="nextQ()" style="display:none">Next →</button>
+      <span id="qMsg" style="font-size:13px;font-weight:800;color:var(--muted)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KEY TERMS ACCORDION ═══ -->
+<section>
+  <h2>📖 Key terms — test yourself</h2>
+  <p class="intro">Try to define each term before clicking to reveal. Can you get them all?</p>
+  <div class="acc" id="accBox">
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-fo">Forces</span>Speed</span><span class="acc-arrow">▾</span></div><div class="acc-body">The distance travelled per unit time. Measured in m/s. <strong>Speed = distance ÷ time.</strong> It is a scalar quantity — no direction needed.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-fo">Forces</span>Acceleration</span><span class="acc-arrow">▾</span></div><div class="acc-body">The rate of change of speed. <strong>a = Δv ÷ t</strong>. Measured in m/s². Positive = speeding up; negative (deceleration) = slowing down. Not the same as speed!</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-fo">Forces</span>Terminal velocity</span><span class="acc-arrow">▾</span></div><div class="acc-body">The constant speed reached when <strong>weight = air resistance</strong> (balanced forces, resultant = 0 N). No further acceleration occurs. A skydiver reaches terminal velocity when air resistance grows to match their weight.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-fo">Forces</span>Mass vs weight</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Mass</strong> = amount of matter (kg) — same everywhere in the universe. <strong>Weight</strong> = force of gravity on that mass (N) — changes on different planets. <strong>W = m × g</strong>. On Earth g = 10 N/kg; on the Moon g = 1.6 N/kg.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-fo">Forces</span>Resultant force</span><span class="acc-arrow">▾</span></div><div class="acc-body">The single force that represents the combined effect of all forces. Resultant = 0 N → balanced → constant velocity. Resultant ≠ 0 N → unbalanced → acceleration (F = ma).</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-el">Electricity</span>Current (I)</span><span class="acc-arrow">▾</span></div><div class="acc-body">The flow of electric charge. Measured in <strong>amps (A)</strong> using an <strong>ammeter in series</strong>. Current is NOT used up in a circuit — the same current flows at every point in a series circuit.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-el">Electricity</span>Voltage, current, resistance</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Voltage (V)</strong> — energy transferred per unit charge, measured in volts (V). <strong>Resistance (Ω)</strong> — opposition to current flow, measured in ohms. Linked by: <strong>I = V ÷ R</strong>. Higher resistance → lower current for the same voltage.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-el">Electricity</span>Series vs parallel</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Series</strong>: one loop, same current everywhere, voltage shared, one break stops all. <strong>Parallel</strong>: separate branches, each gets full voltage, one break doesn't affect others. Home lights are parallel so they work independently.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ec">Ecosystems</span>Producer / consumer</span><span class="acc-arrow">▾</span></div><div class="acc-body">A <strong>producer</strong> makes its own food by photosynthesis (e.g. grass, algae). A <strong>consumer</strong> eats other organisms. Primary consumers eat producers; secondary consumers eat primary consumers. Arrows in food chains show the <em>direction of energy transfer</em> — not who eats whom.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ec">Ecosystems</span>Photosynthesis</span><span class="acc-arrow">▾</span></div><div class="acc-body">Plants use light energy to convert CO₂ + H₂O → glucose + O₂. Happens in <strong>chloroplasts</strong> (contain chlorophyll). Rate is limited by light intensity, CO₂ concentration or temperature — whichever is in shortest supply is the <strong>limiting factor</strong>.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ec">Ecosystems</span>Pollination vs fertilisation</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Pollination</strong> = transfer of pollen from <em>anther</em> to <em>stigma</em>. <strong>Fertilisation</strong> = fusion of pollen nucleus with ovule nucleus inside the ovary → seed forms. Pollination must happen before fertilisation.</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ws">Working Sci.</span>Independent / dependent / control</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Independent variable</strong> = deliberately changed. <strong>Dependent variable</strong> = measured. <strong>Control variables</strong> = kept the same to make the test fair. Hypothesis structure: <em>If [IV changes], then [DV] will [change] because [scientific reason].</em></div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ws">Working Sci.</span>Hazard vs risk vs precaution</span><span class="acc-arrow">▾</span></div><div class="acc-body"><strong>Hazard</strong> = something that could cause harm (e.g. Bunsen flame). <strong>Risk</strong> = the chance of harm and how serious it could be. <strong>Precaution</strong> = action taken to reduce the risk (e.g. wearing goggles, tying hair back).</div></div>
+
+    <div class="acc-item"><div class="acc-head" onclick="acc(this)"><span><span class="acc-tag tag-ws">Working Sci.</span>Anomaly &amp; mean</span><span class="acc-arrow">▾</span></div><div class="acc-body">An <strong>anomaly</strong> is a result that doesn't fit the pattern — likely caused by measurement error. It should be <strong>excluded</strong> before calculating the mean. <strong>Mean</strong> = sum of values ÷ number of values. Repeats improve <strong>reliability</strong>.</div></div>
+
+  </div>
+</section>
+
+<!-- ═══ EXAM TIPS ═══ -->
+<section>
+  <h2>✅ Exam tips</h2>
+  <p class="intro">Six strategies that make a real difference in the exam room.</p>
+  <div class="tips-grid">
+    <div class="tip">
+      <div class="tip-icon">📝</div>
+      <div class="tip-title">Always show working</div>
+      <div class="tip-body">Write formula → substitute values → calculate. Even if your final answer is wrong, you can earn marks for the correct method and formula.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">🔤</div>
+      <div class="tip-title">Include units every time</div>
+      <div class="tip-body">Speed in m/s · force in N · mass in kg · weight in N · acceleration in m/s² · current in A · resistance in Ω. Missing units = lost marks.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">🔄</div>
+      <div class="tip-title">Rearrange confidently</div>
+      <div class="tip-body">v=d÷t → d=v×t and t=d÷v. F=ma → a=F÷m and m=F÷a. W=mg → m=W÷g. I=V÷R → V=IR and R=V÷I. Practise covering each variable in turn.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">📊</div>
+      <div class="tip-title">Know your graphs</div>
+      <div class="tip-body">D-T graph: horizontal = stopped. S-T graph: horizontal = constant speed (still moving!). This difference catches many students out. Gradient of D-T = speed. Gradient of S-T = acceleration.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-title">Avoid the common traps</div>
+      <div class="tip-body">Mass ≠ weight · current is NOT used up in series · arrows in food chains = energy direction, not "eats" · plants make glucose (don't absorb it from soil) · balanced forces ≠ stopped.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">📖</div>
+      <div class="tip-title">Describe then explain</div>
+      <div class="tip-body">For extended answers: say WHAT happens first (using data), then WHY it happens (using science). "Speed increased from 2 to 8 m/s because…" scores far more than "speed increased."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRESS TRACKER ═══ -->
+<section>
+  <div class="tracker">
+    <h3>📋 Revision tracker</h3>
+    <p class="tracker-sub">Click a topic when you have revised it fully — including the simulation and CFU questions.</p>
+    <div class="tracker-grid">
+      <div class="tc" onclick="track(this,'ws')" data-key="ws">
+        <span class="tc-icon">🔬</span>
+        <span class="tc-label">Working Scientifically</span>
+        <span class="tc-check">✅</span>
+      </div>
+      <div class="tc" onclick="track(this,'fo')" data-key="fo">
+        <span class="tc-icon">🚗</span>
+        <span class="tc-label">Forces &amp; Motion</span>
+        <span class="tc-check">✅</span>
+      </div>
+      <div class="tc" onclick="track(this,'el')" data-key="el">
+        <span class="tc-icon">⚡</span>
+        <span class="tc-label">Electricity &amp; Magnetism</span>
+        <span class="tc-check">✅</span>
+      </div>
+      <div class="tc" onclick="track(this,'ec')" data-key="ec">
+        <span class="tc-icon">🌱</span>
+        <span class="tc-label">Ecosystems</span>
+        <span class="tc-check">✅</span>
+      </div>
+    </div>
+    <div class="tp-strip"><div class="tp-fill" id="tpFill"></div></div>
+    <div class="tracker-msg" id="trackerMsg">Click a topic once you have revised it ✓</div>
+  </div>
+</section>
+
+</main>
+</div><!-- .page -->
+
+<script>
+// ════ ACCORDION ════════════════════════════════════
+function acc(head){
+  const item=head.closest('.acc-item');
+  const body=item.querySelector('.acc-body');
+  const open=item.classList.contains('open');
+  // close all others
+  document.querySelectorAll('.acc-item.open').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.acc-body').classList.remove('open');
+  });
+  if(!open){item.classList.add('open');body.classList.add('open');}
+}
+
+// ════ TRACKER ══════════════════════════════════════
+const tracked={ws:false,fo:false,el:false,ec:false};
+const msgs=['Click a topic once you have revised it ✓',
+            '1 of 4 done — great start! 💪',
+            '2 of 4 done — halfway there! 🌟',
+            '3 of 4 done — almost there! 🚀',
+            'All four topics revised! You\'re ready. 🎉'];
+function track(cell,key){
+  tracked[key]=!tracked[key];
+  cell.classList.toggle('done',tracked[key]);
+  const done=Object.values(tracked).filter(Boolean).length;
+  document.getElementById('tpFill').style.width=(done/4*100)+'%';
+  document.getElementById('trackerMsg').textContent=msgs[done];
+}
+
+// ════ MIXED QUIZ ════════════════════════════════════
+const allQs=[
+  // Working Sci
+  {t:'Working Sci.',tc:'tag-ws',q:'The variable you deliberately change in an experiment is called the...',
+   o:['Independent variable','Dependent variable','Control variable'],a:0,
+   ok:'✅ Correct — independent variable is what you change.',
+   no:'❌ The dependent variable is what you measure. The independent variable is what you change.'},
+  {t:'Working Sci.',tc:'tag-ws',q:'An anomaly is...',
+   o:['A result that fits the pattern well','A result that doesn\'t fit the pattern','The mean of all results'],a:1,
+   ok:'✅ Correct — an anomaly doesn\'t fit the pattern and should be excluded from the mean.',
+   no:'❌ An anomaly is a result that doesn\'t fit the pattern — likely due to measurement error.'},
+  {t:'Working Sci.',tc:'tag-ws',q:'A line of best fit on a graph should...',
+   o:['Pass through every data point','Show the general trend — doesn\'t need to touch every point','Always start from the origin'],a:1,
+   ok:'✅ Correct — the line shows the general trend. Anomalies are left out.',
+   no:'❌ A line of best fit shows the TREND. It does not need to touch every point, and anomalies should be excluded.'},
+  // Forces
+  {t:'Forces',tc:'tag-fo',q:'A car travels 150 m in 10 s. What is its speed?',
+   o:['15 m/s','1500 m/s','150 m/s'],a:0,
+   ok:'✅ Correct! v = d÷t = 150÷10 = 15 m/s.',
+   no:'❌ v = d÷t = 150÷10 = 15 m/s. Always check your units!'},
+  {t:'Forces',tc:'tag-fo',q:'On a speed-time graph, a horizontal (flat) line means the object is...',
+   o:['Stopped','Accelerating','Moving at constant speed'],a:2,
+   ok:'✅ Correct — flat on an S-T graph means speed not changing = constant speed. NOT stopped!',
+   no:'❌ Careful — a flat line on an S-T graph means CONSTANT SPEED, not stopped. Stopped would be a line ON the x-axis (speed = 0).'},
+  {t:'Forces',tc:'tag-fo',q:'Balanced forces (resultant = 0 N) mean the object must be...',
+   o:['Stationary','Moving at constant velocity — could be moving or stopped','Accelerating'],a:1,
+   ok:'✅ Correct — balanced forces → constant velocity. Could be stationary OR moving at constant speed.',
+   no:'❌ Balanced forces mean resultant = 0 N → no change in motion. The object could be stationary OR moving at constant speed.'},
+  // Electricity
+  {t:'Electricity',tc:'tag-el',q:'In a series circuit, if one lamp breaks...',
+   o:['Other lamps stay on — they have their own branch','All lamps go off — the loop is broken','Current increases to the other lamps'],a:1,
+   ok:'✅ Correct — series = one loop. Any break stops current everywhere.',
+   no:'❌ That describes a parallel circuit. In series there is one loop — one break stops ALL current.'},
+  {t:'Electricity',tc:'tag-el',q:'Calculate: Voltage = 12 V, Resistance = 4 Ω. Current = ?',
+   o:['3 A','48 A','8 A'],a:0,
+   ok:'✅ Correct! I = V÷R = 12÷4 = 3 A.',
+   no:'❌ I = V÷R = 12÷4 = 3 A. Always write the formula first, then substitute.'},
+  // Ecosystems
+  {t:'Ecosystems',tc:'tag-ec',q:'Arrows in a food chain show...',
+   o:['Which animal eats which','The direction of energy transfer','Where animals live'],a:1,
+   ok:'✅ Correct — arrows show the DIRECTION OF ENERGY TRANSFER (from eaten to eater).',
+   no:'❌ Arrows show the direction of energy transfer — a very common exam error to get this wrong!'},
+  {t:'Ecosystems',tc:'tag-ec',q:'Where does photosynthesis take place in a plant cell?',
+   o:['In the nucleus','In the chloroplasts','In the cell membrane'],a:1,
+   ok:'✅ Correct — chloroplasts contain chlorophyll and are where photosynthesis occurs.',
+   no:'❌ Photosynthesis occurs in the CHLOROPLASTS, not the nucleus. Chloroplasts contain chlorophyll which absorbs light.'},
+];
+
+let qList=[], qIdx=0, qScore=0, qAnswered=false;
+
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+
+function startQuiz(){
+  qList=shuffle(allQs).slice(0,10);
+  qIdx=0; qScore=0; qAnswered=false;
+  renderQ();
+}
+
+function renderQ(){
+  const q=qList[qIdx];
+  qAnswered=false;
+  document.getElementById('qNum').textContent=`Question ${qIdx+1} of ${qList.length}`;
+  document.getElementById('qScore').textContent=`Score: ${qScore}`;
+  document.getElementById('qProg').style.width=`${(qIdx/qList.length)*100}%`;
+  document.getElementById('qNextBtn').style.display='none';
+  document.getElementById('qMsg').textContent=`Topic: ${q.t}`;
+
+  const shuffledOpts=shuffle(q.o.map((text,i)=>({text,correct:i===q.a})));
+  document.getElementById('quizArea').innerHTML=`
+    <span class="quiz-topic ${q.tc}">${q.t}</span>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-choices">${shuffledOpts.map(o=>`
+      <button class="qchoice" onclick="answerQ(this,${o.correct})">${o.text}</button>`).join('')}
+    </div>
+    <div class="quiz-fb" id="qFB"></div>`;
+}
+
+function answerQ(btn,correct){
+  if(qAnswered)return;
+  qAnswered=true;
+  btn.closest('.quiz-choices').querySelectorAll('.qchoice').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    // highlight correct answer
+    btn.closest('.quiz-choices').querySelectorAll('.qchoice').forEach(b=>{
+      if(!b.classList.contains('wrong'))b.classList.add('correct');
+    });
+  }
+  if(correct)qScore++;
+  document.getElementById('qScore').textContent=`Score: ${qScore}`;
+  const fb=document.getElementById('qFB');
+  const q=qList[qIdx];
+  fb.textContent=correct?q.ok:q.no;
+  fb.className='quiz-fb show '+(correct?'ok':'no');
+  if(qIdx<qList.length-1){
+    document.getElementById('qNextBtn').style.display='inline-block';
+  } else {
+    setTimeout(showResult,500);
+  }
+}
+
+function nextQ(){qIdx++;renderQ();}
+
+function showResult(){
+  const pct=Math.round(qScore/qList.length*100);
+  const grade=pct>=80?'🌟 Excellent':pct>=60?'👍 Good effort':'📖 Keep practising';
+  const msg=pct>=80?'You\'re looking exam-ready!':pct>=60?'Review the topics where you lost marks.':'Use the topic pages to go over any gaps.';
+  document.getElementById('quizArea').innerHTML=`
+    <div style="text-align:center;padding:16px 0">
+      <div style="font-size:56px;margin-bottom:8px">${pct>=80?'🏆':pct>=60?'⭐':'📚'}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--navy)">${qScore}/${qList.length}</div>
+      <div style="font-size:16px;font-weight:800;color:var(--muted);margin:4px 0">${pct}% &nbsp;·&nbsp; ${grade}</div>
+      <div style="font-size:14px;font-weight:700;color:var(--ink);margin-top:8px">${msg}</div>
+    </div>`;
+  document.getElementById('qProg').style.width='100%';
+  document.getElementById('qNextBtn').style.display='none';
+  document.getElementById('qMsg').innerHTML=`<button onclick="startQuiz()" style="background:var(--blue);color:#fff;border:none;border-radius:999px;padding:9px 22px;font-family:Nunito,sans-serif;font-weight:800;font-size:13px;cursor:pointer">Try again →</button>`;
+}
+
+startQuiz();
+</script>
+</body>
+</html>
