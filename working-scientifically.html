@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Working Scientifically – Year 7 Science</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0f2044;--blue:#2563eb;--teal:#0891b2;--green:#15803d;--orange:#c2410c;
+  --purple:#6d28d9;--red:#b91c1c;--ink:#1a2535;--muted:#64748b;
+  --card:#fff;--bg:#f0f6ff;--line:#cbd5e1;--soft:#e8f0fe;
+  --shadow:0 4px 24px rgba(15,32,68,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.page{max-width:1180px;margin:0 auto;background:#fff;box-shadow:0 0 80px rgba(15,32,68,.09)}
+.hero{min-height:340px;display:grid;place-items:center;text-align:center;padding:50px 24px 40px;
+  background:linear-gradient(135deg,#0f2044 0%,#1e3a8a 55%,#0e7490 100%);position:relative;overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(14,116,144,.4),transparent 40%),
+             radial-gradient(circle at 10% 80%,rgba(37,99,235,.3),transparent 35%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(32px,5.5vw,60px);font-weight:800;line-height:1.05;margin-bottom:12px}
+.hero p{font-size:clamp(14px,1.8vw,17px);font-weight:700;color:#bfdbfe;max-width:750px;margin:0 auto 18px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:800}
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:9px 16px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.nav a{text-decoration:none;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;transition:.2s}
+.nav a:hover,.nav a.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav a.home{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{padding:28px 18px 70px}
+.section{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin:24px 0}
+.stag{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px;margin-bottom:8px}
+.stag.teal{background:var(--teal)}.stag.green{background:var(--green)}.stag.purple{background:var(--purple)}.stag.orange{background:var(--orange)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:5px}
+h3{font-size:16px;font-weight:800;color:var(--navy);margin:12px 0 5px}
+.lead{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:18px}
+.big-idea{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:18px;padding:18px 22px;margin-bottom:20px}
+.big-idea .lbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:5px}
+.big-idea p{font-size:15px;font-weight:700;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.vocab{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.vc{background:var(--soft);border:1px solid #93c5fd;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;color:#1e3a8a}
+.mc{background:#fff1f2;border:2px solid #fca5a5;border-radius:16px;padding:14px 16px;margin:12px 0}
+.mc strong{color:var(--red);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.worked{background:#f0f9ff;border:1px solid #bae6fd;border-radius:16px;padding:16px;margin:12px 0}
+.wlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.task{background:#f8faff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}
+.tlbl{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.starter{background:#fef9c3;border:1px solid #fde047;border-radius:12px;padding:12px 14px;margin:10px 0;font-size:14px;font-weight:700;color:#713f12;line-height:1.6}
+/* choices */
+.choices{display:flex;flex-direction:column;gap:7px;margin:9px 0}
+.choice{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;text-align:left;cursor:pointer;transition:.15s;width:100%}
+.choice:hover{border-color:#93c5fd;background:#f0f6ff}
+.choice.correct{background:#f0fdf4;border-color:#86efac;color:#15803d}
+.choice.wrong{background:#fff1f2;border-color:#fecaca;color:#b91c1c}
+.fb{font-size:13px;font-weight:800;min-height:16px;margin-top:6px;padding:8px 12px;border-radius:10px;display:none}
+.fb.show{display:block}
+.fb.ok{background:#f0fdf4;color:var(--green);border:1px solid #86efac}
+.fb.no{background:#fff1f2;color:var(--red);border:1px solid #fecaca}
+input[type=number]{padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:15px;font-family:'Nunito',sans-serif;width:140px}
+input[type=number]:focus{outline:none;border-color:var(--blue)}
+textarea{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;min-height:75px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--blue)}
+select{padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;background:#fff;width:100%}
+select:focus{outline:none;border-color:var(--blue)}
+.btn{border:none;border-radius:999px;padding:9px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:.15s;margin:3px 2px}
+.btn:hover{transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:#fff}.btn-green{background:var(--green);color:#fff}
+.btn-purple{background:var(--purple);color:#fff}.btn-ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn-teal{background:var(--teal);color:#fff}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:#1e3a8a;color:#fff;padding:9px 10px;font-weight:800;text-align:left}
+td{padding:8px 10px;border:1px solid var(--line);vertical-align:middle}
+tr:nth-child(even) td{background:#f8faff}
+/* CFU tabs */
+.cfu-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.cfu-tab{padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:800;font-size:12px;cursor:pointer;background:#fff}
+.cfu-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cfu-panel{display:none}.cfu-panel.active{display:block}
+.qb{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.qn{font-size:10px;font-weight:900;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.tb{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10px;font-weight:900;margin-left:5px}
+.tg{background:#dcfce7;color:#15803d}.ty{background:#fef9c3;color:#92400e}.tr{background:#fee2e2;color:#b91c1c}
+/* ─── POE SIMULATION WRAPPER ─── */
+.sim-wrapper{background:linear-gradient(135deg,#f0f6ff,#e8f4ff);border:2px solid #93c5fd;border-radius:20px;padding:22px;margin:16px 0}
+.sim-phase{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:8px 0}
+.sim-phase-label{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.phase-num{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.phase-title{font-size:13px;font-weight:900;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.phase-num.predict{background:#7c3aed}
+.phase-num.simulate{background:#0891b2}
+.phase-num.explain{background:#15803d}
+/* ─── BEAKER ANIMATION ─── */
+#beaker-svg{width:100%;max-width:360px;display:block;margin:0 auto}
+.sugar-particle{transition:opacity 0.3s,cy 0.5s;cursor:default}
+.dissolving{animation:dissolveOut 0.8s forwards}
+@keyframes dissolveOut{to{opacity:0;r:0}}
+.bubble-rise{animation:riseUp 2s ease-in infinite}
+@keyframes riseUp{0%{transform:translateY(0);opacity:.7}100%{transform:translateY(-60px);opacity:0}}
+/* ─── GRAPH SVG ─── */
+svg.diagram{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+.svg-big{font:bold 13px 'Nunito',sans-serif;fill:#0f2044}
+.svg-sm{font:bold 11px 'Nunito',sans-serif;fill:#64748b}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}.nav{position:static}}
+</style>
+</head>
+<body><div class="page">
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>🔬 Working Scientifically</h1>
+    <p>Lab safety · Variables · Fair tests · Graph skills · Conclusions · Evaluations</p>
+    <div class="badges">
+      <span class="badge">🧪 Dissolving simulation</span>
+      <span class="badge">📊 Graph skills</span>
+      <span class="badge">📝 20 CFU questions</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="index.html" class="home">🏠 Hub</a>
+  <a href="working-scientifically.html" class="active">🔬 Working Sci.</a>
+  <a href="forces.html">🚗 Forces</a>
+  <a href="electricity.html">⚡ Electricity</a>
+  <a href="ecosystems.html">🌱 Ecosystems</a>
+</nav>
+
+<main>
+<div class="big-idea"><div class="lbl">Big Idea</div><p>Scientists plan investigations so results are reliable and conclusions are valid. Every choice — what to measure, what to keep the same, how many repeats — affects how much we can trust the data.</p></div>
+
+<!-- ══ 1. LAB SAFETY ══ -->
+<section class="section" id="safety">
+  <div class="stag">Section 1</div>
+  <h2>Lab Safety &amp; the Bunsen Burner</h2>
+  <p class="lead">Before any practical, scientists identify hazards and reduce risks.</p>
+  <div class="vocab">
+    <span class="vc">hazard = something that <em>could</em> cause harm</span>
+    <span class="vc">risk = the chance of harm &amp; how serious</span>
+    <span class="vc">precaution = action that reduces risk</span>
+  </div>
+  <div class="mc"><strong>⚠️ Hazard vs Risk vs Precaution — all three are different!</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">The <strong>Bunsen flame</strong> is the hazard. The <strong>risk</strong> is that loose hair could catch fire. The <strong>precaution</strong> is to tie hair back. Students often confuse hazard and risk — they are not the same thing.</p></div>
+  <div class="grid3">
+    <div class="card"><h3>🔥 Before lighting</h3><p style="font-size:13px;color:#475569;font-weight:700;margin-top:5px">Goggles on · Hair tied back · Bag off floor · Air hole closed · Check gas tube is secure</p></div>
+    <div class="card"><h3>🔵 The two flames</h3><p style="font-size:13px;color:#475569;font-weight:700;margin-top:5px"><strong>Yellow</strong> = safety flame (air hole closed, cooler)<br><strong>Blue</strong> = roaring flame (air hole open, hotter — used for heating)</p></div>
+    <div class="card"><h3>🧯 After use</h3><p style="font-size:13px;color:#475569;font-weight:700;margin-top:5px">Close air hole before turning off gas · Never leave flame unattended · Wait for equipment to cool</p></div>
+  </div>
+  <div class="task"><div class="tlbl">Check it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">A student is heating water but has loose hair, no goggles, and a bag on the floor. Name <strong>two hazards</strong> and a precaution for each.</p>
+    <textarea id="safeQ" placeholder="Hazard 1: ...  Precaution: ...&#10;Hazard 2: ...  Precaution: ..."></textarea>
+    <button class="btn btn-green" onclick="checkSome('safeQ','safeF',['goggles','hair','bag','tie','wear','move'],'✅ Good — you linked each hazard to a precaution.','❌ Model: Hazard 1 — loose hair near flame (could catch fire). Precaution: tie hair back. Hazard 2 — no goggles (risk of splash to eyes). Precaution: wear safety goggles. Bag is also a trip hazard — move it.')">Check</button>
+    <div class="fb" id="safeF"></div>
+  </div>
+  <div class="task"><div class="tlbl">Check it</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">Which flame is used for heating?</p>
+    <div class="choices">
+      <button class="choice" onclick="choice(this,true,'safeF2','✅ Correct — the blue roaring flame is hotter and used for heating.','')">Blue (roaring) flame — air hole open</button>
+      <button class="choice" onclick="choice(this,false,'safeF2','','❌ The yellow flame is only the safety flame used while waiting. The blue flame is used for heating.')">Yellow (safety) flame — air hole closed</button>
+    </div>
+    <div class="fb" id="safeF2"></div>
+  </div>
+</section>
+
+<!-- ══ 2. VARIABLES ══ -->
+<section class="section" id="variables">
+  <div class="stag teal">Section 2</div>
+  <h2>Variables and Fair Testing</h2>
+  <p class="lead">Every investigation has three types of variable. Getting these right makes your test fair and your conclusions valid.</p>
+  <div class="vocab">
+    <span class="vc">independent variable = what you <strong>change</strong></span>
+    <span class="vc">dependent variable = what you <strong>measure</strong></span>
+    <span class="vc">control variable = what you <strong>keep the same</strong></span>
+  </div>
+  <div class="mc"><strong>⚠️ Control variable ≠ Control experiment</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">A control variable is a factor you keep the same to make the test fair. It is not the same as a "control experiment." At Year 7, control variable = things kept the same.</p></div>
+  <div class="starter"><strong>Hypothesis structure — always use this:</strong><br>
+    <em>"If I [change the independent variable], then [the dependent variable] will [increase/decrease] because [scientific reason]."</em>
+  </div>
+  <div class="worked"><div class="wlbl">Worked Example</div>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Investigation:</strong> How does ramp height affect the speed of a toy car?</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Independent variable:</strong> Height of the ramp (cm)</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Dependent variable:</strong> Speed of the car (m/s)</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Control variables:</strong> Same car, same ramp, same distance, same surface</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Hypothesis:</strong> "If I increase the ramp height, then the car speed will increase, because a higher ramp gives more gravitational potential energy."</p>
+  </div>
+  <div class="task"><div class="tlbl">Your turn</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">Same investigation: ramp height → car speed. Select the correct variable type for each.</p>
+    <table>
+      <tr><th>Question</th><th>Answer</th></tr>
+      <tr><td>Independent variable</td><td><select id="v1"><option value="">Choose...</option><option value="h">Height of ramp</option><option value="s">Speed of car</option><option value="c">Same car</option></select></td></tr>
+      <tr><td>Dependent variable</td><td><select id="v2"><option value="">Choose...</option><option value="h">Height of ramp</option><option value="s">Speed of car</option><option value="t">Same timer</option></select></td></tr>
+      <tr><td>A control variable</td><td><select id="v3"><option value="">Choose...</option><option value="c">Same toy car</option><option value="s">Speed of car</option><option value="h">Height of ramp</option></select></td></tr>
+    </table>
+    <button class="btn btn-blue" onclick="checkVars()">Check</button>
+    <div class="fb" id="varF"></div>
+  </div>
+</section>
+
+<!-- ══ 3. TABLES, MEANS, ANOMALIES ══ -->
+<section class="section" id="data">
+  <div class="stag green">Section 3</div>
+  <h2>Tables, Means and Anomalies</h2>
+  <p class="lead">Good data tables, calculated means, and spotting anomalies are all essential skills.</p>
+  <div class="vocab">
+    <span class="vc">repeat = doing the same measurement more than once</span>
+    <span class="vc">mean = sum of values ÷ number of values</span>
+    <span class="vc">anomaly = a result that doesn't fit the pattern</span>
+    <span class="vc">reliable = results that are consistent when repeated</span>
+  </div>
+  <div class="worked"><div class="wlbl">Worked Example — Calculating a Mean &amp; Spotting an Anomaly</div>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0">Five repeat times for sugar dissolving (s): 18, 20, 19, 47, 21</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Step 1 — Spot the anomaly:</strong> 47 s doesn't fit the pattern (others are ~18–21 s). Exclude it.</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:4px 0"><strong>Step 2 — Mean of remaining values:</strong> (18 + 20 + 19 + 21) ÷ 4 = 78 ÷ 4 = <strong>19.5 s</strong></p>
+  </div>
+  <div class="task"><div class="tlbl">Calculate</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:8px">Results for 10 g of sugar dissolving (s): 22, 24, 23, 51, 23. Identify the anomaly and calculate the mean of the remaining values.</p>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+      <div><label style="font-size:13px;font-weight:800">Anomaly:</label><br><input type="number" id="anQ1" placeholder="s" style="width:90px;margin-top:4px"></div>
+      <div><label style="font-size:13px;font-weight:800">Mean:</label><br><input type="number" id="anQ2" placeholder="s" style="width:90px;margin-top:4px"></div>
+    </div>
+    <button class="btn btn-blue" onclick="checkBoth()">Check both</button>
+    <div class="fb" id="anF"></div>
+  </div>
+</section>
+
+<!-- ══ 4. GRAPH SKILLS ══ -->
+<section class="section" id="graphs">
+  <div class="stag purple">Section 4</div>
+  <h2>Graph Skills</h2>
+  <p class="lead">Line graphs show relationships between variables. The line of best fit shows the general trend — it does NOT have to touch every point.</p>
+  <div class="grid2">
+    <div>
+      <svg class="diagram" viewBox="0 0 440 340">
+        <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0f2044"/></marker></defs>
+        <line x1="60" y1="295" x2="420" y2="295" stroke="#0f2044" stroke-width="2.5" marker-end="url(#ah)"/>
+        <line x1="60" y1="295" x2="60" y2="25" stroke="#0f2044" stroke-width="2.5" marker-end="url(#ah)"/>
+        <g stroke="#e2e8f0" stroke-width="1">
+          <line x1="60" y1="248" x2="415" y2="248"/><line x1="60" y1="201" x2="415" y2="201"/>
+          <line x1="60" y1="154" x2="415" y2="154"/><line x1="60" y1="107" x2="415" y2="107"/><line x1="60" y1="60" x2="415" y2="60"/>
+          <line x1="130" y1="25" x2="130" y2="295"/><line x1="200" y1="25" x2="200" y2="295"/>
+          <line x1="270" y1="25" x2="270" y2="295"/><line x1="340" y1="25" x2="340" y2="295"/><line x1="410" y1="25" x2="410" y2="295"/>
+        </g>
+        <text x="240" y="328" text-anchor="middle" class="svg-big">Ramp height (cm)</text>
+        <text x="18" y="168" text-anchor="middle" class="svg-big" transform="rotate(-90,18,168)">Speed (m/s)</text>
+        <text x="65" y="252" text-anchor="end" class="svg-sm">1</text><text x="65" y="205" text-anchor="end" class="svg-sm">2</text>
+        <text x="65" y="158" text-anchor="end" class="svg-sm">3</text><text x="65" y="111" text-anchor="end" class="svg-sm">4</text><text x="65" y="64" text-anchor="end" class="svg-sm">5</text>
+        <text x="130" y="313" text-anchor="middle" class="svg-sm">5</text><text x="200" y="313" text-anchor="middle" class="svg-sm">10</text>
+        <text x="270" y="313" text-anchor="middle" class="svg-sm">15</text><text x="340" y="313" text-anchor="middle" class="svg-sm">20</text><text x="410" y="313" text-anchor="middle" class="svg-sm">25</text>
+        <!-- normal points -->
+        <circle cx="130" cy="260" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+        <circle cx="200" cy="218" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+        <circle cx="270" cy="172" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+        <circle cx="340" cy="118" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+        <circle cx="410" cy="68" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+        <!-- anomaly -->
+        <circle cx="200" cy="112" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+        <text x="215" y="108" class="svg-sm" fill="#dc2626" font-weight="900">anomaly!</text>
+        <!-- line of best fit -->
+        <line x1="100" y1="280" x2="420" y2="58" stroke="#15803d" stroke-width="2.5" opacity=".9"/>
+        <text x="370" y="50" class="svg-sm" fill="#15803d">best fit line</text>
+        <text x="240" y="18" text-anchor="middle" class="svg-big">Ramp Height vs Car Speed</text>
+      </svg>
+    </div>
+    <div>
+      <div class="task"><div class="tlbl">Read the graph</div>
+        <p style="font-weight:700;font-size:14px;margin-bottom:7px">1. What happens to speed as ramp height increases?</p>
+        <select id="gq1"><option value="">Choose...</option><option value="i">Speed increases</option><option value="d">Speed decreases</option><option value="s">Speed stays the same</option></select>
+        <button class="btn btn-blue" onclick="checkDD('gq1','i','gqF1','✅ Correct — positive correlation. As height increases, speed increases.','❌ Look at the blue dots — they go upward as you move right. Speed increases.')">Check</button>
+        <div class="fb" id="gqF1"></div>
+        <p style="font-weight:700;font-size:14px;margin:12px 0 7px">2. What type of correlation is shown?</p>
+        <select id="gq2"><option value="">Choose...</option><option value="p">Positive correlation</option><option value="n">Negative correlation</option><option value="x">No correlation</option></select>
+        <button class="btn btn-blue" onclick="checkDD('gq2','p','gqF2','✅ Correct — both variables increase together = positive correlation.','❌ Both variables increase together. That is positive correlation.')">Check</button>
+        <div class="fb" id="gqF2"></div>
+        <p style="font-weight:700;font-size:14px;margin:12px 0 7px">3. Describe the red anomaly point. What might have caused it?</p>
+        <textarea id="gq3" placeholder="The anomaly is at height 10 cm and shows a speed of... It might have been caused by..." style="min-height:65px"></textarea>
+        <button class="btn btn-green" onclick="checkSome('gq3','gqF3',['10','anomaly','error','doesn\'t fit','pattern','above','high','mistake'],'✅ Good — you identified the anomaly and suggested a cause.','❌ Model: The red point at 10 cm shows a speed much higher than expected (4 m/s rather than ~1.5 m/s). It does not fit the pattern. It was likely a measurement error — perhaps the timer was started late.')">Check</button>
+        <div class="fb" id="gqF3"></div>
+      </div>
+      <div class="task" style="margin-top:10px"><div class="tlbl">True or False?</div>
+        <p style="font-weight:700;font-size:14px;margin-bottom:7px">A line of best fit must pass through every data point.</p>
+        <div class="choices">
+          <button class="choice" onclick="choice(this,false,'lobfF','','❌ FALSE — a line of best fit shows the general trend. It does not need to touch every point. Anomalies should NOT be included.')">True</button>
+          <button class="choice" onclick="choice(this,true,'lobfF','✅ Correct — FALSE. The line shows the trend; anomalies should be left out.','')">False — it shows the general trend</button>
+        </div>
+        <div class="fb" id="lobfF"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5. CONCLUSIONS & EVALUATIONS ══ -->
+<section class="section" id="conclusions">
+  <div class="stag orange">Section 5</div>
+  <h2>Conclusions and Evaluations</h2>
+  <p class="lead">A conclusion uses data to answer the question. An evaluation judges the quality of the method.</p>
+  <div class="mc"><strong>⚠️ Conclusion without data = weak conclusion</strong>
+    <p style="margin-top:5px;font-size:14px;color:#7c2d12">Weak: "Height affects speed." Strong: "As height increased from 5 cm to 25 cm, speed increased from 1.2 to 4.9 m/s — a positive correlation supporting my hypothesis."</p></div>
+  <div class="worked"><div class="wlbl">Worked Example — Dissolving Sugars</div>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:3px 0"><strong>Strong conclusion:</strong> "As sugar mass increased from 5 g to 15 g, dissolving time increased from 12 s to 36 s — a positive correlation supporting my hypothesis."</p>
+    <p style="font-size:14px;font-weight:700;color:#0e7490;margin:3px 0"><strong>Strong evaluation:</strong> "I repeated each measurement three times and calculated a mean. One anomaly at 15 g (58 s) was excluded. To improve reliability I could take five repeats per mass."</p>
+  </div>
+  <div class="task"><div class="tlbl">Write a conclusion</div>
+    <p style="font-weight:700;font-size:14px;margin-bottom:7px">Investigation: ramp height → car speed. Results: 5 cm→1.2 m/s, 10 cm→2.5 m/s, 15 cm→3.6 m/s, 20 cm→4.8 m/s.</p>
+    <div class="starter">As the ramp height increased from ___ to ___, the speed of the car... This supports / does not support my hypothesis because...</div>
+    <textarea id="concQ" placeholder="As the ramp height increased from 5 cm to 20 cm..."></textarea>
+    <button class="btn btn-green" onclick="checkSome('concQ','concF',['increase','1.2','4.8','support','data','height','speed','positive'],'✅ Good conclusion — you used data and linked back to the hypothesis.','❌ Model: As ramp height increased from 5 cm to 20 cm, speed increased from 1.2 m/s to 4.8 m/s. This supports my hypothesis — a positive correlation. The greater the height, the greater the speed.')">Check</button>
+    <div class="fb" id="concF"></div>
+  </div>
+</section>
+
+<!-- ══ 6. DISSOLVING SIMULATION ══ -->
+<section class="section" id="simulator">
+  <div class="stag teal">Section 6 · Simulation</div>
+  <h2>Dissolving Sugars Investigation</h2>
+  <p class="lead">This simulation shows what actually happens inside the beaker. Watch the particles dissolve — and notice how mass affects the time.</p>
+
+  <div class="sim-wrapper">
+    <!-- ZONE 1: PREDICT -->
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num predict">1</div><div class="phase-title">Predict — before you simulate</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">You will test 5 g vs 20 g of sugar dissolving in the same volume of water at the same temperature. <strong>Which do you predict will dissolve faster?</strong></p>
+      <div class="choices" id="predChoices">
+        <button class="choice" onclick="selectPred(this,'5g')">5 g of sugar — fewer particles, so faster</button>
+        <button class="choice" onclick="selectPred(this,'20g')">20 g of sugar — more particles means more energy, so faster</button>
+        <button class="choice" onclick="selectPred(this,'same')">They will dissolve at the same speed — mass doesn't matter</button>
+      </div>
+      <div class="fb" id="predF"></div>
+    </div>
+
+    <!-- ZONE 2: SIMULATE -->
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num simulate">2</div><div class="phase-title">Simulate — interact and observe</div></div>
+      <p style="font-size:13px;font-weight:700;color:#0891b2;margin-bottom:10px">🔬 <em>You are in the lab. Adjust the sugar mass and press "Start dissolving" — watch the particles carefully.</em></p>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:4px">Sugar mass:</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="mass5btn" onclick="setMass(5)" style="border:2px solid var(--blue);background:var(--soft)">5 g</button>
+            <button class="btn btn-ghost" id="mass10btn" onclick="setMass(10)">10 g</button>
+            <button class="btn btn-ghost" id="mass15btn" onclick="setMass(15)">15 g</button>
+            <button class="btn btn-ghost" id="mass20btn" onclick="setMass(20)">20 g</button>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:13px;font-weight:800;display:block;margin-bottom:4px">Controls:</label>
+          <button class="btn btn-teal" id="startBtn" onclick="startDissolving()">▶ Start dissolving</button>
+          <button class="btn btn-ghost" onclick="resetSim()">↺ Reset</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start">
+        <div>
+          <!-- BEAKER SVG -->
+          <svg id="beaker-svg" viewBox="0 0 240 320">
+            <!-- beaker shape -->
+            <path d="M40,40 L40,260 Q40,285 65,285 L175,285 Q200,285 200,260 L200,40 Z" fill="none" stroke="#94a3b8" stroke-width="4" stroke-linejoin="round"/>
+            <!-- beaker mouth -->
+            <line x1="30" y1="40" x2="210" y2="40" stroke="#94a3b8" stroke-width="4"/>
+            <!-- water fill -->
+            <rect id="waterFill" x="43" y="130" width="154" height="152" rx="0" fill="rgba(147,210,255,0.35)" id="waterRect"/>
+            <!-- water surface line -->
+            <line x1="43" y1="130" x2="197" y2="130" stroke="#60a5fa" stroke-width="2" opacity=".6"/>
+            <!-- sugar particles group -->
+            <g id="particles"></g>
+            <!-- dissolved indicator -->
+            <text id="dissMsg" x="120" y="200" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="800" fill="#15803d" opacity="0"></text>
+            <!-- timer display -->
+            <rect x="55" y="50" width="130" height="34" rx="8" fill="#0f2044" opacity=".85"/>
+            <text id="timerDisplay" x="120" y="73" text-anchor="middle" font-family="Nunito" font-size="15" font-weight="900" fill="#fff">0.0 s</text>
+            <!-- water coloring layer -->
+            <rect id="waterColor" x="43" y="130" width="154" height="152" fill="rgba(139,92,246,0)" style="pointer-events:none"/>
+            <!-- beaker label -->
+            <text x="120" y="310" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="800" fill="#64748b">Same volume water, same temperature</text>
+          </svg>
+        </div>
+        <!-- Results table -->
+        <div>
+          <p style="font-size:13px;font-weight:900;color:var(--navy);margin-bottom:8px">Results so far:</p>
+          <table id="resultsTable">
+            <tr><th>Mass (g)</th><th>Time (s)</th></tr>
+          </table>
+          <div id="meanBox" style="margin-top:10px;display:none">
+            <div style="background:#ecfdf5;border:1px solid #86efac;border-radius:10px;padding:10px">
+              <p style="font-size:13px;font-weight:900;color:#15803d">Pattern: <span id="patternText"></span></p>
+              <p style="font-size:13px;font-weight:700;color:#166534;margin-top:4px" id="patternExplain"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZONE 3: EXPLAIN -->
+    <div class="sim-phase">
+      <div class="sim-phase-label"><div class="phase-num explain">3</div><div class="phase-title">Explain — what did you observe?</div></div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:8px">You tested at least two masses. What is the relationship between sugar mass and dissolving time? <strong>Use data from your simulation.</strong></p>
+      <textarea id="dissExplain" placeholder="As the mass of sugar increased from ___ g to ___ g, the dissolving time... This is because more sugar particles means..."></textarea>
+      <button class="btn btn-green" onclick="checkSome('dissExplain','dissExpF',['increase','more','longer','particles','mass','time'],'✅ Excellent — you described the pattern using the simulation data.','❌ Model: As mass increased, dissolving time increased — more sugar particles take longer to all dissolve into the water. This is a positive correlation.')">Check</button>
+      <div class="fb" id="dissExpF"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. CFU ══ -->
+<section class="section" id="cfu">
+  <div class="stag">Final Check</div>
+  <h2>Test Yourself — 20 Questions</h2>
+  <p class="lead">Three tiers. Don't skip ahead — work through Secure first.</p>
+  <div class="cfu-tabs">
+    <button class="cfu-tab active" onclick="showTab('secure',this)">🟢 Secure (1–8)</button>
+    <button class="cfu-tab" onclick="showTab('build',this)">🟡 Build (9–15)</button>
+    <button class="cfu-tab" onclick="showTab('stretch',this)">🔴 Stretch (16–20)</button>
+  </div>
+
+  <div class="cfu-panel active" id="tab-secure">
+    <div class="qb"><div class="qn">Q1 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">The variable a scientist deliberately changes is the...</p><div class="choices"><button class="choice" onclick="choice(this,true,'q1f','✅ Correct — independent variable.','')">Independent variable</button><button class="choice" onclick="choice(this,false,'q1f','','❌ Dependent variable is what you measure. The one you change is the independent variable.')">Dependent variable</button></div><div class="fb" id="q1f"></div></div>
+    <div class="qb"><div class="qn">Q2 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">The variable measured in an investigation is the...</p><div class="choices"><button class="choice" onclick="choice(this,true,'q2f','✅ Correct — dependent variable.','')">Dependent variable</button><button class="choice" onclick="choice(this,false,'q2f','','❌ Control variables are kept the same. Dependent variable = what is measured.')">Control variable</button></div><div class="fb" id="q2f"></div></div>
+    <div class="qb"><div class="qn">Q3 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A hazard is...</p><div class="choices"><button class="choice" onclick="choice(this,true,'q3f','✅ Correct — a hazard is something that could cause harm.','')">Something that could cause harm</button><button class="choice" onclick="choice(this,false,'q3f','','❌ The chance of harm is the risk. A hazard is the source — something that could cause harm.')">The chance of harm happening</button></div><div class="fb" id="q3f"></div></div>
+    <div class="qb"><div class="qn">Q4 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is a risk?</p><div class="choices"><button class="choice" onclick="choice(this,false,'q4f','','❌ A hazard is what could cause harm. Risk is the chance of it happening and how serious it could be.')">Something that could cause harm</button><button class="choice" onclick="choice(this,true,'q4f','✅ Correct — risk is the chance of harm and how serious it could be.','')">The chance of harm happening and how serious it is</button></div><div class="fb" id="q4f"></div></div>
+    <div class="qb"><div class="qn">Q5 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Why do we repeat measurements?</p><div class="choices"><button class="choice" onclick="choice(this,true,'q5f','✅ Correct — repeats improve reliability and let you calculate a mean and spot anomalies.','')">To improve reliability, calculate a mean and spot anomalies</button><button class="choice" onclick="choice(this,false,'q5f','','❌ Repeating doesn\'t change the independent variable — it checks whether your results are consistent.')">To change the independent variable</button></div><div class="fb" id="q5f"></div></div>
+    <div class="qb"><div class="qn">Q6 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is an anomaly?</p><div class="choices"><button class="choice" onclick="choice(this,true,'q6f','✅ Correct — an anomaly is a result that doesn\'t fit the pattern, likely due to error.','')">A result that doesn't fit the pattern</button><button class="choice" onclick="choice(this,false,'q6f','','❌ A normal result fits the pattern. An anomaly sticks out and should usually be excluded from the mean.')">A result that fits the pattern well</button></div><div class="fb" id="q6f"></div></div>
+    <div class="qb"><div class="qn">Q7 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">The independent variable goes on the...</p><div class="choices"><button class="choice" onclick="choice(this,true,'q7f','✅ Correct — independent variable on the x-axis (horizontal).','')">x-axis (horizontal)</button><button class="choice" onclick="choice(this,false,'q7f','','❌ The dependent variable goes on the y-axis. The independent (what you changed) goes on the x-axis.')">y-axis (vertical)</button></div><div class="fb" id="q7f"></div></div>
+    <div class="qb"><div class="qn">Q8 <span class="tb tg">Secure</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Positive correlation means...</p><div class="choices"><button class="choice" onclick="choice(this,true,'q8f','✅ Correct — both variables increase together = positive correlation.','')">Both variables increase together</button><button class="choice" onclick="choice(this,false,'q8f','','❌ One up, one down is negative correlation. Positive = both increase together.')">As one increases, the other decreases</button></div><div class="fb" id="q8f"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('build',this)">Next: Build →</button>
+  </div>
+
+  <div class="cfu-panel" id="tab-build">
+    <div class="qb"><div class="qn">Q9 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Results: 18, 20, 19, 47, 21 seconds. Identify the anomaly and calculate the mean of the other four.</p><textarea id="q9t" placeholder="Anomaly = ___ s. Mean = ..." style="min-height:60px"></textarea><button class="btn btn-green" onclick="checkSome('q9t','q9f',['47','19.5'],'✅ Correct — 47 s is the anomaly; mean = (18+20+19+21)÷4 = 19.5 s','❌ Model: 47 s is the anomaly. Mean of remaining = (18+20+19+21)÷4 = 78÷4 = 19.5 s')">Check</button><div class="fb" id="q9f"></div></div>
+    <div class="qb"><div class="qn">Q10 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A student says "my line of best fit must touch every data point." What is wrong?</p><div class="choices"><button class="choice" onclick="choice(this,true,'q10f','✅ Correct — a line of best fit shows the general trend; it does not need to touch every point, and anomalies should be excluded.','')">A line of best fit shows the trend — it doesn't need to touch every point</button><button class="choice" onclick="choice(this,false,'q10f','','❌ This is the misconception! The line shows the general trend — anomalies would distort it if included.')">They are correct — the line must go through all points</button></div><div class="fb" id="q10f"></div></div>
+    <div class="qb"><div class="qn">Q11 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Write a hypothesis for: "Does temperature affect how fast sugar dissolves?"</p><textarea id="q11t" placeholder="If I increase the temperature, then... because..." style="min-height:60px"></textarea><button class="btn btn-green" onclick="checkSome('q11t','q11f',['if','then','because','temperature','faster','dissolve'],'✅ Good hypothesis — If...then...because structure used.','❌ Model: If I increase the temperature, then the sugar will dissolve faster, because warmer water gives the particles more energy to move and collide.')">Check</button><div class="fb" id="q11f"></div></div>
+    <div class="qb"><div class="qn">Q12 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Results: 20°C→45 s, 40°C→28 s, 60°C→14 s. Which is the best conclusion?</p><div class="choices"><button class="choice" onclick="choice(this,false,'q12f','','❌ No data used. A strong conclusion always includes specific values from the results.')">Temperature affected the dissolving time.</button><button class="choice" onclick="choice(this,true,'q12f','✅ Correct — uses data, describes pattern, names the correlation.','')">As temperature increased from 20°C to 60°C, dissolving time decreased from 45 s to 14 s — a negative correlation.</button><button class="choice" onclick="choice(this,false,'q12f','','❌ This is not a scientific conclusion — it is an opinion. Use the data.')">I think the experiment worked well.</button></div><div class="fb" id="q12f"></div></div>
+    <div class="qb"><div class="qn">Q13 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">What is the difference between a hazard and a precaution?</p><textarea id="q13t" placeholder="A hazard is... A precaution is..." style="min-height:60px"></textarea><button class="btn btn-green" onclick="checkSome('q13t','q13f',['hazard','precaution','harm','reduce','action','could cause'],'✅ Good distinction.','❌ Model: A hazard is something that could cause harm (e.g. Bunsen flame). A precaution is an action that reduces the risk (e.g. wearing goggles, tying hair back).')">Check</button><div class="fb" id="q13f"></div></div>
+    <div class="qb"><div class="qn">Q14 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">As exercise time increases, heart rate increases. What type of correlation?</p><div class="choices"><button class="choice" onclick="choice(this,true,'q14f','✅ Correct — positive correlation. Both variables increase together.','')">Positive correlation</button><button class="choice" onclick="choice(this,false,'q14f','','❌ Negative correlation = one up, one down. Here, both increase — positive correlation.')">Negative correlation</button><button class="choice" onclick="choice(this,false,'q14f','','❌ Both clearly increase together — that is a positive correlation.')">No correlation</button></div><div class="fb" id="q14f"></div></div>
+    <div class="qb"><div class="qn">Q15 <span class="tb ty">Build</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Give two control variables when testing how sugar mass affects dissolving time.</p><textarea id="q15t" placeholder="1. ...&#10;2. ..." style="min-height:60px"></textarea><button class="btn btn-green" onclick="checkSome('q15t','q15f',['temperature','volume','water','stirring','same','type'],'✅ Good — relevant control variables identified.','❌ Model: Any two from: same temperature of water, same volume of water, same type of sugar, same amount of stirring, same beaker.')">Check</button><div class="fb" id="q15f"></div></div>
+    <button class="btn btn-blue" style="margin-top:8px" onclick="showTab('stretch',this)">Next: Stretch →</button>
+  </div>
+
+  <div class="cfu-panel" id="tab-stretch">
+    <div class="qb"><div class="qn">Q16 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">"Balanced forces mean the object must be stopped." Explain the mistake.</p><textarea id="q16t" style="min-height:65px" placeholder="The student is wrong because..."></textarea><button class="btn btn-green" onclick="checkSome('q16t','q16f',['constant speed','moving','stationary','zero','resultant','could be'],'✅ Excellent.','❌ Model: Balanced forces mean resultant force = 0 N. The object could be stationary OR moving at constant speed. You can\'t tell which without more information.')">Check</button><div class="fb" id="q16f"></div></div>
+    <div class="qb"><div class="qn">Q17 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A student repeats an experiment and gets identical results each time. They say "my results must be correct." Why is this not necessarily true?</p><textarea id="q17t" style="min-height:65px" placeholder="Identical repeats show reliability, but..."></textarea><button class="btn btn-green" onclick="checkSome('q17t','q17f',['reliable','valid','systematic','error','same mistake','accurate'],'✅ Excellent — you distinguished reliability from accuracy.','❌ Model: Identical results show reliability (consistency) but not accuracy. If the same systematic error occurred every time (e.g. starting the timer late), all results would be consistently wrong. Reliable ≠ correct.')">Check</button><div class="fb" id="q17f"></div></div>
+    <div class="qb"><div class="qn">Q18 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">Evaluate: "I measured dissolving time once at three different masses." Suggest two improvements.</p><textarea id="q18t" style="min-height:65px" placeholder="Improvement 1: ...&#10;Improvement 2: ..."></textarea><button class="btn btn-green" onclick="checkSome('q18t','q18f',['repeat','mean','anomaly','temperature','control','reliable','precise'],'✅ Good evaluation.','❌ Model: 1. Repeat each measurement ≥3 times and calculate a mean — improves reliability and allows anomalies to be spotted. 2. Control the water temperature throughout — temperature changes between measurements would make it unfair.')">Check</button><div class="fb" id="q18f"></div></div>
+    <div class="qb"><div class="qn">Q19 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">"My hypothesis was right because the sugar dissolved faster." Why is this a weak conclusion?</p><div class="choices"><button class="choice" onclick="choice(this,false,'q19f','','❌ The conclusion mentions the hypothesis. The problem is it uses no data — no specific values.')">It doesn't mention the hypothesis</button><button class="choice" onclick="choice(this,true,'q19f','✅ Correct — strong conclusions must use specific data values, not vague descriptions.','')">It doesn't use specific data from the results</button><button class="choice" onclick="choice(this,false,'q19f','','❌ Length isn\'t the issue — missing data is. Short conclusions can be excellent if they use numbers.')">It is too short</button></div><div class="fb" id="q19f"></div></div>
+    <div class="qb"><div class="qn">Q20 <span class="tb tr">Stretch</span></div><p style="font-weight:700;font-size:14px;margin-bottom:7px">A student finds a strong positive correlation between exercise and heart rate. Can they conclude that exercise <em>causes</em> heart rate to increase? Explain your reasoning.</p><textarea id="q20t" style="min-height:70px" placeholder="A correlation shows... but to claim causation we need..."></textarea><button class="btn btn-green" onclick="checkSome('q20t','q20f',['cause','correlation','evidence','factor','support','mechanism','other'],'✅ Excellent scientific reasoning.','❌ Model: Correlation shows the variables are linked but doesn\'t prove causation. Here the correlation strongly supports it, and there is a biological mechanism. However, other factors (temperature, excitement) could contribute. Multiple lines of evidence are needed before concluding causation.')">Check</button><div class="fb" id="q20f"></div></div>
+    <button class="btn btn-ghost" style="margin-top:8px" onclick="showTab('secure',this)">← Back to Secure</button>
+  </div>
+</section>
+</main></div>
+
+<script>
+// ── Core helpers ──────────────────────────────
+function el(id){return document.getElementById(id)}
+function showFB(id,ok,msg){const f=el(id);f.textContent=msg;f.className='fb show '+(ok?'ok':'no')}
+function choice(btn,ok,fid,okM,noM){
+  btn.closest('.choices,.qb,.task').querySelectorAll('.choice').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  showFB(fid,ok,ok?okM:noM);
+}
+function checkSome(tid,fid,words,okM,noM){
+  const t=el(tid).value.toLowerCase().trim();
+  if(!t){showFB(fid,false,'Write an answer first.');return;}
+  showFB(fid,words.some(w=>t.includes(w)),okM,noM);
+}
+function checkDD(id,correct,fid,okM,noM){
+  const v=el(id).value;
+  if(!v){showFB(fid,false,'Select an answer first.');return;}
+  showFB(fid,v===correct,okM,noM);
+}
+function checkVars(){
+  const ok=el('v1').value==='h'&&el('v2').value==='s'&&el('v3').value==='c';
+  showFB('varF',ok,'✅ Correct: height (IV) → speed (DV) → same car (control)','❌ Model: Independent = height of ramp. Dependent = speed of car. Control = same toy car.');
+}
+function checkBoth(){
+  const a=parseFloat(el('anQ1').value),m=parseFloat(el('anQ2').value);
+  const aOk=a===51,mOk=Math.abs(m-23)<0.1;
+  if(aOk&&mOk)showFB('anF',true,'✅ Correct — 51 s is the anomaly; mean = (22+24+23+23)÷4 = 23 s');
+  else if(!aOk)showFB('anF',false,'❌ The anomaly is 51 s — it is much higher than the others (~22–24 s). Mean = 23 s.');
+  else showFB('anF',false,'❌ Anomaly correct! Mean = (22+24+23+23)÷4 = 92÷4 = 23 s');
+}
+function showTab(id,btn){
+  document.querySelectorAll('.cfu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.cfu-tab').forEach(t=>t.classList.remove('active'));
+  el('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// ── DISSOLVING SIMULATION ──────────────────────
+let simMass=5, simRunning=false, simTimer=null, simElapsed=0, simResults=[];
+const DISSOLVE_TIMES={5:12,10:24,15:36,20:48};
+let particles=[];
+
+function setMass(m){
+  if(simRunning)return;
+  simMass=m;
+  ['mass5btn','mass10btn','mass15btn','mass20btn'].forEach(id=>{
+    el(id).style.background='';el(id).style.borderColor='var(--line)';
+  });
+  el('mass'+m+'btn').style.background='var(--soft)';
+  el('mass'+m+'btn').style.borderColor='var(--blue)';
+  resetSim();
+}
+
+function resetSim(){
+  simRunning=false;clearInterval(simTimer);simElapsed=0;
+  el('timerDisplay').textContent='0.0 s';
+  el('dissMsg').setAttribute('opacity','0');
+  el('waterColor').setAttribute('fill','rgba(139,92,246,0)');
+  el('startBtn').textContent='▶ Start dissolving';
+  el('startBtn').disabled=false;
+  drawParticles();
+}
+
+function drawParticles(){
+  const g=el('particles');g.innerHTML='';particles=[];
+  const count=simMass;
+  for(let i=0;i<count;i++){
+    const x=55+Math.random()*130;
+    const y=100+Math.random()*40;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r','5');
+    c.setAttribute('fill','#a78bfa');c.setAttribute('opacity','0.9');
+    c.setAttribute('stroke','#7c3aed');c.setAttribute('stroke-width','1');
+    c.style.transition='opacity 0.5s, cy 0.5s';
+    g.appendChild(c);particles.push(c);
+  }
+}
+
+function startDissolving(){
+  if(simRunning)return;
+  simRunning=true;
+  el('startBtn').textContent='⏳ Dissolving...';
+  el('startBtn').disabled=true;
+  const totalTime=DISSOLVE_TIMES[simMass];
+  const interval=100;
+  simTimer=setInterval(()=>{
+    simElapsed+=interval/1000;
+    el('timerDisplay').textContent=simElapsed.toFixed(1)+' s';
+    // dissolve particles progressively
+    const prog=simElapsed/totalTime;
+    const nDissolved=Math.floor(prog*particles.length);
+    for(let i=0;i<nDissolved;i++){
+      if(particles[i].getAttribute('opacity')>'0.1'){
+        particles[i].setAttribute('opacity','0');
+        const cy=parseFloat(particles[i].getAttribute('cy'));
+        particles[i].setAttribute('cy',cy+30);
+      }
+    }
+    // water colour deepens
+    const alpha=(prog*0.25).toFixed(3);
+    el('waterColor').setAttribute('fill',`rgba(139,92,246,${alpha})`);
+
+    if(simElapsed>=totalTime){
+      clearInterval(simTimer);simRunning=false;
+      el('startBtn').textContent='✅ Done';
+      el('dissMsg').textContent='All dissolved! ✓';
+      el('dissMsg').setAttribute('opacity','1');
+      // record result
+      simResults.push({mass:simMass,time:simElapsed.toFixed(1)});
+      updateResultsTable();
+    }
+  },interval);
+}
+
+function updateResultsTable(){
+  const t=el('resultsTable');
+  t.innerHTML='<tr><th>Mass (g)</th><th>Time (s)</th></tr>';
+  simResults.forEach(r=>{
+    const row=t.insertRow();
+    row.insertCell().textContent=r.mass+' g';
+    row.insertCell().textContent=r.time+' s';
+  });
+  if(simResults.length>=2){
+    el('meanBox').style.display='block';
+    const times=simResults.map(r=>parseFloat(r.time));
+    const trend=times[times.length-1]>times[0];
+    el('patternText').textContent=trend?'As mass increases, dissolving time increases.':'Results recorded.';
+    el('patternExplain').textContent=trend?'More sugar particles take longer to fully dissolve — a positive correlation between mass and time.':'Compare your values — what do you notice about the trend?';
+  }
+}
+
+function selectPred(btn,choice){
+  document.querySelectorAll('#predChoices .choice').forEach(b=>{b.classList.remove('correct','wrong');b.disabled=false;});
+  btn.disabled=true;
+  if(choice==='5g'){btn.classList.add('correct');showFB('predF',true,'✅ Correct prediction! 5 g has fewer particles so it dissolves faster. Now test 20 g and compare!');}
+  else if(choice==='same'){btn.classList.add('wrong');showFB('predF',false,'❌ Incorrect — mass does affect dissolving time. Now test both masses to see the difference.');}
+  else{btn.classList.add('wrong');showFB('predF',false,'❌ More particles means more total dissolving needed — so more mass takes LONGER. Try the simulation to see!');}
+}
+
+// init
+setMass(5);
+</script>
+</body></html>
